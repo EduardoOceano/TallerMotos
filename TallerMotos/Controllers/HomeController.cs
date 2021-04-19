@@ -27,6 +27,18 @@ namespace TallerMotos.Controllers
         {
             return View();
         }
+        public IActionResult MotosHm()
+        {
+            return View();
+        }
+        public IActionResult PiezasHm()
+        {
+            return View();
+        }
+        public IActionResult ComplementosHm()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
