@@ -6,6 +6,56 @@
     <title>@ViewData["Title"] - TallerMotos</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://code.jquery.com/jquery-1.12.2.js"
+            integrity="sha256-VUCyr0ZXB5VhBibo2DkTVhdspjmxUgxDGaLQx7qb7xY="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function (ev) {
+            $("#galeria li:gt(0)").hide(); //gt(0) se refiere a todos menos al elemento cuyo indice sea 0
+
+            setInterval(function () { //se ejecuta el intervalo,
+                $("#galeria li:first-child").fadeOut()
+                    .next("li").fadeIn(1000)
+                    .end().appendTo("#galeria");
+            }, 4000); //numero de milisegundos
+
+
+        });
+
+    </script>
+    <style>
+        #galeria {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            overflow: hidden;
+            border: 10px solid #333;
+            margin: 0 auto;
+            padding: 0;
+            border-radius: 40px
+        }
+
+            #galeria p {
+                opacity: 0.7;
+                position: absolute;
+                left: 100px;
+                bottom: 30px;
+                display: block;
+                width: 400px;
+                height: 40px;
+                padding: 5px;
+                background: #990000;
+                color: #eee;
+                font-size: 22px;
+                text-align: center;
+                line-height: 22px;
+            }
+            img{
+                width: 600px;
+                height: 400px;
+            }
+        /*coge las p dentro de galeria*/
+    </style>
 </head>
 <body>
     <header>
@@ -28,7 +78,15 @@
                 </div>
             </div>
         </nav>
+
     </header>
+    <div>
+        <ul id="galeria">
+            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAzykEvll0wKXcJ5FfEOnJ2QXk8XpztPcUZA&usqp=CAU" ><p>imagen 1</p></li>
+            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAzykEvll0wKXcJ5FfEOnJ2QXk8XpztPcUZA&usqp=CAU"><p>imagen 2</p></li>
+            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS892lvqmRT1LcyMdy41uDleYHWzNmBinHp6A&usqp=CAU"><p>imagen 3</p></li>
+        </ul>
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
