@@ -54,7 +54,23 @@
                 width: 600px;
                 height: 400px;
             }
-        /*coge las p dentro de galeria*/
+        #menu > li { /*los li pegados a menu*/
+           
+            position: relative;
+        }
+        .submenu {
+            position: absolute;
+            display: none;
+        }
+        
+        }
+        #menu li:hover {
+            cursor: pointer;
+        }
+
+            #menu li:hover ul { /*las listas que estan dentro, se ponen con block*/
+                display: block;
+            }
     </style>
 </head>
 <body>
@@ -67,16 +83,32 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1 pull-right" id="menu">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MotosHm">Motos</a>
+
+                            <ul class="nav-item submenu">
+                                <li class="nav-item">Kawasaki</li>
+
+                            </ul>
                         </li>
-                        <li class="nav-item">
+
+
+                        <li class="nav-item ">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="PiezasHm">Piezas</a>
+                            <ul class="nav-item submenu">
+                                <li class="nav-item">Motor</li>
+
+                            </ul>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ComplementosHm">Complementos</a>
+                            <ul class="nav-item submenu">
+                                <li class="nav-item">Casco</li>
+
+                            </ul>
                         </li>
+
                     </ul>
                 </div>
             </div>
