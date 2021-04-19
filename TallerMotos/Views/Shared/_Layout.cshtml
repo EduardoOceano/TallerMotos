@@ -61,7 +61,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TallerMotos</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Inicio" asp-action="Index">TallerMotos</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -69,10 +69,13 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MotosHm">Motos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="PiezasHm">Piezas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ComplementosHm">Complementos</a>
                         </li>
                     </ul>
                 </div>
@@ -82,9 +85,9 @@
     </header>
     <div>
         <ul id="galeria">
-            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAzykEvll0wKXcJ5FfEOnJ2QXk8XpztPcUZA&usqp=CAU" ><p>imagen 1</p></li>
-            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAzykEvll0wKXcJ5FfEOnJ2QXk8XpztPcUZA&usqp=CAU"><p>imagen 2</p></li>
-            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS892lvqmRT1LcyMdy41uDleYHWzNmBinHp6A&usqp=CAU"><p>imagen 3</p></li>
+            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAzykEvll0wKXcJ5FfEOnJ2QXk8XpztPcUZA&usqp=CAU" ><p>Motos</p></li>
+            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAzykEvll0wKXcJ5FfEOnJ2QXk8XpztPcUZA&usqp=CAU"><p>Piezas</p></li>
+            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS892lvqmRT1LcyMdy41uDleYHWzNmBinHp6A&usqp=CAU"><p>Complementos</p></li>
         </ul>
     </div>
     <div class="container">
