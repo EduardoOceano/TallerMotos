@@ -1,0 +1,134 @@
+﻿CREATE DATABASE TallerMotos;
+
+
+USE TallerMotos;
+
+CREATE TABLE motos(
+	idMoto INT PRIMARY KEY AUTO_INCREMENT,
+	matricula VARCHAR(20),
+	marca VARCHAR (20),
+	modelo NVARCHAR(20),
+	cilindrada INT,
+	idCliente INT,
+	FOREIGN KEY (idCliente) REFERENCE clientes (idCliente)
+);
+
+CREATE TABLE motor(
+	idMotor INT PRIMARY KEY AUTO_INCREMENT,
+	tiempos INT,
+	cilindrada INT,
+	kilowatios INT,
+	caballos NUMERIC (2,2),
+	num_cilindros INT,
+	precio NUMERIC(20,2),
+	fabricante VARCHAR(50)
+	);
+	
+CREATE TABLE suspension(
+	idSuspension INT PRIMARY KEY AUTO_INCREMENT,
+	sistema VARCHAR(20),
+	tipo VARCHAR(20),
+	fabricante VARCHAR(20),
+	precio NUMERIC(20,2)
+);
+
+CREATE TABLE neumaticos(
+	idNeumatico INT PRIMARY KEY AUTO_INCREMENT,
+	temporada VARCHAR(20),
+	anchura INT,
+	altura INT, 
+	diametro INT,
+	fabricante VARCHAR(20),
+	indiceVelocidad INT,
+	precio NUMERIC(20,2)
+);
+
+CREATE TABLE motor(
+	idMotor INT PRIMARY KEY AUTO_INCREMENT,
+	tiempos INT,
+	cilindrada INT,
+	kilowatios INT,
+	caballos NUMERIC (2,2),
+	num_cilindros INT,
+	precio NUMERIC(20,2),
+	fabricante VARCHAR(50)
+	);
+	
+CREATE TABLE suspension(
+	idSuspension INT PRIMARY KEY AUTO_INCREMENT,
+	sistema VARCHAR(20),
+	tipo VARCHAR(20),
+	fabricante VARCHAR(20),
+	precio NUMERIC(20,2)
+);
+
+CREATE TABLE neumaticos(
+	idNeumatico INT PRIMARY KEY AUTO_INCREMENT,
+	temporada VARCHAR(20),
+	anchura INT,
+	altura INT, 
+	diametro INT,
+	fabricante VARCHAR(20),
+	indiceVelocidad INT,
+	precio NUMERIC(20,2)
+);
+
+CREATE TABLE filtro(
+	idFiltro INT PRIMARY KEY AUTO_INCREMENT,
+	tipo VARCHAR(20),
+	fabricante VARCHAR(20),
+	modelo VARCHAR(20),
+	tipoMotor VARCHAR(20),
+	precio NUMERIC (20,2)
+);
+
+CREATE TABLE frenos(
+	idFreno INT PRIMARY KEY AUTO_INCREMENT,
+	tipoFreno VARCHAR(20),
+	accesorioFreno VARCHAR(20),
+	fabricante VARCHAR(20),
+	precio NUMERIC(20,2)
+);
+
+CREATE TABLE accesorios(
+	idAccesorio INT PRIMARY KEY AUTO_INCREMENT,
+	tipo VARCHAR(20),
+	fabricante VARCHAR(20),
+	precio NUMERIC (20,2)
+);
+
+CREATE TABLE talleres(
+	idTaller INT PRIMARY KEY AUTO_INCREMENT,
+	telefono VARCHAR(20),
+	direccion VARCHAR(20),
+	ciudad VARCHAR(20)
+);
+
+CREATE TABLE catalogo(
+	idAccesorio INT, 
+	idTaller INT, 
+	idFreno INT, 
+	idFiltro INT, 
+	idSuspension INT, 
+	idNeumaticos INT, 
+	idMotor INT,
+	FOREIGN KEY (idAccesorio) REFERENCES accesorios (idAccesorio),
+	FOREIGN KEY (idTaller) REFERENCES talleres (idTaller),
+	FOREIGN KEY (idFreno) REFERENCES frenos (idFreno),
+	FOREIGN KEY (idFiltro) REFERENCES filtro (idFiltro),
+	FOREIGN KEY (idSuspension) REFERENCES suspension (idSuspension),
+	FOREIGN KEY (idNeumaticos) REFERENCES neumaticos (idNeumatico),
+	FOREIGN KEY (idMotor) REFERENCES motor (idMotor)
+);
+
+CREATE TABLE presupuesto(
+	idFactura INT,
+	facturaTotal NUMERIC(20,2),
+	montaje INT,
+	idTaller INT,
+	idCliente INT,
+	idMoto INT,
+	FOREIGN KEY (idTaller) REFERENCES talleres (idTaller),
+	FOREIGN KEY (idCliente) REFERENCES clientes(idCliente),
+	FOREIGN KEY (idMoto) REFERENCES motos(idMoto)
+);
