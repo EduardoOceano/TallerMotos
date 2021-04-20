@@ -1,0 +1,41 @@
+﻿@model TallerMotos.Models.Facturas
+@{
+    ViewData["Title"] = "Facturas";
+}
+
+<h1>Facturas</h1>
+
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.idCliente)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.idCliente)
+    </dd>
+  
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.idEmpleado)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.idEmpleado)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.fecha)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.fecha)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.idTaller)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.idTaller)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.total)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.total)
+    </dd>
+</dl>

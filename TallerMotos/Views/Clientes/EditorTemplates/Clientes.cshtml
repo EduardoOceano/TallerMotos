@@ -1,0 +1,34 @@
+﻿@model TallerMotos.Models.Clientes
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<h1>Clientes</h1>
+<div class="form-group">
+    <label asp-for="NombreCliente" class="control-label"></label>
+    <input asp-for="NombreCliente" class="form-control" />
+    <span asp-validation-for="NombreCliente" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="ApellidosCliente" class="control-label"></label>
+    <input asp-for="ApellidosCliente" class="form-control" />
+    <span asp-validation-for="ApellidosCliente" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="CiudadCliente" class="control-label"></label>
+    <input asp-for="CiudadCliente" class="form-control" />
+    <span asp-validation-for="CiudadCliente" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="DNICliente" class="control-label"></label>
+    <input asp-for="DNICliente" class="form-control" />
+    <span asp-validation-for="DNICliente" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="DomicilioCliente" class="control-label"></label>
+    <input asp-for="DomicilioCliente" class="form-control" />
+    <span asp-validation-for="DomicilioCliente" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <input type="submit" value="Save" class="btn btn-primary" />
+</div>

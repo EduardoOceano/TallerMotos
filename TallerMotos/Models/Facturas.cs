@@ -11,7 +11,6 @@ namespace TallerMotos.Models
         [Key]
         public int idFactura { get; set; }
         public int idCliente { get; set; }
-        public int idMoto { get; set; }
         public int idEmpleado { get; set; }
         public DateTime fecha { get; set; }
 
