@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TallerMotos.Models
 {
+
     public class Clientes
     {
         [Key]

@@ -26,9 +26,9 @@ namespace TallerMotos
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
-            string conexion = this.Configuration.GetConnectionString("DefaultConnection");
+            string conexion = this.Configuration.GetConnectionString("defaultConnection");
             services.AddDbContext<Contexto>(options => options.UseMySql(conexion));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

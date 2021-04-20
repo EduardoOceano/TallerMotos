@@ -24,5 +24,12 @@ namespace TallerMotos.Models
         public DbSet<TallerMotos.Models.Motos> Motos { get; set; }
         
         public DbSet<TallerMotos.Models.Servicios> Servicios { get; set; }
+        public DbSet<Talleres> Talleres { get; set; }
+        
+        public DbSet<Facturas> Facturas { get; set; }
+        
+        public DbSet<TallerMotos.Models.Productos> Productos { get; set; }
+        
+        public DbSet<TallerMotos.Models.VentasLineal> VentasLineal { get; set; }
     }
 }
