@@ -5,15 +5,13 @@ using System.Threading.Tasks;
 
 namespace TallerMotos.Models
 {
-    public class Empleados
+    public class Talleres
     {
-        int idEmpleado { get; set; }
-        string NombreEmpleado { get; set; }
-        string ApellidoEmpleado { get; set; }
+        int idTaller { get; set; }
+        string numEmpleados { get; set; }
         string telefono { get; set; }
         string Direccion { get; set; }
         string Ciudad { get; set; }
 
-        int idTaller { get; set; }
     }
 }
