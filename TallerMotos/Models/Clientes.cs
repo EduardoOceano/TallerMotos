@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,11 +8,12 @@ namespace TallerMotos.Models
 {
     public class Clientes
     {
-        int idCliente { get; set; }
-        string NombreCliente { get; set; }
-        string ApellidoCliente { get; set; }
-        string CiudadCliente { get; set; }
-        int idMoto { get; set; }
-        string DomicilioCliente { get; set; }
+        [Key]
+        public int idCliente { get; set; }
+        public string NombreCliente { get; set; }
+        public string ApellidoCliente { get; set; }
+        public string CiudadCliente { get; set; }
+        public int idMoto { get; set; }
+        public string DomicilioCliente { get; set; }
     }
 }
