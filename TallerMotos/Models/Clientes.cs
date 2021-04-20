@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TallerMotos.Models
 {
+    [Table("Clientes")]
     public class Clientes
     {
         [Key]
