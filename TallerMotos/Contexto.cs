@@ -14,6 +14,7 @@ namespace TallerMotos.Models
         {
 
         }
-        public virtual DbSet<Accesorios> Accesorios { get; set; }
+        public virtual DbSet<Clientes> Clientes { get; set; }
+        public virtual DbSet<Empleados> Empleados { get; set; }
     }
 }
