@@ -10,7 +10,7 @@ namespace TallerMotos.Models
     {
         [Key]
         public int idTaller { get; set; }
-        public string numEmpleados { get; set; }
+        public int numEmpleados { get; set; }
         public string telefono { get; set; }
         public string Direccion { get; set; }
         public string Ciudad { get; set; }

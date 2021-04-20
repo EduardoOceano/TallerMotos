@@ -26,8 +26,8 @@ namespace TallerMotos
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            string v = this.Configuration.GetConnectionString("defaultConnection");
-            services.AddDbContext<Contexto>(options => options.UseMySql(v));
+            string conexion = this.Configuration.GetConnectionString("defaultConnection");
+            services.AddDbContext<Contexto>(options => options.UseMySql(conexion));
 
         }
 
