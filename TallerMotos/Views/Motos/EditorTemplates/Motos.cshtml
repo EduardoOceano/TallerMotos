@@ -1,0 +1,30 @@
+﻿@model TallerMotos.Models.Motos
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="form-group">
+    <label asp-for="matricula" class="control-label"></label>
+    <input asp-for="matricula" class="form-control" />
+    <span asp-validation-for="matricula" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="marca" class="control-label"></label>
+    <input asp-for="marca" class="form-control" />
+    <span asp-validation-for="marca" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="modelo" class="control-label"></label>
+    <input asp-for="modelo" class="form-control" />
+    <span asp-validation-for="modelo" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="cilindrada" class="control-label"></label>
+    <input asp-for="cilindrada" class="form-control" />
+    <span asp-validation-for="cilindrada" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="idCliente" class="control-label"></label>
+    <input asp-for="idCliente" class="form-control" />
+    <span asp-validation-for="idCliente" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <input type="submit" value="Save" class="btn btn-primary" />
+</div>
