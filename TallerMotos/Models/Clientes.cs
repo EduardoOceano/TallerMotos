@@ -12,9 +12,10 @@ namespace TallerMotos.Models
         [Key]
         public int idCliente { get; set; }
         public string NombreCliente { get; set; }
-        public string ApellidoCliente { get; set; }
+        public string ApellidosCliente { get; set; }
         public string CiudadCliente { get; set; }
-        public int idMoto { get; set; }
+        
+        public string DNICliente { get; set; }
         public string DomicilioCliente { get; set; }
     }
 }
