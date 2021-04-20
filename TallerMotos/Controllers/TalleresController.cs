@@ -53,7 +53,7 @@ namespace TallerMotos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idTaller,numEmpleados,telefono,Direccion,Ciudad")] Talleres talleres)
+        public async Task<IActionResult> Create(Talleres talleres)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace TallerMotos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idTaller,numEmpleados,telefono,Direccion,Ciudad")] Talleres talleres)
+        public async Task<IActionResult> Edit(int id, Talleres talleres)
         {
             if (id != talleres.idTaller)
             {

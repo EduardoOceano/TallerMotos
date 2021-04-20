@@ -9,22 +9,22 @@ using TallerMotos.Models;
 
 namespace TallerMotos.Controllers
 {
-    public class EmpleadosController : Controller
+    public class ServiciosController : Controller
     {
         private readonly Contexto _context;
 
-        public EmpleadosController(Contexto context)
+        public ServiciosController(Contexto context)
         {
             _context = context;
         }
 
-        // GET: Empleados
+        // GET: Servicios
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Empleados.ToListAsync());
+            return View(await _context.Servicios.ToListAsync());
         }
 
-        // GET: Empleados/Details/5
+        // GET: Servicios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var empleados = await _context.Empleados
-                .FirstOrDefaultAsync(m => m.idEmpleado == id);
-            if (empleados == null)
+            var servicios = await _context.Servicios
+                .FirstOrDefaultAsync(m => m.idServicio == id);
+            if (servicios == null)
             {
                 return NotFound();
             }
 
-            return View(empleados);
+            return View(servicios);
         }
 
-        // GET: Empleados/Create
+        // GET: Servicios/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Empleados/Create
+        // POST: Servicios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Empleados empleados)
+        public async Task<IActionResult> Create(Servicios servicios)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(empleados);
+                _context.Add(servicios);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(empleados);
+            return View(servicios);
         }
 
-        // GET: Empleados/Edit/5
+        // GET: Servicios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var empleados = await _context.Empleados.FindAsync(id);
-            if (empleados == null)
+            var servicios = await _context.Servicios.FindAsync(id);
+            if (servicios == null)
             {
                 return NotFound();
             }
-            return View(empleados);
+            return View(servicios);
         }
 
-        // POST: Empleados/Edit/5
+        // POST: Servicios/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Empleados empleados)
+        public async Task<IActionResult> Edit(int id, Servicios servicios)
         {
-            if (id != empleados.idEmpleado)
+            if (id != servicios.idServicio)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace TallerMotos.Controllers
             {
                 try
                 {
-                    _context.Update(empleados);
+                    _context.Update(servicios);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmpleadosExists(empleados.idEmpleado))
+                    if (!ServiciosExists(servicios.idServicio))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace TallerMotos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(empleados);
+            return View(servicios);
         }
 
-        // GET: Empleados/Delete/5
+        // GET: Servicios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +123,30 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var empleados = await _context.Empleados
-                .FirstOrDefaultAsync(m => m.idEmpleado == id);
-            if (empleados == null)
+            var servicios = await _context.Servicios
+                .FirstOrDefaultAsync(m => m.idServicio == id);
+            if (servicios == null)
             {
                 return NotFound();
             }
 
-            return View(empleados);
+            return View(servicios);
         }
 
-        // POST: Empleados/Delete/5
+        // POST: Servicios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var empleados = await _context.Empleados.FindAsync(id);
-            _context.Empleados.Remove(empleados);
+            var servicios = await _context.Servicios.FindAsync(id);
+            _context.Servicios.Remove(servicios);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EmpleadosExists(int id)
+        private bool ServiciosExists(int id)
         {
-            return _context.Empleados.Any(e => e.idEmpleado == id);
+            return _context.Servicios.Any(e => e.idServicio == id);
         }
     }
 }

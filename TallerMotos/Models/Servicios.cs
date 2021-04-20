@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace TallerMotos.Models
 {
-    public class VentasLineal
+    public class Servicios
     {
         [Key]
-        int idVentaLineal { get; set; }
-        bool montaje { get; set; }
-        int idProducto { get; set; }
+        public int idServicio { get; set; }
+        public string tipo { get; set; }
+        public string descripcion { get; set; }
+        public decimal precio { get; set; }
     }
 }
