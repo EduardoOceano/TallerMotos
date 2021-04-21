@@ -12,7 +12,7 @@ namespace TallerMotos.Models
         public int idVentaLineal { get; set; }
         public int idProducto { get; set; }
         public int idServicio { get; set; }
-        public int Cantidad { get; set; }
+        public int cantidad { get; set; }
         public int precio { get; set; }
 
         public int idFactura { get; set; }
