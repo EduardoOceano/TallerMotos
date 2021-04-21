@@ -11,7 +11,7 @@ namespace TallerMotos.Models
         [Key]
         public int idProveedor { get; set; }
         public string NombreProveedor { get; set; }
-        public string Direccion { get; set; }
+        public string direccion { get; set; }
         public string Pais { get; set; }
         public string Comentario { get; set; }
         public string telefono { get; set; }
