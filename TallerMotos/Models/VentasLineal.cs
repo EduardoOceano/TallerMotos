@@ -13,7 +13,7 @@ namespace TallerMotos.Models
         public int idProducto { get; set; }
         public int idServicio { get; set; }
         public int cantidad { get; set; }
-        public decimal precio { get; set; }
+        public int precio { get; set; }
 
         public int idFactura { get; set; }
 
