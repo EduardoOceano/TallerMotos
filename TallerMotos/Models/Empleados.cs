@@ -13,8 +13,8 @@ namespace TallerMotos.Models
         public string nombreEmpleado { get; set; }
         public string apellidoEmpleado { get; set; }
         public string telefono { get; set; }
-        public string Direccion { get; set; }
-        public string Ciudad { get; set; }
+        public string direccion { get; set; }
+        public string ciudad { get; set; }
 
         public int idTaller { get; set; }
     }
