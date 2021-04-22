@@ -9,11 +9,11 @@ using TallerMotos.Models;
 
 namespace TallerMotos.Controllers
 {
-    public class VentasLineassController : Controller
+    public class VentasLineasController : Controller
     {
         private readonly Contexto _context;
 
-        public VentasLineassController(Contexto context)
+        public VentasLineasController(Contexto context)
         {
             _context = context;
         }
