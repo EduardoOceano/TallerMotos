@@ -56,7 +56,7 @@ namespace TallerMotos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(VentasLineal ventasLineal)
+        public async Task<IActionResult> Create(VentasLineas ventasLineal)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace TallerMotos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, VentasLineal ventasLineal)
+        public async Task<IActionResult> Edit(int id, VentasLineas ventasLineal)
         {
             if (id != ventasLineal.idVentaLineal)
             {

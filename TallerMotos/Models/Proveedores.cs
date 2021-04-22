@@ -16,6 +16,5 @@ namespace TallerMotos.Models
         public string comentario { get; set; }
         public string telefono { get; set; }
         
-        
     }
 }
