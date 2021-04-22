@@ -1,20 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace TallerMotos.Models
 {
-    public class VentasLineas
+
+    [Table("VentasLineas")]
+    public class VentasLineal
     {
         [Key]
-        public int idVentasLineas { get; set; }
-        public int idProducto { get; set; }
-        public int idServicio { get; set; }
-        public int cantidad { get; set; }
-        public decimal precio { get; set; }
-        public int idFactura { get; set; }
+        [Column("idVentasLineas")]
+        public int idVentaLineal { get; set; }
+        [Column("idProducto")]
+        public int? ProductoId { get; set; }
+        public Productos Producto { get; set; }
+        public int? idServicio { get; set; }
+        public int? cantidad { get; set; }
+        public int? precio { get; set; }
+
+        public int? idFactura { get; set; }
 
     }
 }

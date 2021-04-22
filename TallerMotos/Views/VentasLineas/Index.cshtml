@@ -13,19 +13,20 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.idProducto)
+                @*Html.DisplayNameFor(model => model.ProductoId)*@
+                Producto
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.idServicio)
+                Servicio
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.cantidad)
+                Cantidad
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.precio)
+                Precio
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.idFactura)
+                @*Html.DisplayNameFor(model => model.idFactura)*@
             </th>
             <th></th>
         </tr>
@@ -34,7 +35,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.idProducto)
+                @Html.DisplayFor(modelItem => item.Producto.tipo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.idServicio)

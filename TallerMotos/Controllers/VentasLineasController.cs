@@ -45,6 +45,8 @@ namespace TallerMotos.Controllers
         // GET: VentasLineass/Create
         public IActionResult Create()
         {
+            //ViewData["VentasLineal"] = _context.VentasLineal.Where(x => x.idFactura == ventaId).FirstOrDefault();
+            ViewData["ventaId"] = new SelectList(_context.Productos, "idProducto", "tipo");
             return View();
         }
 
