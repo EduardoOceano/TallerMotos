@@ -21,7 +21,8 @@ namespace TallerMotos.Controllers
         // GET: VentasLineals
         public async Task<IActionResult> Index()
         {
-            return View(await _context.VentasLineal.ToListAsync());
+            
+            return View(_context.VentasLineal.Include("Producto"));
         }
 
         // GET: VentasLineals/Details/5
@@ -43,8 +44,10 @@ namespace TallerMotos.Controllers
         }
 
         // GET: VentasLineals/Create
-        public IActionResult Create()
+        public IActionResult Create(int ventaId)
         {
+            //ViewData["VentasLineal"] = _context.VentasLineal.Where(x => x.idFactura == ventaId).FirstOrDefault();
+            ViewData["ventaId"] = new SelectList(_context.Productos, "idProducto", "tipo");
             return View();
         }
 
@@ -61,6 +64,7 @@ namespace TallerMotos.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ventaId"] = new SelectList(_context.VentasLineal, "idVentaLineal", "idVentaLineal");
             return View(ventasLineal);
         }
 
