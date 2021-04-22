@@ -9,11 +9,10 @@ namespace TallerMotos.Models
 {
 
     [Table("VentasLineas")]
-    public class VentasLineal
+    public class VentasLineas
     {
         [Key]
-        [Column("idVentasLineas")]
-        public int idVentaLineal { get; set; }
+        public int idVentasLineas { get; set; }
         [Column("idProducto")]
         public int? ProductoId { get; set; }
         public Productos Producto { get; set; }
