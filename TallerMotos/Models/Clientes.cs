@@ -14,7 +14,6 @@ namespace TallerMotos.Models
         public string nombreCliente { get; set; }
         public string apellidosCliente { get; set; }
         public string ciudadCliente { get; set; }
-        
         public string dniCliente { get; set; }
         public string domicilioCliente { get; set; }
     }

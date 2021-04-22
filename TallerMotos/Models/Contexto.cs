@@ -29,6 +29,6 @@ namespace TallerMotos.Models
         
         public DbSet<TallerMotos.Models.Productos> Productos { get; set; }
         
-        public DbSet<TallerMotos.Models.VentasLineal> VentasLineal { get; set; }
+        public DbSet<TallerMotos.Models.VentasLineas> VentasLineal { get; set; }
     }
 }
