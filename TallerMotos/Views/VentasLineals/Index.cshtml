@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TallerMotos.Models.VentasLineal>
+﻿@model IEnumerable<TallerMotos.Models.VentasLineas>
 
 @{
     ViewData["Title"] = "Index";
@@ -49,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.idFactura)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.idVentaLineal">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.idVentaLineal">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.idVentaLineal">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.idVentasLineas">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.idVentasLineas">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.idVentasLineas">Delete</a>
             </td>
         </tr>
 }

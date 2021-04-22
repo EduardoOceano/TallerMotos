@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace TallerMotos.Models
 {
-    public class VentasLineal
+    public class VentasLineas
     {
         [Key]
-        public int idVentaLineal { get; set; }
+        public int idVentasLineas { get; set; }
         public int idProducto { get; set; }
         public int idServicio { get; set; }
         public int cantidad { get; set; }
