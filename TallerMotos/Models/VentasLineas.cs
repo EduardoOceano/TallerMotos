@@ -20,7 +20,10 @@ namespace TallerMotos.Models
         public int? cantidad { get; set; }
         public int? precio { get; set; }
 
-        public int? idFactura { get; set; }
+        [Column("idFactura")]
+        public int? FacturasId { get; set; }
+
+        public Facturas facturas { get; set; }
 
     }
 }
