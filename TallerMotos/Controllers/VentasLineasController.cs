@@ -21,6 +21,7 @@ namespace TallerMotos.Controllers
         // GET: VentasLineass
         public async Task<IActionResult> Index()
         {
+            var contexto = _context.Facturas.Include(m => m.VentasLineas);
             return View(await _context.VentasLineas.ToListAsync());
         }
 
@@ -33,6 +34,7 @@ namespace TallerMotos.Controllers
             }
 
             var VentasLineas = await _context.VentasLineas
+                .Include(m => m.Facturas)
                 .FirstOrDefaultAsync(m => m.idVentasLineas == id);
             if (VentasLineas == null)
             {
@@ -61,8 +63,9 @@ namespace TallerMotos.Controllers
             {
                 _context.Add(VentasLineas);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Edit", "Facturas", new { id = VentasLineas.idFactura });
             }
+            ViewData["idFactura"] = new SelectList(_context.Facturas, "idVentasLineas", "total", VentasLineas.idFactura);
             return View(VentasLineas);
         }
 
@@ -79,6 +82,7 @@ namespace TallerMotos.Controllers
             {
                 return NotFound();
             }
+            ViewData["idFactura"] = new SelectList(_context.Facturas, "idVentasLineas", "total", VentasLineas.idFactura);
             return View(VentasLineas);
         }
 

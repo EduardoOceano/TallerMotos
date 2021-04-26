@@ -22,5 +22,7 @@ namespace TallerMotos.Models
 
         public int? idFactura { get; set; }
 
+        public Facturas Facturas { get; set; }
+
     }
 }
