@@ -33,7 +33,7 @@ namespace TallerMotos.Controllers
             }
 
             var facturas = await _context.Facturas
-                .FirstOrDefaultAsync(m => m.idFactura == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (facturas == null)
             {
                 return NotFound();
@@ -72,7 +72,8 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var facturas = await _context.Facturas.FindAsync(id);
+            //var facturas = await _context.Facturas.FindAsync(id);
+            var facturas = _context.Facturas.Include("VentasLineas").Where(x => x.id == id).FirstOrDefault();
             if (facturas == null)
             {
                 return NotFound();
@@ -87,7 +88,7 @@ namespace TallerMotos.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Facturas facturas)
         {
-            if (id != facturas.idFactura)
+            if (id != facturas.id)
             {
                 return NotFound();
             }
@@ -101,7 +102,7 @@ namespace TallerMotos.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FacturasExists(facturas.idFactura))
+                    if (!FacturasExists(facturas.id))
                     {
                         return NotFound();
                     }
@@ -124,7 +125,7 @@ namespace TallerMotos.Controllers
             }
 
             var facturas = await _context.Facturas
-                .FirstOrDefaultAsync(m => m.idFactura == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (facturas == null)
             {
                 return NotFound();
@@ -146,7 +147,7 @@ namespace TallerMotos.Controllers
 
         private bool FacturasExists(int id)
         {
-            return _context.Facturas.Any(e => e.idFactura == id);
+            return _context.Facturas.Any(e => e.id == id);
         }
     }
 }
