@@ -1,134 +1,285 @@
-﻿CREATE DATABASE TallerMotos;
+﻿/*
+SQLyog Community v13.1.7 (64 bit)
+MySQL - 8.0.23 : Database - motosoceano
+*********************************************************************
+*/
 
+/*!40101 SET NAMES utf8 */;
 
-USE TallerMotos;
+/*!40101 SET SQL_MODE=''*/;
 
-CREATE TABLE motos(
-	idMoto INT PRIMARY KEY AUTO_INCREMENT,
-	matricula VARCHAR(20),
-	marca VARCHAR (20),
-	modelo NVARCHAR(20),
-	cilindrada INT,
-	idCliente INT,
-	FOREIGN KEY (idCliente) REFERENCE clientes (idCliente)
-);
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`motosoceano` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
-CREATE TABLE motor(
-	idMotor INT PRIMARY KEY AUTO_INCREMENT,
-	tiempos INT,
-	cilindrada INT,
-	kilowatios INT,
-	caballos NUMERIC (2,2),
-	num_cilindros INT,
-	precio NUMERIC(20,2),
-	fabricante VARCHAR(50)
-	);
-	
-CREATE TABLE suspension(
-	idSuspension INT PRIMARY KEY AUTO_INCREMENT,
-	sistema VARCHAR(20),
-	tipo VARCHAR(20),
-	fabricante VARCHAR(20),
-	precio NUMERIC(20,2)
-);
+USE `motosoceano`;
 
-CREATE TABLE neumaticos(
-	idNeumatico INT PRIMARY KEY AUTO_INCREMENT,
-	temporada VARCHAR(20),
-	anchura INT,
-	altura INT, 
-	diametro INT,
-	fabricante VARCHAR(20),
-	indiceVelocidad INT,
-	precio NUMERIC(20,2)
-);
+/*Table structure for table `clientes` */
 
-CREATE TABLE motor(
-	idMotor INT PRIMARY KEY AUTO_INCREMENT,
-	tiempos INT,
-	cilindrada INT,
-	kilowatios INT,
-	caballos NUMERIC (2,2),
-	num_cilindros INT,
-	precio NUMERIC(20,2),
-	fabricante VARCHAR(50)
-	);
-	
-CREATE TABLE suspension(
-	idSuspension INT PRIMARY KEY AUTO_INCREMENT,
-	sistema VARCHAR(20),
-	tipo VARCHAR(20),
-	fabricante VARCHAR(20),
-	precio NUMERIC(20,2)
-);
+DROP TABLE IF EXISTS `clientes`;
 
-CREATE TABLE neumaticos(
-	idNeumatico INT PRIMARY KEY AUTO_INCREMENT,
-	temporada VARCHAR(20),
-	anchura INT,
-	altura INT, 
-	diametro INT,
-	fabricante VARCHAR(20),
-	indiceVelocidad INT,
-	precio NUMERIC(20,2)
-);
+CREATE TABLE `clientes` (
+  `idCliente` int NOT NULL AUTO_INCREMENT,
+  `NombreCliente` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `apellidosCliente` varchar(200) DEFAULT NULL,
+  `ciudadCliente` varchar(200) DEFAULT NULL,
+  `dniCliente` varchar(10) DEFAULT NULL,
+  `domicilioCliente` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`idCliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE filtro(
-	idFiltro INT PRIMARY KEY AUTO_INCREMENT,
-	tipo VARCHAR(20),
-	fabricante VARCHAR(20),
-	modelo VARCHAR(20),
-	tipoMotor VARCHAR(20),
-	precio NUMERIC (20,2)
-);
+/*Data for the table `clientes` */
 
-CREATE TABLE frenos(
-	idFreno INT PRIMARY KEY AUTO_INCREMENT,
-	tipoFreno VARCHAR(20),
-	accesorioFreno VARCHAR(20),
-	fabricante VARCHAR(20),
-	precio NUMERIC(20,2)
-);
+insert  into `clientes`(`idCliente`,`NombreCliente`,`apellidosCliente`,`ciudadCliente`,`dniCliente`,`domicilioCliente`) values 
+(1,'Luis','Espada','Zaragoza','84569824G','Calle muy buena'),
+(2,'Alberto','Abos','Zaragoza','79277789H','Calle mejor'),
+(3,'Javier','Meloinvento','Zaragoza','27869563F','Avenida Independencia'),
+(4,'Estela','Gota','Zaragoza','27869563F','Romareda'),
+(5,'Daniel','Espada','Alcañiz','27869563F','Avenida Zaragoza'),
+(6,'Francisco','Perez','Huesca','27869563F','Calle Franco'),
+(8,'Juan','Rodriguez','Huesca','27869563F','Plaza Hispanidad'),
+(9,'Jorge','Rubira','Zaragoza','27869563F','Parque del Agua'),
+(10,'Bill','Gates','Madrid','27869563F','Avenida Microsoft'),
+(11,'Mark','Zuckerberg','Madrid','27869563F','Ronda Facebook'),
+(12,'Steve','Jobs','Barcelona','27869563F','Plaza Apple'),
+(13,'Elon','Musk','Barcelona','27869563F','Avenida Tesla'),
+(14,'Donald','Trump','Washington','27869563F','Casa Blanca'),
+(15,'Pato','Donald','Paris','27869563F','Disneyland'),
+(16,'Pedro','Huertas','Huertas','31289749W','Huertas');
 
-CREATE TABLE accesorios(
-	idAccesorio INT PRIMARY KEY AUTO_INCREMENT,
-	tipo VARCHAR(20),
-	fabricante VARCHAR(20),
-	precio NUMERIC (20,2)
-);
+/*Table structure for table `empleados` */
 
-CREATE TABLE talleres(
-	idTaller INT PRIMARY KEY AUTO_INCREMENT,
-	telefono VARCHAR(20),
-	direccion VARCHAR(20),
-	ciudad VARCHAR(20)
-);
+DROP TABLE IF EXISTS `empleados`;
 
-CREATE TABLE catalogo(
-	idAccesorio INT, 
-	idTaller INT, 
-	idFreno INT, 
-	idFiltro INT, 
-	idSuspension INT, 
-	idNeumaticos INT, 
-	idMotor INT,
-	FOREIGN KEY (idAccesorio) REFERENCES accesorios (idAccesorio),
-	FOREIGN KEY (idTaller) REFERENCES talleres (idTaller),
-	FOREIGN KEY (idFreno) REFERENCES frenos (idFreno),
-	FOREIGN KEY (idFiltro) REFERENCES filtro (idFiltro),
-	FOREIGN KEY (idSuspension) REFERENCES suspension (idSuspension),
-	FOREIGN KEY (idNeumaticos) REFERENCES neumaticos (idNeumatico),
-	FOREIGN KEY (idMotor) REFERENCES motor (idMotor)
-);
+CREATE TABLE `empleados` (
+  `idEmpleado` int NOT NULL AUTO_INCREMENT,
+  `nombreEmpleado` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `apellidoEmpleado` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `telefono` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `direccion` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `ciudad` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `idTaller` int DEFAULT NULL,
+  PRIMARY KEY (`idEmpleado`),
+  KEY `empleados_ibfk_1` (`idTaller`),
+  CONSTRAINT `empleados_ibfk_1` FOREIGN KEY (`idTaller`) REFERENCES `talleres` (`idTaller`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE presupuesto(
-	idFactura INT,
-	facturaTotal NUMERIC(20,2),
-	montaje INT,
-	idTaller INT,
-	idCliente INT,
-	idMoto INT,
-	FOREIGN KEY (idTaller) REFERENCES talleres (idTaller),
-	FOREIGN KEY (idCliente) REFERENCES clientes(idCliente),
-	FOREIGN KEY (idMoto) REFERENCES motos(idMoto)
-);
+/*Data for the table `empleados` */
+
+insert  into `empleados`(`idEmpleado`,`nombreEmpleado`,`apellidoEmpleado`,`telefono`,`direccion`,`ciudad`,`idTaller`) values 
+(1,'Juan','Perez','654987452','Coso, 25','Zaragoza',1),
+(2,'Paco','Parties','456781235','Calle Grande, 2','Huesca',3),
+(3,'Almudena','LaSimpatica','789456123','Calle Ola, 12','Teruel',2),
+(4,'Horse','Luis','456879230','Laguna, 7','Murcia',3),
+(6,'Maria','Carretas','753159464','Coso, 1','Zaragoza',2),
+(7,'Jusé','Santillo','456741523','Calle gorda,1','Huesca',2),
+(8,'Alfonsete','Jimenez','753753211','Calle fea, 5','Zaragoza',3);
+
+/*Table structure for table `facturas` */
+
+DROP TABLE IF EXISTS `facturas`;
+
+CREATE TABLE `facturas` (
+  `idFactura` int NOT NULL AUTO_INCREMENT,
+  `idCliente` int DEFAULT NULL,
+  `idEmpleado` int DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
+  `idTaller` int DEFAULT NULL,
+  `total` decimal(20,2) DEFAULT NULL,
+  PRIMARY KEY (`idFactura`),
+  KEY `facturas_ibfk_1` (`idCliente`),
+  KEY `facturas_ibfk_2` (`idEmpleado`),
+  KEY `facturas_ibfk_3` (`idTaller`),
+  CONSTRAINT `facturas_ibfk_1` FOREIGN KEY (`idCliente`) REFERENCES `clientes` (`idCliente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `facturas_ibfk_2` FOREIGN KEY (`idEmpleado`) REFERENCES `empleados` (`idEmpleado`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `facturas_ibfk_3` FOREIGN KEY (`idTaller`) REFERENCES `talleres` (`idTaller`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `facturas` */
+
+insert  into `facturas`(`idFactura`,`idCliente`,`idEmpleado`,`fecha`,`idTaller`,`total`) values 
+(1,1,1,'2021-04-07 13:10:23',1,100.00);
+
+/*Table structure for table `motos` */
+
+DROP TABLE IF EXISTS `motos`;
+
+CREATE TABLE `motos` (
+  `idMoto` int NOT NULL AUTO_INCREMENT,
+  `matricula` varchar(20) DEFAULT NULL,
+  `marca` varchar(200) DEFAULT NULL,
+  `modelo` varchar(200) DEFAULT NULL,
+  `cilindrada` int DEFAULT NULL,
+  `idCliente` int DEFAULT NULL,
+  PRIMARY KEY (`idMoto`),
+  KEY `motos_ibfk_1` (`idCliente`),
+  CONSTRAINT `motos_ibfk_1` FOREIGN KEY (`idCliente`) REFERENCES `clientes` (`idCliente`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `motos` */
+
+insert  into `motos`(`idMoto`,`matricula`,`marca`,`modelo`,`cilindrada`,`idCliente`) values 
+(1,'1652JPZ','Honda','CRF',250,5),
+(2,'8648KLM','Honda','CBR',600,4),
+(3,'8542KRP','Honda','CB',1000,12),
+(5,'1638HFG','Husqvarna','FE',250,NULL),
+(6,'6278GJQ','Derbi','Senda',49,1),
+(7,'7536DPX','Kawasaki','KX',250,NULL),
+(8,'6258HFP','Kawasaki','Ninja',600,NULL),
+(9,'9638GHM','Ducati','Panigale',1200,NULL),
+(10,'7896HGM','Ducati','SuperSport',950,4);
+
+/*Table structure for table `productos` */
+
+DROP TABLE IF EXISTS `productos`;
+
+CREATE TABLE `productos` (
+  `idProducto` int NOT NULL AUTO_INCREMENT,
+  `tipo` varchar(200) DEFAULT NULL,
+  `precio` decimal(20,2) DEFAULT NULL,
+  `stock` int DEFAULT NULL,
+  `idProveedor` int DEFAULT NULL,
+  `fabricante` varchar(200) DEFAULT NULL,
+  `descripcion` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`idProducto`),
+  KEY `idProveedor` (`idProveedor`),
+  CONSTRAINT `idProveedor` FOREIGN KEY (`idProveedor`) REFERENCES `productos` (`idProducto`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `productos` */
+
+insert  into `productos`(`idProducto`,`tipo`,`precio`,`stock`,`idProveedor`,`fabricante`,`descripcion`) values 
+(1,'NM',95.46,50,4,'Pirelli','Ideal para motocicletas Enduro con configuración Touring, capaz de abordar viajes largos y excursiones con tramos todoterreno ligeros'),
+(2,'NM',70.00,16,5,'Michellin','Ofrece una nueva tecnología de goma con el objetivo de asegurar un agarre optimizado sobre todo tipo de superficie'),
+(3,'NM',90.00,68,3,'Bridgestone','Gran estabilidad'),
+(4,'NM',150.00,12,4,'Hankook','Neumáticos HANKOOK Kinergy 4S2 SUV H750A'),
+(5,'NM',200.00,28,2,'NEXEN','Neumáticos NEXEN N\'Fera RU1'),
+(6,'FR',22.50,30,3,'Suzuki','Freno Trasero RM125/RM250'),
+(7,'FR',59.00,20,1,'Suzuki','Freno Delantero RM 450Z'),
+(8,'FR',17.05,24,4,'Kawasaki','Pastillas Freno q no frena Trasero KX250F'),
+(9,'FR',17.05,30,4,'Kawasaki','Pastillas Freno Delantero KLX650R'),
+(10,'FR',206.27,20,1,'Kawasaki','Kit Frenado 270MM '),
+(11,'MT',1500.00,10,4,'Suzuki','Motor GSX500'),
+(12,'MT',1600.00,8,5,'KTM','Motor KTM Duke 390'),
+(13,'MT',2200.00,12,1,'Husqvarna','Motor Husqvarna TE 250 4T'),
+(14,'MT',5000000.00,1,2,'Ducati','Motor de la nasa, fua va de locos'),
+(15,'MT',1250.00,4,2,'Honda','Motor Honda CBR 600 R'),
+(16,'SU',1197.00,1,2,'Ohlins','Amortiguador Completo Ohlins TTX44 MKII'),
+(17,'SU',121.00,3,3,'MotocrossCenter','Muelles de horquilla'),
+(18,'SU',121.00,2,2,'MotocrossCenter','Muelles de amortiguador'),
+(19,'SU',13.02,1,4,'ARI','Retenes horquilla ARI 27x39x10.5'),
+(20,'SU',736.71,6,6,'YSS','Amortiguadores traseros YSS con botella'),
+(21,'CC',9.72,5,4,'Blackbird Gariboldi','Hoja Adhesivos Blackbird Gariboldi'),
+(22,'CC',113.70,4,5,'Honda','Asiento Completo SDG Honda CRF 250R'),
+(23,'CC',7.38,10,6,'Honda','Hoja Adhesivos Honda 4MX'),
+(24,'CC',107.76,20,6,'DRC','Caballete Elevador de Moto Hidraulico'),
+(25,'CC',69.95,20,5,'UNIT','Caballete con ruedas'),
+(26,'CA',399.59,3,5,'AIROH','CASCO AIROH AVIATOR 2.2 ROCKSTAR 2019'),
+(27,'CA',185.00,5,2,'HEBO','CASCO ENDURO-MX HEBO FIBRA SWAY ROJO'),
+(28,'CA',49.99,9,1,'Shiro','CASCO SHIRO SH-715 CAFE RACER BLANCO'),
+(29,'CA',153.58,15,2,'Hebo','CASCO TRIAL HEBO ZONE 4 MONOCOLOR FIBERGLASS COLOR BLANCO'),
+(30,'CA',103.92,4,3,'Evo','CASCO TOURER EVO II MONOCOLOR HEBO AMARILLO FLUOR'),
+(31,'FR',82.41,50,3,'Husqvarna','Soporte Pinza Freno 270MM'),
+(32,'C',19.95,60,2,'Castrol','Aceite Power Racing 2T');
+
+/*Table structure for table `proveedores` */
+
+DROP TABLE IF EXISTS `proveedores`;
+
+CREATE TABLE `proveedores` (
+  `idProveedor` int NOT NULL AUTO_INCREMENT,
+  `nombreProveedor` varchar(200) DEFAULT NULL,
+  `direccion` varchar(200) DEFAULT NULL,
+  `pais` varchar(200) DEFAULT NULL,
+  `comentario` varchar(500) DEFAULT NULL,
+  `telefono` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`idProveedor`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `proveedores` */
+
+insert  into `proveedores`(`idProveedor`,`nombreProveedor`,`direccion`,`pais`,`comentario`,`telefono`) values 
+(1,'Motores bien','Madrid','España','Puto amo','985471632'),
+(2,'Motores Juan','Barcelona','España','Me cae mal','925417368'),
+(3,'Recambios pa tu tia','Madrid','España','Llamar por la tarde','987524136'),
+(4,'Recambios pa ti','Madrid','España','Frenos pepinos','965123478'),
+(5,'Recambios Verdin','Madrid','España','Huele mal','945789987'),
+(6,'Recambios Paco','Madrid','España','','945678218');
+
+/*Table structure for table `servicios` */
+
+DROP TABLE IF EXISTS `servicios`;
+
+CREATE TABLE `servicios` (
+  `idServicio` int NOT NULL AUTO_INCREMENT,
+  `tipo` varchar(200) DEFAULT NULL,
+  `descripcion` varchar(2000) DEFAULT NULL,
+  `precio` decimal(20,2) DEFAULT NULL,
+  PRIMARY KEY (`idServicio`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `servicios` */
+
+insert  into `servicios`(`idServicio`,`tipo`,`descripcion`,`precio`) values 
+(1,'CA','Cambio de aceite',120.00),
+(2,'R','Revision 8K',200.00),
+(3,'CN','Cambio Neumaticos',80.00),
+(4,'P','Pintar',50.00),
+(5,'CF','Cambio frenos',40.00),
+(6,'CC','Cambio Carenado',50.00),
+(7,'Rp','Reprogramacion',200.00),
+(8,'CA','Cambio Accesorios',20.00),
+(9,'CF','Cambio Foco',50.00),
+(10,'L','Limitacion',200.00);
+
+/*Table structure for table `talleres` */
+
+DROP TABLE IF EXISTS `talleres`;
+
+CREATE TABLE `talleres` (
+  `idTaller` int NOT NULL AUTO_INCREMENT,
+  `numEmpleados` int DEFAULT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `direccion` varchar(200) DEFAULT NULL,
+  `ciudad` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`idTaller`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `talleres` */
+
+insert  into `talleres`(`idTaller`,`numEmpleados`,`telefono`,`direccion`,`ciudad`) values 
+(1,3,'976251415','calle Levante','Zaragoza'),
+(2,4,'975214896','calle Madrid','Madrid'),
+(3,3,'926574832','calle Barcelano','Barcelona');
+
+/*Table structure for table `ventaslineas` */
+
+DROP TABLE IF EXISTS `ventaslineas`;
+
+CREATE TABLE `ventaslineas` (
+  `idVentasLineas` int NOT NULL AUTO_INCREMENT,
+  `idProducto` int DEFAULT NULL,
+  `idServicio` int DEFAULT NULL,
+  `cantidad` int DEFAULT NULL,
+  `precio` decimal(20,2) DEFAULT NULL,
+  `idFactura` int DEFAULT NULL,
+  PRIMARY KEY (`idVentasLineas`),
+  KEY `idProducto` (`idProducto`),
+  KEY `idServicio` (`idServicio`),
+  KEY `idFactura` (`idFactura`),
+  CONSTRAINT `ventaslineas_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `productos` (`idProducto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `ventaslineas_ibfk_2` FOREIGN KEY (`idServicio`) REFERENCES `servicios` (`idServicio`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `ventaslineas_ibfk_3` FOREIGN KEY (`idFactura`) REFERENCES `facturas` (`idFactura`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `ventaslineas` */
+
+insert  into `ventaslineas`(`idVentasLineas`,`idProducto`,`idServicio`,`cantidad`,`precio`,`idFactura`) values 
+(10,1,1,10,200.00,1);
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
