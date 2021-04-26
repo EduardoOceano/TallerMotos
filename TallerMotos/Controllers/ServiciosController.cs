@@ -33,7 +33,7 @@ namespace TallerMotos.Controllers
             }
 
             var servicios = await _context.Servicios
-                .FirstOrDefaultAsync(m => m.idServicio == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (servicios == null)
             {
                 return NotFound();
@@ -87,7 +87,7 @@ namespace TallerMotos.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Servicios servicios)
         {
-            if (id != servicios.idServicio)
+            if (id != servicios.id)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace TallerMotos.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ServiciosExists(servicios.idServicio))
+                    if (!ServiciosExists(servicios.id))
                     {
                         return NotFound();
                     }
@@ -124,7 +124,7 @@ namespace TallerMotos.Controllers
             }
 
             var servicios = await _context.Servicios
-                .FirstOrDefaultAsync(m => m.idServicio == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (servicios == null)
             {
                 return NotFound();
@@ -146,7 +146,7 @@ namespace TallerMotos.Controllers
 
         private bool ServiciosExists(int id)
         {
-            return _context.Servicios.Any(e => e.idServicio == id);
+            return _context.Servicios.Any(e => e.id == id);
         }
     }
 }
