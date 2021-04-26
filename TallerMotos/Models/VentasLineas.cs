@@ -12,7 +12,8 @@ namespace TallerMotos.Models
     public class VentasLineas
     {
         [Key]
-        public int idVentasLineas { get; set; }
+        [Column("idVentasLineas")]
+        public int id { get; set; }
         [Column("idProducto")]
         public int? ProductoId { get; set; }
         public Productos Producto { get; set; }

@@ -10,7 +10,8 @@ namespace TallerMotos.Models
     public class Motos
     {
         [Key]
-        public int idMoto { get; set; }
+        [Column("idMoto")]
+        public int id { get; set; }
         public string matricula { get; set; }
         public string marca { get; set; }
         public string modelo { get; set; }

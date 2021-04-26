@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,7 +10,8 @@ namespace TallerMotos.Models
     public class Empleados
     {
         [Key]
-        public int idEmpleado { get; set; }
+        [Column("idEmpleado")]
+        public int id { get; set; }
         public string nombreEmpleado { get; set; }
         public string apellidoEmpleado { get; set; }
         public string telefono { get; set; }

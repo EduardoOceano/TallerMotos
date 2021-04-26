@@ -33,7 +33,7 @@ namespace TallerMotos.Controllers
             }
 
             var VentasLineas = await _context.VentasLineas
-                .FirstOrDefaultAsync(m => m.idVentasLineas == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (VentasLineas == null)
             {
                 return NotFound();
@@ -89,7 +89,7 @@ namespace TallerMotos.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, VentasLineas VentasLineas)
         {
-            if (id != VentasLineas.idVentasLineas)
+            if (id != VentasLineas.id)
             {
                 return NotFound();
             }
@@ -103,7 +103,7 @@ namespace TallerMotos.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VentasLineasExists(VentasLineas.idVentasLineas))
+                    if (!VentasLineasExists(VentasLineas.id))
                     {
                         return NotFound();
                     }
@@ -126,7 +126,7 @@ namespace TallerMotos.Controllers
             }
 
             var VentasLineas = await _context.VentasLineas
-                .FirstOrDefaultAsync(m => m.idVentasLineas == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (VentasLineas == null)
             {
                 return NotFound();
@@ -148,7 +148,7 @@ namespace TallerMotos.Controllers
 
         private bool VentasLineasExists(int id)
         {
-            return _context.VentasLineas.Any(e => e.idVentasLineas == id);
+            return _context.VentasLineas.Any(e => e.id == id);
         }
     }
 }
