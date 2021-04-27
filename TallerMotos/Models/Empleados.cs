@@ -18,6 +18,10 @@ namespace TallerMotos.Models
         public string direccion { get; set; }
         public string ciudad { get; set; }
 
-        public int idTaller { get; set; }
+        [Column("idTaller")]
+        public int? TalleresId { get; set; }
+
+        public Talleres Talleres { get; set; }
+
     }
 }

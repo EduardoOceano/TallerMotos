@@ -1,4 +1,8 @@
 ﻿@model TallerMotos.Models.Talleres
+@{ 
+    ViewData["Title"] = "Empleados";
+}
+
 
 <div class="form-group">
     <label asp-for="numEmpleados" class="control-label"></label>
@@ -23,3 +27,21 @@
 <div class="form-group">
     <input type="submit" value="Save" class="btn btn-primary" />
 </div>
+
+
+<table>
+    @foreach (Empleados tab02 in Model.Empleados)
+    {
+        <tr>
+            <td>
+                @tab02.id
+            </td>
+            <td>
+                @tab02.nombreEmpleado
+            </td>
+            <td>
+                @tab02.apellidoEmpleado
+            </td>
+        </tr>
+    }
+</table>

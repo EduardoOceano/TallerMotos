@@ -17,5 +17,7 @@ namespace TallerMotos.Models
         public string direccion { get; set; }
         public string ciudad { get; set; }
 
+        public virtual IEnumerable<Empleados> Empleados { get; set; }
+
     }
 }
