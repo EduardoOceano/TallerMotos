@@ -35,16 +35,32 @@
     <input type="submit" value="Save" class="btn btn-primary" />
 </div>
 
-<table>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>
+                Id de VentasLineas
+            </th>
+            <th>
+                Codigo producto
+            </th>
+            <th>
+                Precio
+            </th>
+        </tr>
+    </thead>
     @foreach (VentasLineas tab02 in Model.VentasLineas)
     {
-        <tr>
-            <td>
-                @tab02.idVentasLineas
-            </td>
-            <td>
-                @tab02.Producto
-            </td>
-        </tr>
+<tr>
+    <td>
+        @tab02.idVentasLineas
+    </td>
+    <td>
+        @tab02.Producto.idProducto
+    </td>
+    <td>
+        @tab02.precio
+    </td>
+</tr>
     }
 </table>
