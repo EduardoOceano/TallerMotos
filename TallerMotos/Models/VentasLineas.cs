@@ -12,9 +12,14 @@ namespace TallerMotos.Models
     public class VentasLineas
     {
         [Key]
-        public int idVentasLineas { get; set; }
+        [Column("idVentasLineas")]
+        public int id { get; set; }
         [Column("idProducto")]
         public int? ProductoId { get; set; }
+        /*
+        [Column("descripcion")]
+        public string ProductoDescripcion{ get; set; }
+        */
         public Productos Producto { get; set; }
         public int? idServicio { get; set; }
         public int? cantidad { get; set; }
@@ -24,6 +29,7 @@ namespace TallerMotos.Models
         public int? FacturasId { get; set; }
 
         public Facturas facturas { get; set; }
+
 
     }
 }

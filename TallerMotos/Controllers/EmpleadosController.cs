@@ -33,7 +33,7 @@ namespace TallerMotos.Controllers
             }
 
             var empleados = await _context.Empleados
-                .FirstOrDefaultAsync(m => m.idEmpleado == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (empleados == null)
             {
                 return NotFound();
@@ -87,7 +87,7 @@ namespace TallerMotos.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Empleados empleados)
         {
-            if (id != empleados.idEmpleado)
+            if (id != empleados.id)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace TallerMotos.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmpleadosExists(empleados.idEmpleado))
+                    if (!EmpleadosExists(empleados.id))
                     {
                         return NotFound();
                     }
@@ -124,7 +124,7 @@ namespace TallerMotos.Controllers
             }
 
             var empleados = await _context.Empleados
-                .FirstOrDefaultAsync(m => m.idEmpleado == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (empleados == null)
             {
                 return NotFound();
@@ -146,7 +146,7 @@ namespace TallerMotos.Controllers
 
         private bool EmpleadosExists(int id)
         {
-            return _context.Empleados.Any(e => e.idEmpleado == id);
+            return _context.Empleados.Any(e => e.id == id);
         }
     }
 }

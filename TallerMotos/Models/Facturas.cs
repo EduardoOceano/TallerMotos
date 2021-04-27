@@ -19,6 +19,8 @@ namespace TallerMotos.Models
 
         public int idTaller { get; set; }
         public decimal total { get; set; }
-        public virtual IEnumerable<VentasLineas> VentasLineas{ get; set; }
+
+        public virtual IEnumerable<VentasLineas> VentasLineas { get; set; }
+
     }
 }

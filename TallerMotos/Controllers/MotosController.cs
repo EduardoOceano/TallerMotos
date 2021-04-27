@@ -33,7 +33,7 @@ namespace TallerMotos.Controllers
             }
 
             var motos = await _context.Motos
-                .FirstOrDefaultAsync(m => m.idMoto == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (motos == null)
             {
                 return NotFound();
@@ -87,7 +87,7 @@ namespace TallerMotos.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Motos motos)
         {
-            if (id != motos.idMoto)
+            if (id != motos.id)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace TallerMotos.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MotosExists(motos.idMoto))
+                    if (!MotosExists(motos.id))
                     {
                         return NotFound();
                     }
@@ -124,7 +124,7 @@ namespace TallerMotos.Controllers
             }
 
             var motos = await _context.Motos
-                .FirstOrDefaultAsync(m => m.idMoto == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (motos == null)
             {
                 return NotFound();
@@ -146,7 +146,7 @@ namespace TallerMotos.Controllers
 
         private bool MotosExists(int id)
         {
-            return _context.Motos.Any(e => e.idMoto == id);
+            return _context.Motos.Any(e => e.id == id);
         }
     }
 }
