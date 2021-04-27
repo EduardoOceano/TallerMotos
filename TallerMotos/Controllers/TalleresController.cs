@@ -72,13 +72,15 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var talleres = await _context.Talleres.FindAsync(id);
+            //var facturas = await _context.Facturas.FindAsync(id);
+            var talleres = _context.Talleres.Include("Empleados").Where(x => x.id == id).FirstOrDefault();
             if (talleres == null)
             {
                 return NotFound();
             }
             return View(talleres);
         }
+
 
         // POST: Talleres/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
