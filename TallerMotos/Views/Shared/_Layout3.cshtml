@@ -1,0 +1,166 @@
+﻿@model TallerMotos.Models.Facturas
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Grayscale - Start Bootstrap Theme</title>
+    <link rel="icon" type="image/x-icon" href="~/assets/img/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="~/css/styles.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.2.js"
+            integrity="sha256-VUCyr0ZXB5VhBibo2DkTVhdspjmxUgxDGaLQx7qb7xY="
+            crossorigin="anonymous"></script>
+
+</head>
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color:#333">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" asp-area="" asp-controller="Home" asp-action="Index">Taller FUAAH</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto" id="menu">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Motos" asp-action="Index">Motos</a>
+                        <ul class="nav-item submenu js-scroll-trigger">
+                            <li class="nav-item js-scroll-trigger">Kawasaki</li>
+                            <li class="nav-item js-scroll-trigger">Honda</li>
+                            <li class="nav-item js-scroll-trigger">Suzuki</li>
+                            <li class="nav-item js-scroll-trigger">Husqvarna</li>
+                            <li class="nav-item js-scroll-trigger">KTM</li>
+                            <li class="nav-item js-scroll-trigger">Derbi</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Productos" asp-action="Index">Productos</a>
+                        <ul class="nav-item submenu js-scroll-trigger">
+                            <li class="nav-item js-scroll-trigger">Motor</li>
+                            <li class="nav-item js-scroll-trigger">Frenos</li>
+                            <li class="nav-item js-scroll-trigger">Neumaticos</li>
+                            <li class="nav-item js-scroll-trigger">Embrague</li>
+                            <li class="nav-item js-scroll-trigger">Focos</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Talleres" asp-action="Index">Talleres</a>
+                        <ul class="nav-item submenu">
+                            <li class="nav-item js-scroll-trigger">Casco</li>
+                            <li class="nav-item js-scroll-trigger">Guantes</li>
+                            <li class="nav-item js-scroll-trigger">Botas</li>
+                            <li class="nav-item js-scroll-trigger">Protección</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Talleres" asp-action="Index">Talleres</a>
+                        <ul class="nav-item submenu">
+                            <li class="nav-item js-scroll-trigger">Zaragoza</li>
+                            <li class="nav-item js-scroll-trigger">Madrid</li>
+                            <li class="nav-item js-scroll-trigger">Barcelona</li>
+                            <li class="nav-item js-scroll-trigger">Valencia</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Servicios" asp-action="Index">Servicios</a>
+                        <ul class="nav-item submenu">
+                            <li class="nav-item js-scroll-trigger">Arreglo de moto</li>
+                            <li class="nav-item js-scroll-trigger">Cambio de ruedas</li>
+                            <li class="nav-item js-scroll-trigger">Puesta a punto</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Facturas" asp-action="Index">Facturas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Projects-->
+    <section class="projects-section bg-light" id="projects">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="List">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="id" />
+
+                        @Html.EditorForModel()
+                    </form>
+                </div>
+            </div>
+            <hr />
+            <table>
+                @foreach (VentasLineas vl in Model.VentasLineas)
+                {
+                    <tr>
+                        <td>@vl.FacturasId</td>
+                        <td>@vl.Producto</td>
+                        <td>@vl.precio</td>
+                    </tr>
+                }
+            </table>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }
+
+
+        </div>
+    </section>
+    <!-- Footer-->
+    <footer class="footer bg-black small text-center text-white-50"><div class="container">Copyright © Your Website 2020</div></footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <!-- Core theme JS-->
+    <
+    <script type="text/javascript">
+        $(document).ready(function (ev) {
+            $("#galeria li:gt(0)").hide(); //gt(0) se refiere a todos menos al elemento cuyo indice sea 0
+
+            setInterval(function () { //se ejecuta el intervalo,
+                $("#galeria li:first-child").fadeOut()
+                    .next("li").fadeIn(1000)
+                    .end().appendTo("#galeria");
+            }, 4000); //numero de milisegundos
+
+
+        });
+
+    </script>
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            etwertwetopiewtpoiewptoiewrpotiweptoiewpti
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+
+        <div class="container">
+            &copy; 2021 - TallerMotos - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
