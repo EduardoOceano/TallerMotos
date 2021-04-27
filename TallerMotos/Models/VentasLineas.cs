@@ -26,7 +26,6 @@ namespace TallerMotos.Models
 
         public Facturas facturas { get; set; }
 
-        public Facturas Facturas { get; set; }
 
     }
 }

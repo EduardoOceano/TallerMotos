@@ -34,17 +34,26 @@
 <div class="form-group">
     <input type="submit" value="Save" class="btn btn-primary" />
 </div>
-
-<table>
+<hr />
+<h4>Ventas Lineas</h4>
+<table class="table">
     @foreach (VentasLineas tab02 in Model.VentasLineas)
     {
-        <tr>
-            <td>
-                @tab02.id
-            </td>
-            <td>
-                @tab02.Producto
-            </td>
-        </tr>
+    <tr>
+        <th>ID Ventas Lineas</th>
+        <th>Precio</th>
+        <th>ID Producto</th>
+    </tr>
+    <tr>
+        <td>
+            @tab02.id
+        </td>
+        <td>
+            @tab02.precio
+        </td>
+        <td>
+            @tab02.ProductoId
+        </td>
+    </tr>
     }
 </table>
