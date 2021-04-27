@@ -12,13 +12,22 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="idFactura" />
+            <input type="hidden" asp-for="id" />
 
             @Html.EditorForModel()
         </form>
     </div>
 </div>
-
+<hr />
+<table>
+    @foreach (VentasLineas vl in Model.VentasLineas) { 
+        <tr>
+            <td>@vl.FacturasId</td>
+            <td>@vl.Producto</td>
+            <td>@vl.precio</td>
+        </tr>
+    }
+</table>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

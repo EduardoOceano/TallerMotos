@@ -9,22 +9,22 @@ using TallerMotos.Models;
 
 namespace TallerMotos.Controllers
 {
-    public class VentasLinealsController : Controller
+    public class VentasLineasController : Controller
     {
         private readonly Contexto _context;
 
-        public VentasLinealsController(Contexto context)
+        public VentasLineasController(Contexto context)
         {
             _context = context;
         }
 
-        // GET: VentasLineals
+        // GET: VentasLineass
         public async Task<IActionResult> Index()
         {
-            return View(await _context.VentasLineal.ToListAsync());
+            return View(await _context.VentasLineas.ToListAsync());
         }
 
-        // GET: VentasLineals/Details/5
+        // GET: VentasLineass/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,41 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var ventasLineal = await _context.VentasLineal
-                .FirstOrDefaultAsync(m => m.idVentaLineal == id);
-            if (ventasLineal == null)
+            var VentasLineas = await _context.VentasLineas
+                .FirstOrDefaultAsync(m => m.id == id);
+            if (VentasLineas == null)
             {
                 return NotFound();
             }
 
-            return View(ventasLineal);
+            return View(VentasLineas);
         }
 
-        // GET: VentasLineals/Create
+        // GET: VentasLineass/Create
         public IActionResult Create()
         {
+            //ViewData["VentasLineal"] = _context.VentasLineal.Where(x => x.idFactura == ventaId).FirstOrDefault();
+            ViewData["ventaId"] = new SelectList(_context.Productos, "idProducto", "tipo");
             return View();
         }
 
-        // POST: VentasLineals/Create
+        // POST: VentasLineass/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(VentasLineal ventasLineal)
+        public async Task<IActionResult> Create(VentasLineas VentasLineas)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(ventasLineal);
+                _context.Add(VentasLineas);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(ventasLineal);
+            return View(VentasLineas);
         }
 
-        // GET: VentasLineals/Edit/5
+        // GET: VentasLineass/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +74,22 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var ventasLineal = await _context.VentasLineal.FindAsync(id);
-            if (ventasLineal == null)
+            var VentasLineas = await _context.VentasLineas.FindAsync(id);
+            if (VentasLineas == null)
             {
                 return NotFound();
             }
-            return View(ventasLineal);
+            return View(VentasLineas);
         }
 
-        // POST: VentasLineals/Edit/5
+        // POST: VentasLineass/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, VentasLineal ventasLineal)
+        public async Task<IActionResult> Edit(int id, VentasLineas VentasLineas)
         {
-            if (id != ventasLineal.idVentaLineal)
+            if (id != VentasLineas.id)
             {
                 return NotFound();
             }
@@ -96,12 +98,12 @@ namespace TallerMotos.Controllers
             {
                 try
                 {
-                    _context.Update(ventasLineal);
+                    _context.Update(VentasLineas);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VentasLinealExists(ventasLineal.idVentaLineal))
+                    if (!VentasLineasExists(VentasLineas.id))
                     {
                         return NotFound();
                     }
@@ -112,10 +114,10 @@ namespace TallerMotos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(ventasLineal);
+            return View(VentasLineas);
         }
 
-        // GET: VentasLineals/Delete/5
+        // GET: VentasLineass/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +125,30 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var ventasLineal = await _context.VentasLineal
-                .FirstOrDefaultAsync(m => m.idVentaLineal == id);
-            if (ventasLineal == null)
+            var VentasLineas = await _context.VentasLineas
+                .FirstOrDefaultAsync(m => m.id == id);
+            if (VentasLineas == null)
             {
                 return NotFound();
             }
 
-            return View(ventasLineal);
+            return View(VentasLineas);
         }
 
-        // POST: VentasLineals/Delete/5
+        // POST: VentasLineass/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var ventasLineal = await _context.VentasLineal.FindAsync(id);
-            _context.VentasLineal.Remove(ventasLineal);
+            var VentasLineas = await _context.VentasLineas.FindAsync(id);
+            _context.VentasLineas.Remove(VentasLineas);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VentasLinealExists(int id)
+        private bool VentasLineasExists(int id)
         {
-            return _context.VentasLineal.Any(e => e.idVentaLineal == id);
+            return _context.VentasLineas.Any(e => e.id == id);
         }
     }
 }

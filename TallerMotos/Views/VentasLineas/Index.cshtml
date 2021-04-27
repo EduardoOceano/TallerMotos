@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TallerMotos.Models.VentasLineal>
+﻿@model IEnumerable<TallerMotos.Models.VentasLineas>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,19 +13,20 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.idProducto)
+                @*Html.DisplayNameFor(model => model.ProductoId)*@
+                Producto
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.idServicio)
+                Servicio
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.cantidad)
+                Cantidad
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.precio)
+                Precio
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.idFactura)
+                @*Html.DisplayNameFor(model => model.idFactura)*@
             </th>
             <th></th>
         </tr>
@@ -34,7 +35,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.idProducto)
+                @Html.DisplayFor(modelItem => item.Producto.tipo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.idServicio)
@@ -46,12 +47,12 @@
                 @Html.DisplayFor(modelItem => item.precio)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.idFactura)
+                @Html.DisplayFor(modelItem => item.FacturasId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.idVentaLineal">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.idVentaLineal">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.idVentaLineal">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
             </td>
         </tr>
 }

@@ -33,7 +33,7 @@ namespace TallerMotos.Controllers
             }
 
             var productos = await _context.Productos
-                .FirstOrDefaultAsync(m => m.idProducto == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (productos == null)
             {
                 return NotFound();
@@ -87,7 +87,7 @@ namespace TallerMotos.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Productos productos)
         {
-            if (id != productos.idProducto)
+            if (id != productos.id)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace TallerMotos.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductosExists(productos.idProducto))
+                    if (!ProductosExists(productos.id))
                     {
                         return NotFound();
                     }
@@ -124,7 +124,7 @@ namespace TallerMotos.Controllers
             }
 
             var productos = await _context.Productos
-                .FirstOrDefaultAsync(m => m.idProducto == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (productos == null)
             {
                 return NotFound();
@@ -146,7 +146,7 @@ namespace TallerMotos.Controllers
 
         private bool ProductosExists(int id)
         {
-            return _context.Productos.Any(e => e.idProducto == id);
+            return _context.Productos.Any(e => e.id == id);
         }
     }
 }
