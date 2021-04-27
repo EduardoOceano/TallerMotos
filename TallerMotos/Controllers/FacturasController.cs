@@ -73,7 +73,7 @@ namespace TallerMotos.Controllers
             }
 
             //var facturas = await _context.Facturas.FindAsync(id);
-            var facturas = _context.Facturas.Include("VentasLineas").Where(x => x.id == id).FirstOrDefault();
+            var facturas = _context.Facturas.Include("VentasLineas").Include("VentasLineas.Producto").Where(x => x.id == id).FirstOrDefault();
             if (facturas == null)
             {
                 return NotFound();
