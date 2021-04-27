@@ -16,6 +16,10 @@ namespace TallerMotos.Models
         public int id { get; set; }
         [Column("idProducto")]
         public int? ProductoId { get; set; }
+        /*
+        [Column("descripcion")]
+        public string ProductoDescripcion{ get; set; }
+        */
         public Productos Producto { get; set; }
         public int? idServicio { get; set; }
         public int? cantidad { get; set; }
