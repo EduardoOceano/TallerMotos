@@ -84,45 +84,26 @@
             </div>
         </div>
     </nav>
-   
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
     <!-- Footer-->
-    <footer class="footer bg-black small text-center text-white-50"><div class="container">Copyright © Your Website 2020</div></footer>
+    <footer class="footer bg-black small text-center text-white-50"><div class="container">Copyright © motosFua 2021</div></footer>
+    <br />
     <!-- Bootstrap core JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Third party plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <!-- Core theme JS-->
-    <
+
     <script type="text/javascript">
-        $(document).ready(function (ev) {
-            $("#galeria li:gt(0)").hide(); //gt(0) se refiere a todos menos al elemento cuyo indice sea 0
-
-            setInterval(function () { //se ejecuta el intervalo,
-                $("#galeria li:first-child").fadeOut()
-                    .next("li").fadeIn(1000)
-                    .end().appendTo("#galeria");
-            }, 4000); //numero de milisegundos
-
-
-        });
 
     </script>
-
-
-    <div class="container">
-        <main role="main" class="pb-3">
-            etwertwetopiewtpoiewptoiewrpotiweptoiewpti
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-
-        <div class="container">
-            &copy; 2021 - TallerMotos - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
