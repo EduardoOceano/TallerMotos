@@ -37,24 +37,30 @@
 <hr />
 <h4>Ventas Lineas</h4>
 <table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Descripción del producto</th>
+        </tr>
+    </thead>
     @foreach (VentasLineas tab02 in Model.VentasLineas)
     {
-    <tr>
-        <th>ID Ventas Lineas</th>
-        <th>Precio</th>
-        <th>ID Producto</th>
-    </tr>
-    <tr>
-        <td>
-            @tab02.id
-        </td>
-        <td>
-            @tab02.precio
-        </td>
-        <td>
-            @tab02.Producto.descripcion
-        </td>
-    </tr>
+        <tr>
+            <th scope="row">
+                @tab02.id
+            </th>
+            <td>
+                @tab02.precio
+            </td>
+            <td>
+                @if (tab02.Producto != null)
+                {
+                    <span>@tab02.Producto.descripcion</span>
+                }
+
+            </td>
+        </tr>
     }
 </table>
 <a class="btn btn-primary" href="/VentasLineas/Create">Añadir Ventas Lineas</a>

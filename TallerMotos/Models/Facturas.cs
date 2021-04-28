@@ -22,5 +22,7 @@ namespace TallerMotos.Models
 
         public virtual IEnumerable<VentasLineas> VentasLineas { get; set; }
 
+        public Clientes Cliente { get; set; }
+
     }
 }
