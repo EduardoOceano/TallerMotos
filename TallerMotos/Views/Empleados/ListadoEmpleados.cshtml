@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TallerMotos.Models.Empleados>
+
+@{
+    ViewData["Title"] = "ListadoEmpleados";
+}
+
+<h1>ListadoEmpleados</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreEmpleado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apellidoEmpleado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ciudad)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreEmpleado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellidoEmpleado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ciudad)
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TallerMotos.Models;
 
@@ -22,6 +25,31 @@ namespace TallerMotos.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.Empleados.ToListAsync());
+        }
+        public async Task<IActionResult> ListadoEmpleados(string sql)
+        {
+            List<Empleados> lista = new List<Empleados>();
+            using(DbCommand cn = _context.Database.GetDbConnection().CreateCommand())
+            {
+                cn.CommandText = "SELECT nombreEmpleado, apellidoEmpleado, telefono, direccion, ciudad FROM empleados ORDER BY apellidoEmpleado, nombreEmpleado";
+                cn.CommandType = CommandType.Text;
+                _context.Database.OpenConnection();
+                using (DbDataReader dr = cn.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        Empleados empleado = new Empleados();
+                        empleado.nombreEmpleado = dr["nombreEmpleado"].ToString();
+                        empleado.apellidoEmpleado = dr["apellidoEmpleado"].ToString();
+                        empleado.telefono = dr["telefono"].ToString();
+                        empleado.direccion = dr["direccion"].ToString();
+                        empleado.ciudad = dr["ciudad"].ToString();
+                        lista.Add(empleado);
+                    }
+                }
+
+            }
+            return View(lista);
         }
 
         // GET: Empleados/Details/5
