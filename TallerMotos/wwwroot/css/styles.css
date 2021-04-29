@@ -10379,10 +10379,12 @@ body {
   position: relative;
 }
 .submenu {
-  position: absolute;
-  display: none;
-  list-style: none;
-  font-weight: bold;
+    position: absolute;
+    display: none;
+    list-style: none;
+    font-weight: bold;
+    background-color: rgba(0,0,0,0.7);
+    color: #64a19d;
 }
 
 #menu li:hover {
