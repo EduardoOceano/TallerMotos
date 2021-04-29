@@ -7,27 +7,27 @@
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 <div class="form-group">
-    <label asp-for="idCliente" class="control-label"></label>
-    <input asp-for="idCliente" class="form-control" />
-    <span asp-validation-for="idCliente" class="text-danger"></span>
+    <label asp-for="ClienteId" class="control-label">Id del cliente</label>
+    <input asp-for="ClienteId" class="form-control" />
+    <span asp-validation-for="ClienteId" class="text-danger"></span>
 </div>
 <div class="form-group">
-    <label asp-for="idEmpleado" class="control-label"></label>
+    <label asp-for="idEmpleado" class="control-label">Id del empleado</label>
     <input asp-for="idEmpleado" class="form-control" />
     <span asp-validation-for="idEmpleado" class="text-danger"></span>
 </div>
 <div class="form-group">
-    <label asp-for="fecha" class="control-label"></label>
+    <label asp-for="fecha" class="control-label">Fecha</label>
     <input asp-for="fecha" class="form-control" />
     <span asp-validation-for="fecha" class="text-danger"></span>
 </div>
 <div class="form-group">
-    <label asp-for="idTaller" class="control-label"></label>
+    <label asp-for="idTaller" class="control-label">Taller</label>
     <input asp-for="idTaller" class="form-control" />
     <span asp-validation-for="idTaller" class="text-danger"></span>
 </div>
 <div class="form-group">
-    <label asp-for="total" class="control-label"></label>
+    <label asp-for="total" class="control-label">Importe total</label>
     <input asp-for="total" class="form-control" />
     <span asp-validation-for="total" class="text-danger"></span>
 </div>
@@ -44,11 +44,12 @@
             <th scope="col">Descripción del producto</th>
         </tr>
     </thead>
-    @foreach (VentasLineas tab02 in Model.VentasLineas)
+    @foreach (var tab02 in Model.VentasLineas)
     {
         <tr>
             <th scope="row">
                 @tab02.id
+                
             </th>
             <td>
                 @tab02.precio
