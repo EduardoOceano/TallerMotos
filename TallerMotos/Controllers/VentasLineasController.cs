@@ -21,7 +21,7 @@ namespace TallerMotos.Controllers
         // GET: VentasLineass
         public async Task<IActionResult> Index()
         {
-            return View(await _context.VentasLineas.ToListAsync());
+            return View(await _context.VentasLineas.Include("Producto").ToListAsync());
         }
 
         // GET: VentasLineass/Details/5
@@ -32,8 +32,8 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var VentasLineas = await _context.VentasLineas
-                .FirstOrDefaultAsync(m => m.id == id);
+            var VentasLineas = _context.VentasLineas.Include("Producto").Where(x => x.id == id)
+                .FirstOrDefault();
             if (VentasLineas == null)
             {
                 return NotFound();
