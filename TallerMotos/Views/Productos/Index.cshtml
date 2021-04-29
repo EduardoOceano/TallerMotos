@@ -54,8 +54,11 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a> |
+                <a asp-action="ListadoProductos">Listado Productos</a> |
+                <a asp-action="Index" asp-controller="ProductosProveedores">Listado Productos Proveedores</a> |
                 <button class="btn-primary" onclick="anyadirProductosAlcarrito()">Comprar</button>
+
             </td>
         </tr>
 }

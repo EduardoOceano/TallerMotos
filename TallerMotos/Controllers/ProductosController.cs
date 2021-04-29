@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +25,29 @@ namespace TallerMotos.Controllers
         {
             return View(await _context.Productos.ToListAsync());
         }
+        public async Task<IActionResult> ListadoProductos(string sql)
+        {
+            List<Productos> lista = new List<Productos>();
+            using (DbCommand cn = _context.Database.GetDbConnection().CreateCommand())
+            {
+                cn.CommandText = "SELECT tipo, AVG(precio) AS precio_medio FROM productos GROUP BY tipo";
+                cn.CommandType = CommandType.Text;
+                _context.Database.OpenConnection();
+                using (DbDataReader dr = cn.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        Productos producto = new Productos();
+                        producto.tipo = dr["tipo"].ToString();
+                        producto.precio = Decimal.Parse(dr["precio_medio"].ToString());
+                        //producto.precio = Decimal.Parse(dr["precio"].ToString());
+                        lista.Add(producto);
+                    }
+                }
 
+            }
+            return View(lista);
+        }
         // GET: Productos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
