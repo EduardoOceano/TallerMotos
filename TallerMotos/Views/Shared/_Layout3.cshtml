@@ -6,6 +6,7 @@
     <title></title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link href="~/css/styles.css" rel="stylesheet" />
     <script>
          function llenarCarrito(tipo, precio, stock) {
             // Variables
@@ -171,6 +172,74 @@
     </script>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color:#333">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" asp-area="" asp-controller="Home" asp-action="Index">Taller FUAAH</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto" id="menu">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Motos" asp-action="Index">Motos</a>
+                        <ul class="nav-item submenu js-scroll-trigger">
+                            <li class="nav-item js-scroll-trigger">Kawasaki</li>
+                            <li class="nav-item js-scroll-trigger">Honda</li>
+                            <li class="nav-item js-scroll-trigger">Suzuki</li>
+                            <li class="nav-item js-scroll-trigger">Husqvarna</li>
+                            <li class="nav-item js-scroll-trigger">KTM</li>
+                            <li class="nav-item js-scroll-trigger">Derbi</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Productos" asp-action="Index">Productos</a>
+                        <ul class="nav-item submenu js-scroll-trigger">
+                            <li class="nav-item js-scroll-trigger">Motor</li>
+                            <li class="nav-item js-scroll-trigger">Frenos</li>
+                            <li class="nav-item js-scroll-trigger">Neumaticos</li>
+                            <li class="nav-item js-scroll-trigger">Embrague</li>
+                            <li class="nav-item js-scroll-trigger">Focos</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Talleres" asp-action="Index">Talleres</a>
+                        <ul class="nav-item submenu">
+                            <li class="nav-item js-scroll-trigger">Casco</li>
+                            <li class="nav-item js-scroll-trigger">Guantes</li>
+                            <li class="nav-item js-scroll-trigger">Botas</li>
+                            <li class="nav-item js-scroll-trigger">Protección</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Talleres" asp-action="Index">Talleres</a>
+                        <ul class="nav-item submenu">
+                            <li class="nav-item js-scroll-trigger">Zaragoza</li>
+                            <li class="nav-item js-scroll-trigger">Madrid</li>
+                            <li class="nav-item js-scroll-trigger">Barcelona</li>
+                            <li class="nav-item js-scroll-trigger">Valencia</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Servicios" asp-action="Index">Servicios</a>
+                        <ul class="nav-item submenu">
+                            <li class="nav-item js-scroll-trigger">Arreglo de moto</li>
+                            <li class="nav-item js-scroll-trigger">Cambio de ruedas</li>
+                            <li class="nav-item js-scroll-trigger">Puesta a punto</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Facturas" asp-action="Index">Facturas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <div class="container">
         <div class="row">
             <!-- Elementos generados a partir del JSON -->
@@ -184,26 +253,26 @@
                 <!-- Precio total -->
                 <p class="text-right">Total: <span id="total"></span>&euro;</p>
                 <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
-                
+
             </aside>
         </div>
     </div>
 
-<div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
-</div>
-
-<footer class="border-top footer text-muted">
-
     <div class="container">
-        &copy; 2021 - TallerMotos - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
     </div>
-</footer>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-@RenderSection("Scripts", required: false)
+
+    <footer class="border-top footer text-muted">
+
+        <div class="container">
+            &copy; 2021 - TallerMotos - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
