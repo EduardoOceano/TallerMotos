@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 <h1>Details</h1>
@@ -10,7 +11,7 @@
     <h4>Facturas</h4>
     <hr />
     <form asp-action="Details">
-        @Html.EditorForModel()
+        @Html.DisplayForModel()
     </form>
 </div>
 <div>
