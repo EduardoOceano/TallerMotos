@@ -1,0 +1,44 @@
+﻿@model IEnumerable<TallerMotos.Models.Servicios>
+
+@{
+    ViewData["Title"] = "ListadoServicios";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h1>ListadoServicios</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>
