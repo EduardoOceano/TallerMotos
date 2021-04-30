@@ -28,6 +28,7 @@ namespace TallerMotos
             services.AddControllersWithViews();
             string conexion = this.Configuration.GetConnectionString("defaultConnection");
             services.AddDbContext<Contexto>(options => options.UseMySql(conexion));
+            services.AddSingleton<ServicioSQL, ServicioSQL>();
 
         }
 
