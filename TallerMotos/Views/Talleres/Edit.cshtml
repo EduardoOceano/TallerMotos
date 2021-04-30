@@ -4,13 +4,16 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+<br />
+<br />
+<br />
+<br />
+<h1 style="color: black">Edit</h1>
 
-<h1>Edit</h1>
-
-<h4>Talleres</h4>
+<h4 style="color:black">Talleres</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 bg-dark">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="id" />
