@@ -3,16 +3,16 @@
     ViewData["Title"] = "Facturas";
 }
 
-<h1>Facturas</h1>
+<h1>Factura</h1>
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 <div class="form-group">
-    <label asp-for="ClienteId" class="control-label">Id del cliente</label>
+    <label asp-for="ClienteId" class="control-label">Cliente</label>
     <input asp-for="ClienteId" class="form-control" />
     <span asp-validation-for="ClienteId" class="text-danger"></span>
 </div>
 <div class="form-group ">
-    <label asp-for="idEmpleado" class="control-label">Id del empleado</label>
+    <label asp-for="idEmpleado" class="control-label">Empleado</label>
     <input asp-for="idEmpleado" class="form-control" />
     <span asp-validation-for="idEmpleado" class="text-danger"></span>
 </div>
@@ -35,13 +35,13 @@
     <input type="submit" value="Save" class="btn btn-primary" />
 </div>
 <hr />
-<h4>Ventas Lineas</h4>
+<h4>Productos y servicios</h4>
 <table class="table table-dark">
     <thead>
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Precio</th>
-            <th scope="col">Descripción del producto</th>
+            <th scope="col">Descripción del producto o servicio</th>
         </tr>
     </thead>
     @foreach (var tab02 in Model.VentasLineas)
@@ -52,7 +52,7 @@
                 
             </th>
             <td>
-                @tab02.precio
+                @tab02.precio€
             </td>
             <td>
                 @if (tab02.Producto != null)
@@ -64,4 +64,4 @@
         </tr>
     }
 </table>
-<a class="btn btn-primary" href="/VentasLineas/Create">Añadir Ventas Lineas</a>
+<a class="btn btn-primary" href="/VentasLineas/Create">Añadir</a>
