@@ -21,7 +21,7 @@ namespace TallerMotos.Controllers
         // GET: Facturas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Facturas.Include("Clientes").ToListAsync());
+            return View(await _context.Facturas.Include("Cliente").ToListAsync());
         }
 
         // GET: Facturas/Details/5
@@ -32,7 +32,7 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var facturas = await _context.Facturas
+            var facturas = await _context.Facturas.Include("VentasLineas").Include("Cliente")
                 .FirstOrDefaultAsync(m => m.id == id);
             if (facturas == null)
             {

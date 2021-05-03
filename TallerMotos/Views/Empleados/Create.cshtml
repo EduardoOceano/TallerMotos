@@ -1,8 +1,11 @@
 ﻿@model TallerMotos.Models.Empleados
 
-@{ ViewData["Title"] = "Create"; }
+@{ ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    }
 
-<h1>Create</h1>
+
+<h1>Crear</h1>
 
 <h4>Empleados</h4>
 <hr />
@@ -14,7 +17,7 @@
 
             @Html.EditorForModel()
             <div>
-                <a asp-action="Index">Back to List</a>
+                <a asp-action="Index">Volver</a>
             </div>
 
         </form>
