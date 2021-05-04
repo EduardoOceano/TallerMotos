@@ -13,25 +13,31 @@
                 @Html.DisplayNameFor(model => model.total)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.idTaller)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.fecha)
             </th>
-            
+
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.total)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fecha)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.total)
+            </td>
+            <td>
+                @ViewBag.Talleres
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha)
+            </td>
 
-              
-            </tr>
+
+        </tr>
         }
     </tbody>
 </table>

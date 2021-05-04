@@ -21,6 +21,7 @@ namespace TallerMotos.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.Talleres = new (_context.Talleres, "idTaller", "direccion");
             List<VentasTaller> lista = new List<VentasTaller>();
             using (DbCommand cn = _context.Database.GetDbConnection().CreateCommand())
             {

@@ -13,6 +13,9 @@
                 @Html.DisplayNameFor(model => model.total)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.idTaller)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.nombreCliente)
             </th>
 
@@ -22,16 +25,19 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.total)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nombreCliente)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idTaller)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreCliente)
+            </td>
 
 
-            </tr>
+        </tr>
         }
     </tbody>
 </table>
