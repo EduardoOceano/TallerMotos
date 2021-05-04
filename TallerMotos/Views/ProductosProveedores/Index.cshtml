@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<TallerMotos.Models.ViewData.ProductosProveedores>
 @{
     Layout = "~/Views/Shared/_Layout2.cshtml";
+    int counter=0;
 }
 
 
@@ -23,6 +24,9 @@
                 @Html.DisplayNameFor(model => model.descripcion)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.stock)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.nombreProveedor)
             </th>
             <th>
@@ -40,34 +44,38 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tipo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.precio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fabricante)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fabricante)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.descripcion)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.nombreProveedor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.direccion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.pais)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.telefono)
-                </td>
-            </tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.stock)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreProveedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+        </tr>
         }
     </tbody>
 </table>
@@ -77,9 +85,9 @@
 
 <div class="row">
 
-    <div id="container" class="col-5 "></div>
+    <div id="container" class="col-6"></div>
 
-    <div id="container2" class="col-7 "></div>
+    <div id="container2" class="col-6"></div>
 </div>
 
 
@@ -89,12 +97,14 @@
         Highcharts.chart('container', {
             chart: {
                 plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
+                plotBorderWidth: 0,
+                plotShadow: false
             },
             title: {
-                text: 'Gráfica de Proveedores'
+                text: 'Productos<br>en<br>Stock',
+                align: 'center',
+                verticalAlign: 'middle',
+                y: 60
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -106,40 +116,42 @@
             },
             plotOptions: {
                 pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
                     dataLabels: {
                         enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                    }
+                        distance: -50,
+                        style: {
+                            fontWeight: 'bold',
+                            color: 'white'
+                        }
+                    },
+                    startAngle: -90,
+                    endAngle: 90,
+                    center: ['50%', '75%'],
+                    size: '110%'
                 }
             },
             series: [{
+                type: 'pie',
                 name: 'Porcentaje',
-                colorByPoint: true,
-                data: [{
-                    name: 'Frenos',
-                    y: 61.41,
-                    sliced: true,
-                    selected: true
-                }, {
-                    name: 'Motores',
-                    y: 11.84
-                }, {
-                    name: 'Cascos',
-                    y: 10.85
-                }, {
-                    name: 'Neumáticos',
-                    y: 4.67
-                }, {
-                    name: 'Suspensiones',
-                    y: 4.18
-                }, {
-                    name: 'Accesorios',
-                    y: 7.05
-                }]
+                innerSize: '50%',
+                data: [
+                    ['Frenos', 5],
+                    ['Motores', 13.29],
+                    ['Cascos', 13],
+                    ['Nuemáticos', 3.78],
+                    ['Suspensiones', 2.42],
+                    ['Accesorios', 1],
+                    {
+                        name: 'Other',
+                        y: 2.61,
+                        dataLabels: {
+                            enabled: false
+                        }
+                    }
+                ]
             }]
         });
+
 
     </script>
         
@@ -149,12 +161,14 @@
         Highcharts.chart('container2', {
             chart: {
                 plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
+                plotBorderWidth: 0,
+                plotShadow: false
             },
             title: {
-                text: 'Gráfica de Proveedores'
+                text: 'Analisis<br>de<br>Proveedores',
+                align: 'center',
+                verticalAlign: 'middle',
+                y: 60
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -166,46 +180,43 @@
             },
             plotOptions: {
                 pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
                     dataLabels: {
                         enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                    }
+                        distance: -50,
+                        style: {
+                            fontWeight: 'bold',
+                            color: 'white'
+                        }
+                    },
+                    startAngle: -90,
+                    endAngle: 90,
+                    center: ['50%', '75%'],
+                    size: '110%'
                 }
             },
             series: [{
+                type: 'pie',
                 name: 'Porcentaje',
-                colorByPoint: true,
-                data: [{
-                    name: 'Motores bien',
-                    y: 61.41,
-                    sliced: true,
-                    selected: true
-                }, {
-                        name: 'Motores Juan',
-                    y: 11.84
-                }, {
-                        name: 'Recambios pa ti',
-                    y: 10.85
-                }, {
-                        name: 'Recambios pa tu tia',
-                    y: 4.67
-                }, {
-                        name: 'Recambios Paco',
-                    y: 4.18
-                }, {
-                        name: 'Recambios Verdin',
-                    y: 1.64
-                }, {
-                        name: 'Stan Smith',
-                    y: 1.6
-                }, {
-                        name: 'Mr. Jhonsons',
-                    y: 1.2
-                }]
+                innerSize: '50%',
+                data: [
+                    ['Motores Bien', ],
+                    ['Motores Juan', 13.29],
+                    ['Recambios pa ti', 13],
+                    ['Recambios pa tu tia', 3.78],
+                    ['Recambios Verdin', 2.42],
+                    ['Recambios Paco', 1],
+                    {
+                        name: 'Otros',
+                        y: 2.61,
+                        dataLabels: {
+                            enabled: false
+                        }
+                    }
+                     
+                ]
             }]
         });
+
 
 
     </script>
