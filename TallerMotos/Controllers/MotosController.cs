@@ -78,7 +78,7 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            TempData["Clientes"] = new SelectList(_context.Clientes, "ClienteId", "nombreCliente");
+            ViewBag.Clientes = new SelectList(_context.Clientes, "id", "nombreCliente");
 
             return View(motos);
         }
@@ -116,7 +116,7 @@ namespace TallerMotos.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewBag.Clientes = new SelectList(_context.Clientes, "ClienteId", "nombreCliente", id);
+            ViewBag.Clientes = new SelectList(_context.Clientes, "id", "nombreCliente", id);
 
             return View(motos);
         }
