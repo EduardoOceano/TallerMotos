@@ -13,18 +13,20 @@ namespace TallerMotos.Models
         [Key]
         [Column("idFactura")]
         public int id { get; set; }
-
-        public int idEmpleado { get; set; }
+        [Column("idEmpleado")]
+        public int? EmpleadoId { get; set; }
         public DateTime fecha { get; set; }
 
-        public int idTaller { get; set; }
+        public int? idTaller { get; set; }
         public decimal total { get; set; }
 
         public virtual IEnumerable<VentasLineas> VentasLineas { get; set; }
 
         [Column("idCliente")] //En la base de datos
-        public int ClienteId { get; set; } //En la parte C
+        public int? ClienteId { get; set; } //En la parte C
         public Clientes Cliente { get; set; }
+
+        public Empleados Empleado { get; set; }
 
     }
 }
