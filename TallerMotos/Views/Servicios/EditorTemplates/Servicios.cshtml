@@ -11,7 +11,9 @@
 </div>
 <div class="form-group">
     <label asp-for="descripcion" class="control-label"></label>
-    <input asp-for="descripcion" class="form-control" />
+    <select asp-for="descripcion" class="form-control" asp-items="ViewBag.Servicio">
+        <option value="0">Seleccionar</option>
+    </select>
     <span asp-validation-for="descripcion" class="text-danger"></span>
 </div>
 <div class="form-group">
