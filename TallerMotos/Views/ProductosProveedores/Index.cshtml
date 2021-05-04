@@ -1,7 +1,13 @@
 ﻿@model IEnumerable<TallerMotos.Models.ViewData.ProductosProveedores>
 @{
     Layout = "~/Views/Shared/_Layout2.cshtml";
-    int counter=0;
+    int counterTotal = 0;
+    int counterMotores = 0;
+    int counterCascos = 0;
+    int counterNeumaticos = 0;
+    int counterSuspension = 0;
+    int counterAccesorios = 0;
+    int counterFrenos = 0;
 }
 
 
@@ -44,42 +50,66 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.tipo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fabricante)
-            </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fabricante)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.descripcion)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.stock)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.stock)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.nombreProveedor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.pais)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.telefono)
-            </td>
-        </tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombreProveedor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pais)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono)
+                </td>
+            </tr>
+            counterTotal += item.stock;
+            if (item.tipo == "FR")
+            {
+                counterFrenos += item.stock;
+            }
+            else if (item.tipo == "NM")
+            {
+                counterNeumaticos += item.stock;
+            }
+            else if (item.tipo == "MT")
+            {
+                counterMotores += item.stock;
+            }
+            else if (item.tipo == "SU")
+            {
+                counterSuspension += item.stock;
+            }
+            else if (item.tipo == "CC")
+            {
+                counterCascos += item.stock;
+            }
+            else if (item.tipo == "CA")
+            {
+                counterAccesorios += item.stock;
+            }
         }
     </tbody>
 </table>
-
 
 
 
@@ -135,15 +165,15 @@
                 name: 'Porcentaje',
                 innerSize: '50%',
                 data: [
-                    ['Frenos', 58.9],
-                    ['Motores', 13.29],
-                    ['Cascos', 13],
-                    ['Nuemáticos', 3.78],
-                    ['Suspensiones', 2.42],
-                    ['Accesorios', 1],
+                    ['Frenos', @(100*counterFrenos / counterTotal)],
+                    ['Motores', @(100 * counterMotores / counterTotal)],
+                    ['Cascos', @(100 * counterCascos / counterTotal)],
+                    ['Nuemáticos', @(100 * counterNeumaticos / counterTotal)],
+                    ['Suspensiones', @(100 * counterSuspension / counterTotal)],
+                    ['Accesorios', @(100 * counterAccesorios / counterTotal)],
                     {
                         name: 'Other',
-                        y: 2.61,
+                        y: 0,
                         dataLabels: {
                             enabled: false
                         }
@@ -154,10 +184,10 @@
 
 
     </script>
-        
+
 
     <script>
-        
+
         Highcharts.chart('container2', {
             chart: {
                 plotBackgroundColor: null,
@@ -205,8 +235,8 @@
                     ['Recambios pa tu tia', 3.78],
                     ['Recambios Verdin', 2.42],
                     ['Recambios Paco', 1]
-                    
-                     
+
+
                 ]
             }]
         });
