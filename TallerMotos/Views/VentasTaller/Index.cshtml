@@ -1,0 +1,37 @@
+﻿@model IEnumerable<TallerMotos.Models.ViewData.VentasTaller>
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<h1>Listado de Ventas y Taller</h1>
+
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha)
+                </td>
+
+              
+            </tr>
+        }
+    </tbody>
+</table>
