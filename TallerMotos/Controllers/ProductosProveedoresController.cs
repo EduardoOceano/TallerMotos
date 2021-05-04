@@ -14,10 +14,14 @@ namespace TallerMotos.Controllers
     public class ProductosProveedoresController : Controller
     {
         private readonly Contexto _context;
+        private readonly ServicioSQL _sql;
 
-        public ProductosProveedoresController(Contexto context)
+
+
+        public ProductosProveedoresController(Contexto context, ServicioSQL sql)
         {
             _context = context;
+            _sql = sql;
         }
 
         public IActionResult Index()
@@ -47,7 +51,26 @@ namespace TallerMotos.Controllers
                 }
 
             }
-                return View(lista);
+
+            string sql = "SELECT SUM(stock) * 100 / (SELECT SUM(stock) FROM productos tp ) FROM productos tg GROUP BY tg.tipo";
+            List<Models.ViewData.ProductosProveedores> porcentaje = _sql.EjecutarSQL<Models.ViewData.ProductosProveedores>(
+                   _context,
+                   sql,
+                   x => new Models.ViewData.ProductosProveedores()
+                   {
+
+                       NM = x.GetString(0),
+                       FR = x.GetString(1),
+                       MT = x.GetString(2),
+                       SU = x.GetString(3),
+                       CC = x.GetString(4),
+                       CA = x.GetString(5),
+
+                   }
+               );
+            return View(lista);
+
+
         }
     }
 }
