@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,30 +10,31 @@ using TallerMotos.Models.ViewData;
 
 namespace TallerMotos.Controllers
 {
-    public class VentasTallerController : Controller
+    public class VentasClientesTalleresController : Controller
     {
         private readonly Contexto _context;
 
-        public VentasTallerController(Contexto context)
+        public VentasClientesTalleresController(Contexto context)
         {
             _context = context;
         }
+
         public IActionResult Index()
         {
-            List<VentasTaller> lista = new List<VentasTaller>();
+            List<VentasClientesTalleres> lista = new List<VentasClientesTalleres>();
             using (DbCommand cn = _context.Database.GetDbConnection().CreateCommand())
             {
-                cn.CommandText = "SELECT SUM(f.total) total, t.idTaller, f.fecha FROM facturas f INNER JOIN talleres t ON(t.idTaller = f.idTaller) GROUP BY YEAR(f.fecha) ORDER BY t.idTaller";
+                cn.CommandText = "SELECT AVG(f.total) total, t.idTaller, c.nombreCliente FROM facturas f, talleres t, clientes c ORDER BY c.nombreCliente";
                 _context.Database.OpenConnection();
                 using (DbDataReader dr = cn.ExecuteReader())
                 {
                     while (dr.Read())
                     {
-                        VentasTaller ventas = new VentasTaller();
+                        VentasClientesTalleres ventas = new VentasClientesTalleres();
                         ventas.total = Decimal.Parse(dr["total"].ToString());
                         ventas.idTaller = int.Parse(dr["idTaller"].ToString());
-                        ventas.fecha = (DateTime)dr["fecha"];
-                       
+                        ventas.nombreCliente = dr["nombreCliente"].ToString();
+
                         lista.Add(ventas);
                     }
                 }
@@ -44,3 +44,5 @@ namespace TallerMotos.Controllers
         }
     }
 }
+    
+
