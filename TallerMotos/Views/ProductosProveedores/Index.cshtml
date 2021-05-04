@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<TallerMotos.Models.ViewData.ProductosProveedores>
 @{
     Layout = "~/Views/Shared/_Layout2.cshtml";
+    int counter=0;
 }
 
 
@@ -23,6 +24,9 @@
                 @Html.DisplayNameFor(model => model.descripcion)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.stock)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.nombreProveedor)
             </th>
             <th>
@@ -40,34 +44,38 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tipo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.precio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fabricante)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fabricante)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.descripcion)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.nombreProveedor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.direccion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.pais)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.telefono)
-                </td>
-            </tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.stock)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreProveedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+        </tr>
         }
     </tbody>
 </table>
