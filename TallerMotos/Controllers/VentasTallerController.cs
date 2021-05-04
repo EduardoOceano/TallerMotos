@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace TallerMotos.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.Talleres = new (_context.Talleres, "idTaller", "direccion");
+            ViewBag.Talleres = new SelectList(_context.Talleres, "idTaller", "direccion");
             List<VentasTaller> lista = new List<VentasTaller>();
             using (DbCommand cn = _context.Database.GetDbConnection().CreateCommand())
             {
