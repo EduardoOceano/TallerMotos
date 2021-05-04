@@ -21,7 +21,7 @@ namespace TallerMotos.Controllers
         // GET: Facturas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Facturas.Include("Cliente").ToListAsync());
+            return View(await _context.Facturas.Include("Cliente").Include("Empleado").ToListAsync());
         }
 
         // GET: Facturas/Details/5
@@ -32,7 +32,7 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var facturas = await _context.Facturas.Include("VentasLineas").Include("Cliente")
+            var facturas = await _context.Facturas.Include("VentasLineas").Include("Cliente").Include("Empleado")
                 .FirstOrDefaultAsync(m => m.id == id);
             if (facturas == null)
             {
@@ -78,6 +78,11 @@ namespace TallerMotos.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.Empleado = new SelectList(_context.Empleados, "id", "nombreEmpleado");
+
+            ViewBag.Cliente = new SelectList(_context.Clientes, "id", "nombreCliente");
+
             return View(facturas);
         }
 
@@ -113,6 +118,11 @@ namespace TallerMotos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.Empleado = new SelectList(_context.Empleados, "id", "nombreEmpleado", id);
+
+            ViewBag.Cliente = new SelectList(_context.Clientes, "id", "nombreCliente", id);
+
             return View(facturas);
         }
 
@@ -124,12 +134,16 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var facturas = await _context.Facturas
+            var facturas = await _context.Facturas.Include("VentasLineas")
                 .FirstOrDefaultAsync(m => m.id == id);
             if (facturas == null)
             {
                 return NotFound();
             }
+
+            ViewBag.Empleado = new SelectList(_context.Empleados, "id", "nombreEmpleado", id);
+
+            ViewBag.Cliente = new SelectList(_context.Clientes, "id", "nombreCliente", id);
 
             return View(facturas);
         }
@@ -142,6 +156,11 @@ namespace TallerMotos.Controllers
             var facturas = await _context.Facturas.FindAsync(id);
             _context.Facturas.Remove(facturas);
             await _context.SaveChangesAsync();
+
+            ViewBag.Empleado = new SelectList(_context.Empleados, "id", "nombreEmpleado", id);
+
+            ViewBag.Cliente = new SelectList(_context.Clientes, "id", "nombreCliente", id);
+
             return RedirectToAction(nameof(Index));
         }
 

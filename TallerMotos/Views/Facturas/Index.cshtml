@@ -41,7 +41,7 @@
             </th>
            
             <td>
-                @Html.DisplayFor(modelItem => item.idEmpleado)
+                @Html.DisplayFor(modelItem => item.EmpleadoId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.fecha)
@@ -57,6 +57,8 @@
                 <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
                 <a asp-action="Details" asp-route-id="@item.id">Detalles</a> |
                 <a asp-action="Delete" asp-route-id="@item.id">Eliminar</a> |
+                <a asp-action="Index" asp-controller="VentasTaller">Listado Ventas Talleres</a> |
+                <a asp-action="Index" asp-controller="VentasClientesTalleres">Listado Ventas Clientes Talleres</a>
             </td>
         </tr>
 }
