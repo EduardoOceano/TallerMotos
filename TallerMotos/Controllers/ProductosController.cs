@@ -23,7 +23,7 @@ namespace TallerMotos.Controllers
         // GET: Productos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Productos.ToListAsync());
+            return View(await _context.Productos.Include("Proveedor").ToListAsync());
         }
         public async Task<IActionResult> ListadoProductos(string sql)
         {
@@ -56,7 +56,7 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var productos = await _context.Productos
+            var productos = await _context.Productos.Include("Proveedor")
                 .FirstOrDefaultAsync(m => m.id == id);
             if (productos == null)
             {
@@ -101,6 +101,9 @@ namespace TallerMotos.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.Proveedores = new SelectList(_context.Proveedores, "id", "nombreProveedor", id);
+
             return View(productos);
         }
 
@@ -136,6 +139,9 @@ namespace TallerMotos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.Proveedores = new SelectList(_context.Proveedores, "id", "nombreProveedor", id);
+
             return View(productos);
         }
 
@@ -147,12 +153,14 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var productos = await _context.Productos
+            var productos = await _context.Productos.Include("Proveedor")
                 .FirstOrDefaultAsync(m => m.id == id);
             if (productos == null)
             {
                 return NotFound();
             }
+
+           
 
             return View(productos);
         }

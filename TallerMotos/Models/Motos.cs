@@ -16,7 +16,11 @@ namespace TallerMotos.Models
         public string marca { get; set; }
         public string modelo { get; set; }
         public int? cilindrada { get; set; }
-        public int? idCliente { get; set; }
+
+        [Column("idCliente")]
+        public int? ClienteId { get; set; }
+
+        public Clientes Cliente { get; set; }
 
     }
 }

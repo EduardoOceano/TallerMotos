@@ -101,6 +101,9 @@ namespace TallerMotos.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.Servicio = new SelectList(_context.Servicios, "id", "descripcion", id);
+
             return View(servicios);
         }
 
@@ -136,6 +139,9 @@ namespace TallerMotos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.Servicio = new SelectList(_context.Servicios, "id", "descripcion", id);
+
             return View(servicios);
         }
 

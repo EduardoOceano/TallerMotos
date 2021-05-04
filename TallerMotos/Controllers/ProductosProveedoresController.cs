@@ -25,7 +25,7 @@ namespace TallerMotos.Controllers
             List<ProductosProveedores> lista = new List<ProductosProveedores>();
             using (DbCommand cn = _context.Database.GetDbConnection().CreateCommand())
             {
-                cn.CommandText = "SELECT tipo, precio, fabricante, descripcion, nombreProveedor, direccion, pais, telefono FROM productos pro INNER JOIN proveedores prov ON (prov.idProveedor=pro.idProveedor) ORDER BY prov.nombreProveedor";
+                cn.CommandText = "SELECT tipo, precio, fabricante, descripcion, stock, nombreProveedor, direccion, pais, telefono FROM productos pro INNER JOIN proveedores prov ON (prov.idProveedor=pro.idProveedor) ORDER BY prov.nombreProveedor";
                 cn.CommandType = CommandType.Text;
                 _context.Database.OpenConnection();
                 using (DbDataReader dr = cn.ExecuteReader())
@@ -37,6 +37,7 @@ namespace TallerMotos.Controllers
                         producto.precio = Decimal.Parse(dr["precio"].ToString());
                         producto.fabricante = dr["fabricante"].ToString();
                         producto.descripcion = dr["descripcion"].ToString();
+                        producto.stock = Int32.Parse(dr["stock"].ToString());
                         producto.nombreProveedor = dr["nombreProveedor"].ToString();
                         producto.direccion = dr["direccion"].ToString();
                         producto.pais = dr["pais"].ToString();
@@ -46,7 +47,7 @@ namespace TallerMotos.Controllers
                 }
 
             }
-            return View(lista);
+                return View(lista);
         }
     }
 }

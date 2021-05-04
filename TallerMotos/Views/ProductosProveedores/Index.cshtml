@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<TallerMotos.Models.ViewData.ProductosProveedores>
 @{
     Layout = "~/Views/Shared/_Layout2.cshtml";
+    int counter=0;
 }
 
 
@@ -23,6 +24,9 @@
                 @Html.DisplayNameFor(model => model.descripcion)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.stock)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.nombreProveedor)
             </th>
             <th>
@@ -40,36 +44,174 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tipo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.precio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fabricante)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fabricante)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fabricante)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nombreProveedor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.direccion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.pais)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.telefono)
-                </td>
-            </tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.stock)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreProveedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+        </tr>
         }
     </tbody>
 </table>
+
+
+
+
+<div class="row">
+
+    <div id="container" class="col-6"></div>
+
+    <div id="container2" class="col-6"></div>
+</div>
+
+
+
+@section Scripts{
+    <script>
+        Highcharts.chart('container', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: 0,
+                plotShadow: false
+            },
+            title: {
+                text: 'Productos<br>en<br>Stock',
+                align: 'center',
+                verticalAlign: 'middle',
+                y: 60
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        enabled: true,
+                        distance: -50,
+                        style: {
+                            fontWeight: 'bold',
+                            color: 'white'
+                        }
+                    },
+                    startAngle: -90,
+                    endAngle: 90,
+                    center: ['50%', '75%'],
+                    size: '110%'
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Porcentaje',
+                innerSize: '50%',
+                data: [
+                    ['Frenos', 58.9],
+                    ['Motores', 13.29],
+                    ['Cascos', 13],
+                    ['Nuemáticos', 3.78],
+                    ['Suspensiones', 2.42],
+                    ['Accesorios', 1],
+                    {
+                        name: 'Other',
+                        y: 2.61,
+                        dataLabels: {
+                            enabled: false
+                        }
+                    }
+                ]
+            }]
+        });
+
+
+    </script>
+        
+
+    <script>
+        
+        Highcharts.chart('container2', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: 0,
+                plotShadow: false
+            },
+            title: {
+                text: 'Analisis<br>de<br>Proveedores',
+                align: 'center',
+                verticalAlign: 'middle',
+                y: 60
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        enabled: true,
+                        distance: -50,
+                        style: {
+                            fontWeight: 'bold',
+                            color: 'white'
+                        }
+                    },
+                    startAngle: -90,
+                    endAngle: 90,
+                    center: ['50%', '75%'],
+                    size: '110%'
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Porcentaje',
+                innerSize: '50%',
+                data: [
+                    ['Motores Bien', 58.9],
+                    ['Motores Juan', 13.29],
+                    ['Recambios pa ti', 13],
+                    ['Recambios pa tu tia', 3.78],
+                    ['Recambios Verdin', 2.42],
+                    ['Recambios Paco', 1]
+                    
+                     
+                ]
+            }]
+        });
+
+
+
+    </script>
+}
