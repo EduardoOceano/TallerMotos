@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,22 +11,47 @@ using TallerMotos.Models;
 
 namespace TallerMotos.Controllers
 {
-    public class ClientesController : Controller
+    public class UsuariosController : Controller
     {
         private readonly Contexto _context;
 
-        public ClientesController(Contexto context)
+        public UsuariosController(Contexto context)
         {
             _context = context;
         }
 
-        // GET: Clientes
+        // GET: Usuarios
+
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Clientes.ToListAsync());
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Index(string user, string pwd)
+        {
+            List<Usuarios> lista = new List<Usuarios>();
+            using (DbCommand cn = _context.Database.GetDbConnection().CreateCommand())
+            {
+                cn.CommandText = "SELECT usuario, pass, perfil FROM usuarios WHERE perfil = admin";
+                cn.CommandType = CommandType.Text;
+                _context.Database.OpenConnection();
+                using (DbDataReader dr = cn.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        Usuarios usuario = new Usuarios();
+                        usuario.usuario = dr["usuario"].ToString();
+                        usuario.pass = dr["pass"].ToString();
+                        usuario.perfil = dr["perfil"].ToString();
+                        lista.Add(usuario);
+                    }
+                }
+
+            }
+            return View(lista);
         }
 
-        // GET: Clientes/Details/5
+        // GET: Usuarios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +59,39 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var clientes = await _context.Clientes
+            var usuarios = await _context.Usuarios
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (clientes == null)
+            if (usuarios == null)
             {
                 return NotFound();
             }
 
-            return View(clientes);
+            return View(usuarios);
         }
 
-        // GET: Clientes/Create
+        // GET: Usuarios/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Clientes/Create
+        // POST: Usuarios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( Clientes clientes)
+        public async Task<IActionResult> Create( Usuarios usuarios)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(clientes);
+                _context.Add(usuarios);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(clientes);
+            return View(usuarios);
         }
 
-        // GET: Clientes/Edit/5
+        // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +99,22 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var clientes = await _context.Clientes.FindAsync(id);
-            if (clientes == null)
+            var usuarios = await _context.Usuarios.FindAsync(id);
+            if (usuarios == null)
             {
                 return NotFound();
             }
-            return View(clientes);
+            return View(usuarios);
         }
 
-        // POST: Clientes/Edit/5
+        // POST: Usuarios/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,  Clientes clientes)
+        public async Task<IActionResult> Edit(int id, Usuarios usuarios)
         {
-            if (id != clientes.id)
+            if (id != usuarios.id)
             {
                 return NotFound();
             }
@@ -97,12 +123,12 @@ namespace TallerMotos.Controllers
             {
                 try
                 {
-                    _context.Update(clientes);
+                    _context.Update(usuarios);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClientesExists(clientes.id))
+                    if (!UsuariosExists(usuarios.id))
                     {
                         return NotFound();
                     }
@@ -113,10 +139,10 @@ namespace TallerMotos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(clientes);
+            return View(usuarios);
         }
 
-        // GET: Clientes/Delete/5
+        // GET: Usuarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +150,30 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var clientes = await _context.Clientes
+            var usuarios = await _context.Usuarios
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (clientes == null)
+            if (usuarios == null)
             {
                 return NotFound();
             }
 
-            return View(clientes);
+            return View(usuarios);
         }
 
-        // POST: Clientes/Delete/5
+        // POST: Usuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var clientes = await _context.Clientes.FindAsync(id);
-            _context.Clientes.Remove(clientes);
+            var usuarios = await _context.Usuarios.FindAsync(id);
+            _context.Usuarios.Remove(usuarios);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClientesExists(int id)
+        private bool UsuariosExists(int id)
         {
-            return _context.Clientes.Any(e => e.id == id);
+            return _context.Usuarios.Any(e => e.id == id);
         }
     }
 }

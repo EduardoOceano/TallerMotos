@@ -11,33 +11,8 @@
 <div>
     <h4>Talleres</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.numEmpleados)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.numEmpleados)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.telefono)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.telefono)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.direccion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.direccion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ciudad)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ciudad)
-        </dd>
-    </dl>
-    
+    @Html.DisplayForModel()
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |

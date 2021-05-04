@@ -54,9 +54,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.descripcion)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fabricante)
-                </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.nombreProveedor)
                 </td>
@@ -73,3 +71,142 @@
         }
     </tbody>
 </table>
+
+
+
+
+<div class="row">
+
+    <div id="container" class="col-5 "></div>
+
+    <div id="container2" class="col-7 "></div>
+</div>
+
+
+
+@section Scripts{
+    <script>
+        Highcharts.chart('container', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Gráfica de Proveedores'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                name: 'Porcentaje',
+                colorByPoint: true,
+                data: [{
+                    name: 'Frenos',
+                    y: 61.41,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Motores',
+                    y: 11.84
+                }, {
+                    name: 'Cascos',
+                    y: 10.85
+                }, {
+                    name: 'Neumáticos',
+                    y: 4.67
+                }, {
+                    name: 'Suspensiones',
+                    y: 4.18
+                }, {
+                    name: 'Accesorios',
+                    y: 7.05
+                }]
+            }]
+        });
+
+    </script>
+        
+
+    <script>
+        
+        Highcharts.chart('container2', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Gráfica de Proveedores'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                name: 'Porcentaje',
+                colorByPoint: true,
+                data: [{
+                    name: 'Motores bien',
+                    y: 61.41,
+                    sliced: true,
+                    selected: true
+                }, {
+                        name: 'Motores Juan',
+                    y: 11.84
+                }, {
+                        name: 'Recambios pa ti',
+                    y: 10.85
+                }, {
+                        name: 'Recambios pa tu tia',
+                    y: 4.67
+                }, {
+                        name: 'Recambios Paco',
+                    y: 4.18
+                }, {
+                        name: 'Recambios Verdin',
+                    y: 1.64
+                }, {
+                        name: 'Stan Smith',
+                    y: 1.6
+                }, {
+                        name: 'Mr. Jhonsons',
+                    y: 1.2
+                }]
+            }]
+        });
+
+
+    </script>
+}
