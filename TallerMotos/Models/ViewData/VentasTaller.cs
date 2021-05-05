@@ -7,6 +7,8 @@ namespace TallerMotos.Models.ViewData
 {
     public class VentasTaller
     {
+        public string ciudad;
+
         public decimal total { get; set; }
         public int idTaller { get; set; }
         public DateTime fecha { get; set; }

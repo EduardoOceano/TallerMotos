@@ -24,7 +24,7 @@ namespace TallerMotos.Controllers
             List<VentasClientesTalleres> lista = new List<VentasClientesTalleres>();
             using (DbCommand cn = _context.Database.GetDbConnection().CreateCommand())
             {
-                cn.CommandText = "SELECT AVG(f.total) total, t.idTaller, c.nombreCliente FROM facturas f, talleres t, clientes c ORDER BY c.nombreCliente";
+                cn.CommandText = "SELECT AVG(f.total) total, t.idTaller, c.nombreCliente, t.ciudad FROM facturas f, talleres t, clientes c ORDER BY c.nombreCliente";
                 _context.Database.OpenConnection();
                 using (DbDataReader dr = cn.ExecuteReader())
                 {
@@ -33,6 +33,7 @@ namespace TallerMotos.Controllers
                         VentasClientesTalleres ventas = new VentasClientesTalleres();
                         ventas.total = Decimal.Parse(dr["total"].ToString());
                         ventas.idTaller = int.Parse(dr["idTaller"].ToString());
+                        ventas.ciudad = dr["ciudad"].ToString();
                         ventas.nombreCliente = dr["nombreCliente"].ToString();
 
                         lista.Add(ventas);
