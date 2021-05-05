@@ -14,10 +14,14 @@ namespace TallerMotos.Controllers
     public class ProductosProveedoresController : Controller
     {
         private readonly Contexto _context;
+        private readonly ServicioSQL _sql;
 
-        public ProductosProveedoresController(Contexto context)
+
+
+        public ProductosProveedoresController(Contexto context, ServicioSQL sql)
         {
             _context = context;
+            _sql = sql;
         }
 
         public IActionResult Index()

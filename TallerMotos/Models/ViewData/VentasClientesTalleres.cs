@@ -10,7 +10,8 @@ namespace TallerMotos.Models.ViewData
         public decimal total { get; set; }
         public int idTaller { get; set; }
         public string nombreCliente { get; set; }
-       
+
+        public string ciudad { get; set; }
 
 
     }
