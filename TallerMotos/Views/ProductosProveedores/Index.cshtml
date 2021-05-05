@@ -1,22 +1,20 @@
 ﻿@model IEnumerable<TallerMotos.Models.ViewData.ProductosProveedores>
-@{
-    Layout = "~/Views/Shared/_Layout2.cshtml";
-    int counterTotal = 0;
-    int counterMotores = 0;
-    int counterCascos = 0;
-    int counterNeumaticos = 0;
-    int counterSuspension = 0;
-    int counterAccesorios = 0;
-    int counterFrenos = 0;
+@{ Layout = "~/Views/Shared/_Layout2.cshtml";
+                int counterTotal = 0;
+                int counterMotores = 0;
+                int counterCascos = 0;
+                int counterNeumaticos = 0;
+                int counterSuspension = 0;
+                int counterAccesorios = 0;
+                int counterFrenos = 0;
 
 
-    int counterMBien = 0;
-    int counterJuan = 0;
-    int counterRTi = 0;
-    int counterRTuTia = 0;
-    int counterPaco = 0;
-    int counterVerdin = 0;
-}
+                int counterMBien = 0;
+                int counterJuan = 0;
+                int counterRTi = 0;
+                int counterRTuTia = 0;
+                int counterPaco = 0;
+                int counterVerdin = 0; }
 
 
 <h1>Listado de productos y proveedores</h1>
@@ -58,89 +56,88 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tipo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.precio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fabricante)
-                </td>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.tipo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.precio)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fabricante)
+    </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.descripcion)
-                </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.descripcion)
+    </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.stock)
-                </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.stock)
+    </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.nombreProveedor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.direccion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.pais)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.telefono)
-                </td>
-            </tr>
-            counterTotal += item.stock;
-            if (item.tipo == "FR")
-            {
-                counterFrenos += item.stock;
-            }
-            else if (item.tipo == "NM")
-            {
-                counterNeumaticos += item.stock;
-            }
-            else if (item.tipo == "MT")
-            {
-                counterMotores += item.stock;
-            }
-            else if (item.tipo == "SU")
-            {
-                counterSuspension += item.stock;
-            }
-            else if (item.tipo == "CC")
-            {
-                counterCascos += item.stock;
-            }
-            else if (item.tipo == "CA")
-            {
-                counterAccesorios += item.stock;
-            }
+    <td>
+        @Html.DisplayFor(modelItem => item.nombreProveedor)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.direccion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.pais)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.telefono)
+    </td>
+</tr>counterTotal += item.stock;
+                if (item.tipo == "FR")
+                {
+                    counterFrenos += item.stock;
+                }
+                else if (item.tipo == "NM")
+                {
+                    counterNeumaticos += item.stock;
+                }
+                else if (item.tipo == "MT")
+                {
+                    counterMotores += item.stock;
+                }
+                else if (item.tipo == "SU")
+                {
+                    counterSuspension += item.stock;
+                }
+                else if (item.tipo == "CC")
+                {
+                    counterCascos += item.stock;
+                }
+                else if (item.tipo == "CA")
+                {
+                    counterAccesorios += item.stock;
+                }
 
-            if(item.nombreProveedor == "Motores bien")
-            {
-                counterMBien += item.stock;
+                if (item.nombreProveedor == "Motores bien")
+                {
+                    counterMBien += item.stock;
+                }
+                else if (item.nombreProveedor == "Motores Juan")
+                {
+                    counterJuan += item.stock;
+                }
+                else if (item.nombreProveedor == "Recambios pa ti")
+                {
+                    counterRTi += item.stock;
+                }
+                else if (item.nombreProveedor == "Recambios pa tu tia")
+                {
+                    counterRTuTia += item.stock;
+                }
+                else if (item.nombreProveedor == "Recambios Paco")
+                {
+                    counterPaco += item.stock;
+                }
+                else if (item.nombreProveedor == "Recambios Verdin")
+                {
+                    counterVerdin += item.stock;
+                }
             }
-            else if(item.nombreProveedor == "Motores Juan")
-            {
-                counterJuan += item.stock;
-            }
-            else if (item.nombreProveedor == "Recambios pa ti")
-            {
-                counterRTi += item.stock;
-            }
-            else if (item.nombreProveedor == "Recmabios pa tu tia")
-            {
-                counterRTuTia += item.stock;
-            }
-            else if (item.nombreProveedor == "Recambios Paco")
-            {
-                counterPaco += item.stock;
-            }
-            else if (item.nombreProveedor == "Recambios Verdin")
-            {
-                counterVerdin += item.stock;
-            }
-        }
     </tbody>
 </table>
 

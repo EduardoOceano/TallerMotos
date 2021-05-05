@@ -16,5 +16,15 @@ namespace TallerMotos.Models.ViewData
         public string direccion { get; set; }
         public string pais { get; set; }
         public string telefono { get; set; }
+
+
+        public string NM { get; set; }
+        public string FR { get; set; }
+        public string MT { get; set; }
+        public string SU { get; set; }
+        public string CC { get; set; }
+        public string CA { get; set; }
+
+
     }
 }
