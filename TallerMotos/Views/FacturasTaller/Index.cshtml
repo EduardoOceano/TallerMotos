@@ -1,0 +1,46 @@
+﻿@using TallerMotos.Models.ViewData
+@model List<FacturasTaller>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h1>FacturasTallerIndex</h1>
+<form asp-action="Index" method="get">
+    <div class="row">
+        <div class="col-2">
+            Taller:
+        </div>
+        <div class="col-4">
+            <select name="taller" class="form-control" asp-items="@ViewBag.Taller">
+                <option value="">Todos</option>
+            </select>
+        </div>
+        <input type="submit" value="Consultar" class="btn btn-primary" />
+    </div>
+</form>
+<hr />
+@if (Model != null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id Factura</th>
+                <th>Nombre Cliente</th>
+                <th>Id Taller</th>
+                <th>Ciudad Taller</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (FacturasTaller item in Model)
+            {
+                <tr>
+                    <td>@item.idFactura</td>
+                    <td>@item.nombreCliente</td>
+                    <td>@item.idTaller</td>
+                    <td>@item.ciudad</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

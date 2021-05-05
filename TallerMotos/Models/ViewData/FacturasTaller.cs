@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 
 namespace TallerMotos.Models.ViewData
 {
-    public class MotosClientes
+    public class FacturasTaller
     {
-        public string modelo { get; set; }
-        public string marca { get; set; }
-
-        public string idCliente { get; set; }
+        public int idFactura { get; set; }
         public string nombreCliente { get; set; }
+        public int idTaller { get; set; }
+        public string ciudad { get; set; }
     }
 }
