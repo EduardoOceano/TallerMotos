@@ -12,7 +12,7 @@
             Taller:
         </div>
         <div class="col-4">
-            <select name="taller" class="form-control" value="@ViewBag.Taller">
+            <select name="taller" class="form-control" asp-items="@ViewBag.Taller">
                 <option value="0">Todos</option>
             </select>
         </div>
@@ -23,14 +23,24 @@
 @if (Model != null)
 {
     <table class="table table-striped">
-        @foreach (FacturasTaller item in Model)
-        {
+        <thead>
             <tr>
-                <td>@item.idFactura</td>
-                <td>@item.nombreCliente</td>
-                <td>@item.idTaller</td>
-                <td>@item.ciudad</td>
+                <th>Id Factura</th>
+                <th>Nombre Cliente</th>
+                <th>Id Taller</th>
+                <th>Ciudad Taller</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (FacturasTaller item in Model)
+            {
+                <tr>
+                    <td>@item.idFactura</td>
+                    <td>@item.nombreCliente</td>
+                    <td>@item.idTaller</td>
+                    <td>@item.ciudad</td>
+                </tr>
+            }
+        </tbody>
     </table>
 }

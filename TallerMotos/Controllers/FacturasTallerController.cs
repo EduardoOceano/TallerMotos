@@ -51,7 +51,7 @@ namespace TallerMotos.Controllers
                 );
 
             ViewBag.Facturas = t.idFactura;
-            ViewBag.Taller = t.ciudad;
+            ViewBag.Taller = new SelectList(_context.Talleres, "id", "ciudad");
             ViewBag.Cliente = t.nombreCliente;
 
             return View(lista);
