@@ -22,11 +22,11 @@ namespace TallerMotos.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.Talleres = new SelectList(_context.Talleres, "idTaller", "direccion");
+            
             List<VentasTaller> lista = new List<VentasTaller>();
             using (DbCommand cn = _context.Database.GetDbConnection().CreateCommand())
             {
-                cn.CommandText = "SELECT SUM(f.total) total, t.idTaller, f.fecha FROM facturas f INNER JOIN talleres t ON(t.idTaller = f.idTaller) GROUP BY YEAR(f.fecha) ORDER BY t.idTaller";
+                cn.CommandText = "SELECT SUM(f.total) total, t.idTaller, f.fecha, t.ciudad FROM facturas f INNER JOIN talleres t ON(t.idTaller = f.idTaller) GROUP BY YEAR(f.fecha) ORDER BY t.idTaller";
                 _context.Database.OpenConnection();
                 using (DbDataReader dr = cn.ExecuteReader())
                 {
@@ -35,6 +35,7 @@ namespace TallerMotos.Controllers
                         VentasTaller ventas = new VentasTaller();
                         ventas.total = Decimal.Parse(dr["total"].ToString());
                         ventas.idTaller = int.Parse(dr["idTaller"].ToString());
+                        ventas.ciudad = dr["ciudad"].ToString();
                         ventas.fecha = (DateTime)dr["fecha"];
                        
                         lista.Add(ventas);
@@ -42,6 +43,9 @@ namespace TallerMotos.Controllers
                 }
 
             }
+
+            
+
             return View(lista);
         }
     }

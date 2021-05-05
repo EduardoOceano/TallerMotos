@@ -26,6 +26,24 @@ namespace TallerMotos.Controllers
 
         public IActionResult Index()
         {
+
+            int counterTotal = 0;
+            IDictionary<string, int> stockProductos = new Dictionary<string, int>();
+            stockProductos["motoresStock"] = 0;
+            stockProductos["cascosStock"] = 0;
+            stockProductos["neumaticosStock"] = 0;
+            stockProductos["suspensionesStock"] = 0;
+            stockProductos["accesoriosStock"] = 0;
+            stockProductos["frenosStock"] = 0;
+
+            IDictionary<string, int> stockProveedores = new Dictionary<string, int>();
+            stockProveedores["mBienStock"] = 0;
+            stockProveedores["juanStock"] = 0;
+            stockProveedores["RPTiStock"] = 0;
+            stockProveedores["RPTtiaStock"] = 0;
+            stockProveedores["pacoStock"] = 0;
+            stockProveedores["verdinStock"] = 0;
+
             List<ProductosProveedores> lista = new List<ProductosProveedores>();
             using (DbCommand cn = _context.Database.GetDbConnection().CreateCommand())
             {
@@ -47,30 +65,78 @@ namespace TallerMotos.Controllers
                         producto.pais = dr["pais"].ToString();
                         producto.telefono = dr["telefono"].ToString();
                         lista.Add(producto);
+                        counterTotal += producto.stock;
+                        if (producto.tipo == "MT")
+                        {
+                            stockProductos["motoresStock"] += producto.stock;
+                        }
+                        else if(producto.tipo == "CA")
+                        {
+                            stockProductos["cascosStock"] += producto.stock;
+                        }
+                        else if (producto.tipo == "NM")
+                        {
+                            stockProductos["neumaticosStock"] += producto.stock;
+                        }
+                        else if (producto.tipo == "SU")
+                        {
+                            stockProductos["suspensionesStock"] += producto.stock;
+                        }
+                        else if (producto.tipo == "CC")
+                        {
+                            stockProductos["accesoriosStock"] += producto.stock;
+                        }
+                        else if (producto.tipo == "FR")
+                        {
+                            stockProductos["frenosStock"] += producto.stock;
+                        }
+
+                        if (producto.nombreProveedor == "Motores bien")
+                        {
+                            stockProveedores["mBienStock"] += producto.stock;
+                        }
+                        else if (producto.nombreProveedor == "Motores Juan")
+                        {
+                            stockProveedores["juanStock"] += producto.stock;
+                        }
+                        else if (producto.nombreProveedor == "Recambios pa ti")
+                        {
+                            stockProveedores["RPTiStock"] += producto.stock;
+                        }
+                        else if (producto.nombreProveedor == "Recambios pa tu tia")
+                        {
+                            stockProveedores["RPTtiaStock"] += producto.stock;
+                        }
+                        else if (producto.nombreProveedor == "Recambios Paco")
+                        {
+                            stockProveedores["pacoStock"] += producto.stock;
+                        }
+                        else if (producto.nombreProveedor == "Recambios Verdin")
+                        {
+                            stockProveedores["verdinStock"] += producto.stock;
+                        }
                     }
                 }
 
             }
-
-            string sql = "SELECT SUM(stock) * 100 / (SELECT SUM(stock) FROM productos tp ) FROM productos tg GROUP BY tg.tipo";
-            List<Models.ViewData.ProductosProveedores> porcentaje = _sql.EjecutarSQL<Models.ViewData.ProductosProveedores>(
-                   _context,
-                   sql,
-                   x => new Models.ViewData.ProductosProveedores()
-                   {
-
-                       NM = x.GetString(0),
-                       FR = x.GetString(1),
-                       MT = x.GetString(2),
-                       SU = x.GetString(3),
-                       CC = x.GetString(4),
-                       CA = x.GetString(5),
-
-                   }
-               );
-            return View(lista);
+            stockProductos["frenosStock"] = 100 * stockProductos["frenosStock"] / counterTotal;
+            stockProductos["motoresStock"] = 100 * stockProductos["motoresStock"] / counterTotal;
+            stockProductos["cascosStock"] = 100 * stockProductos["cascosStock"] / counterTotal;
+            stockProductos["neumaticosStock"] = 100 * stockProductos["neumaticosStock"] / counterTotal;
+            stockProductos["suspensionesStock"] = 100 * stockProductos["suspensionesStock"] / counterTotal;
+            stockProductos["accesoriosStock"] = 100 * stockProductos["accesoriosStock"] / counterTotal;
 
 
+            stockProveedores["mBienStock"] = 100 * stockProveedores["mBienStock"] / counterTotal;
+                stockProveedores["juanStock"] = 100 * stockProveedores["juanStock"] / counterTotal;
+                stockProveedores["RPTiStock"] = 100 * stockProveedores["RPTiStock"] / counterTotal;
+                stockProveedores["RPTtiaStock"] = 100 * stockProveedores["RPTtiaStock"] / counterTotal;
+                stockProveedores["pacoStock"] = 100 * stockProveedores["pacoStock"] / counterTotal;
+                stockProveedores["verdinStock"] = 100 * stockProveedores["verdinStock"] / counterTotal;
+
+            ViewData["assocArray01"] = stockProductos;
+                ViewData["assocArray02"] = stockProveedores;
+                return View(lista);
         }
     }
 }
