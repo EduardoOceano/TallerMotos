@@ -1,20 +1,9 @@
 ﻿@model IEnumerable<TallerMotos.Models.ViewData.ProductosProveedores>
 @{ Layout = "~/Views/Shared/_Layout2.cshtml";
-                int counterTotal = 0;
-                int counterMotores = 0;
-                int counterCascos = 0;
-                int counterNeumaticos = 0;
-                int counterSuspension = 0;
-                int counterAccesorios = 0;
-                int counterFrenos = 0;
 
-
-                int counterMBien = 0;
-                int counterJuan = 0;
-                int counterRTi = 0;
-                int counterRTuTia = 0;
-                int counterPaco = 0;
-                int counterVerdin = 0; }
+    Dictionary<string, int> dictStock01 = ViewData["assocArray01"] as Dictionary<string, int>;
+    Dictionary<string, int> dictStock02 = ViewData["assocArray02"] as Dictionary<string, int>;
+    }
 
 
 <h1>Listado de productos y proveedores</h1>
@@ -87,56 +76,7 @@
     <td>
         @Html.DisplayFor(modelItem => item.telefono)
     </td>
-</tr>counterTotal += item.stock;
-                if (item.tipo == "FR")
-                {
-                    counterFrenos += item.stock;
-                }
-                else if (item.tipo == "NM")
-                {
-                    counterNeumaticos += item.stock;
-                }
-                else if (item.tipo == "MT")
-                {
-                    counterMotores += item.stock;
-                }
-                else if (item.tipo == "SU")
-                {
-                    counterSuspension += item.stock;
-                }
-                else if (item.tipo == "CC")
-                {
-                    counterCascos += item.stock;
-                }
-                else if (item.tipo == "CA")
-                {
-                    counterAccesorios += item.stock;
-                }
-
-                if (item.nombreProveedor == "Motores bien")
-                {
-                    counterMBien += item.stock;
-                }
-                else if (item.nombreProveedor == "Motores Juan")
-                {
-                    counterJuan += item.stock;
-                }
-                else if (item.nombreProveedor == "Recambios pa ti")
-                {
-                    counterRTi += item.stock;
-                }
-                else if (item.nombreProveedor == "Recambios pa tu tia")
-                {
-                    counterRTuTia += item.stock;
-                }
-                else if (item.nombreProveedor == "Recambios Paco")
-                {
-                    counterPaco += item.stock;
-                }
-                else if (item.nombreProveedor == "Recambios Verdin")
-                {
-                    counterVerdin += item.stock;
-                }
+</tr>
             }
     </tbody>
 </table>
@@ -195,12 +135,12 @@
                 name: 'Porcentaje',
                 innerSize: '50%',
                 data: [
-                    ['Frenos', @(100*counterFrenos / counterTotal)],
-                    ['Motores', @(100 * counterMotores / counterTotal)],
-                    ['Cascos', @(100 * counterCascos / counterTotal)],
-                    ['Nuemáticos', @(100 * counterNeumaticos / counterTotal)],
-                    ['Suspensiones', @(100 * counterSuspension / counterTotal)],
-                    ['Accesorios', @(100 * counterAccesorios / counterTotal)],
+                    ['Frenos', @(dictStock01["frenosStock"])],
+                    ['Motores', @(dictStock01["motoresStock"])],
+                    ['Cascos', @(dictStock01["cascosStock"])],
+                    ['Nuemáticos', @(dictStock01["neumaticosStock"])],
+                    ['Suspensiones', @(dictStock01["suspensionesStock"])],
+                    ['Accesorios', @(dictStock01["accesoriosStock"])],
                     {
                         name: 'Other',
                         y: 0,
@@ -211,7 +151,6 @@
                 ]
             }]
         });
-
 
     </script>
 
@@ -259,12 +198,12 @@
                 name: 'Porcentaje',
                 innerSize: '50%',
                 data: [
-                    ['Motores Bien', @(100*counterMBien / counterTotal)],
-                    ['Motores Juan', @(100*counterJuan / counterTotal)],
-                    ['Recambios pa ti', @(100*counterRTi / counterTotal)],
-                    ['Recambios pa tu tia', @(100*counterRTuTia / counterTotal)],
-                    ['Recambios Verdin', @(100*counterVerdin / counterTotal)],
-                    ['Recambios Paco', @(100*counterPaco / counterTotal)]
+                    ['Motores Bien', @(dictStock02["mBienStock"])],
+                    ['Motores Juan', @(dictStock02["juanStock"])],
+                    ['Recambios pa ti', @(dictStock02["RPTiStock"])],
+                    ['Recambios pa tu tia', @(dictStock02["RPTtiaStock"])],
+                    ['Recambios Verdin', @(dictStock02["pacoStock"])],
+                    ['Recambios Paco', @(dictStock02["verdinStock"])],
 
 
                 ]
