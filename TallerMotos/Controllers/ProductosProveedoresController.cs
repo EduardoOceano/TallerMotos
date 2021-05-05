@@ -91,7 +91,6 @@ namespace TallerMotos.Controllers
                             stockProductos["frenosStock"] += producto.stock;
                         }
 
-
                         if (producto.nombreProveedor == "Motores bien")
                         {
                             stockProveedores["mBienStock"] += producto.stock;
