@@ -21,21 +21,19 @@ namespace TallerMotos.Controllers
             _sql = sql;
         }
 
-        public IActionResult Index(FacturasTaller t)
+        public IActionResult Index(string taller)
         {
 
             string sql = " SELECT f.idFactura, c.nombreCliente, t.idTaller, t.ciudad" +
                 " FROM facturas f" +
                 " INNER JOIN talleres t ON (t.idTaller=f.idTaller) " + 
                 " INNER JOIN clientes c on (f.idCliente=c.idCliente) " + 
-                " WHERE 1=1"+ (t.ciudad!=null ? " AND t.ciudad=@ciudad " : "") ;
+                " WHERE 1=1"+ (taller !=null && taller!="" ? " AND t.ciudad=@ciudad " : "") ;
 
             MySqlParameter[] parametros =
             {
-                new MySqlParameter("@idFactura", t.idFactura),
-                new MySqlParameter("@nombreCliente", t.nombreCliente),
-                new MySqlParameter("@idTaller", t.idTaller),
-                new MySqlParameter("@ciudad", t.ciudad)
+                
+                new MySqlParameter("@ciudad", taller)
             };
 
             List<FacturasTaller> lista = _sql.EjecutarSQL<FacturasTaller>(
@@ -49,11 +47,9 @@ namespace TallerMotos.Controllers
                 },
                 parametros
                 );
-
-            ViewBag.Facturas = t.idFactura;
-            ViewBag.Taller = new SelectList(_context.Talleres, "id", "ciudad");
-            ViewBag.Cliente = t.nombreCliente;
-
+                       
+            ViewBag.Taller = new SelectList(_context.Talleres, "ciudad", "ciudad", taller);
+           
             return View(lista);
         }
     }
