@@ -17,6 +17,6 @@ namespace TallerMotos.Models
         public string pais { get; set; }
         public string comentario { get; set; }
         public string telefono { get; set; }
-        
+        public int idFabricante { get; set; }
     }
 }
