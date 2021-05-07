@@ -24,7 +24,7 @@ namespace TallerMotos.Controllers
         public IActionResult Index(string taller)
         {
 
-            string sql = " SELECT f.idFactura, c.nombreCliente, t.idTaller, t.ciudad" +
+            string sql = " SELECT DISTINCT f.idFactura, c.nombreCliente, t.idTaller, t.ciudad" +
                 " FROM facturas f" +
                 " INNER JOIN talleres t ON (t.idTaller=f.idTaller) " + 
                 " INNER JOIN clientes c on (f.idCliente=c.idCliente) " + 

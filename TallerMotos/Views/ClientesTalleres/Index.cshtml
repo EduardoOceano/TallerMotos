@@ -1,11 +1,11 @@
 ﻿@using TallerMotos.Models.ViewData
-@model List<FacturasTaller>
+@model List<ClientesTalleres>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<h1>FacturasTallerIndex</h1>
+<h1>Clientes por taller</h1>
 <form asp-action="Index" method="get">
     <div class="row">
         <div class="col-2">
@@ -19,24 +19,23 @@
         <input type="submit" value="Consultar" class="btn btn-primary" />
     </div>
 </form>
-<hr />
+<br />
 @if (Model != null)
 {
-    <table class="table table-dark table-striped">
+    <table class="table table-dark table-striped ">
         <thead>
             <tr>
-                <th>Id Factura</th>
-                <th>Nombre Cliente</th>
+                <th>Cliente</th><th></th>
                 <th>Id Taller</th>
                 <th>Ciudad Taller</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (FacturasTaller item in Model)
+            @foreach (ClientesTalleres item in Model)
             {
                 <tr>
-                    <td>@item.idFactura</td>
                     <td>@item.nombreCliente</td>
+                    <td>@item.apellidoCliente</td>
                     <td>@item.idTaller</td>
                     <td>@item.ciudad</td>
                 </tr>
