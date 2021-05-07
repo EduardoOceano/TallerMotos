@@ -19,10 +19,11 @@ namespace TallerMotos.Controllers
         }
 
         // GET: Facturas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(bool? FacturaPagada)
         {
-            return View(await _context.Facturas.Include("Cliente").Include("Empleado").ToListAsync());
+            return View(await _context.Facturas.Where(x=> FacturaPagada==null || x.pagado==FacturaPagada).Include("Cliente").Include("Empleado").ToListAsync());
         }
+
 
         // GET: Facturas/Details/5
         public async Task<IActionResult> Details(int? id)
