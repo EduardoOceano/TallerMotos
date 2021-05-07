@@ -31,6 +31,9 @@
             <th scope="col">
                 Importe
             </th>
+            <th scope="col">
+                Pagado
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -54,6 +57,9 @@
             <th>
                 @Html.DisplayFor(modelItem => item.total)€
             </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.pagado)
+            </td>
             <td>
 
                 <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
