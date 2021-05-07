@@ -35,43 +35,39 @@
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Motos" asp-action="Index">Motos</a>
                         <ul class="nav-item submenu js-scroll-trigger">
-                            <li class="nav-item js-scroll-trigger">Kawasaki</li>
-                            <li class="nav-item js-scroll-trigger">Honda</li>
-                            <li class="nav-item js-scroll-trigger">Suzuki</li>
-                            <li class="nav-item js-scroll-trigger">Husqvarna</li>
-                            <li class="nav-item js-scroll-trigger">KTM</li>
-                            <li class="nav-item js-scroll-trigger">Derbi</li>
+                            <li><a asp-controller="MotosClientesParam" asp-action="Index">Listado Motos Clientes con Parámetros</a></li>
+                            <li><a asp-controller="MotosClientes" asp-action="Index">Listado Motos Clientes</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Productos" asp-action="Index">Productos</a>
                         <ul class="nav-item submenu js-scroll-trigger">
-                            <li class="nav-item js-scroll-trigger">Motor</li>
-                            <li class="nav-item js-scroll-trigger">Frenos</li>
-                            <li class="nav-item js-scroll-trigger">Neumaticos</li>
-                            <li class="nav-item js-scroll-trigger">Embrague</li>
-                            <li class="nav-item js-scroll-trigger">Focos</li>
+                            <li><a asp-controller="ProductosProveedores" asp-action="Index">Listado Productos Proveedores</a></li>                            
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Talleres" asp-action="Index">Talleres</a>
                         <ul class="nav-item submenu">
-                            <li class="nav-item js-scroll-trigger">Zaragoza</li>
-                            <li class="nav-item js-scroll-trigger">Madrid</li>
-                            <li class="nav-item js-scroll-trigger">Barcelona</li>
-                            <li class="nav-item js-scroll-trigger">Valencia</li>
+                            <li><a asp-controller="VentasTaller" asp-action="Index">Listado Ventas Taller</a></li>
+                            <li><a asp-controller="VentasClientesTalleres" asp-action="Index">Listado Ventas Clientes Taller</a></li>
+                            <li><a asp-controller="Empleados" asp-action="ListadoEmpleados">Listado Empleados</a></li>
+                            <li><a asp-controller="Top10Empleados" asp-action="Index">Listado Top 10 Empleados</a></li>
+                            <li><a asp-controller="TalleresVentasTOP10" asp-action="Index" >Listado Top 10 Ventas Talleres</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Servicios" asp-action="Index">Servicios</a>
                         <ul class="nav-item submenu">
-                            <li class="nav-item js-scroll-trigger">Arreglo de moto</li>
-                            <li class="nav-item js-scroll-trigger">Cambio de ruedas</li>
-                            <li class="nav-item js-scroll-trigger">Puesta a punto</li>
+                            <li><a asp-controller="Servicios" asp-action="ListadoServicios">Listado de Servicios</a></li>                            
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Facturas" asp-action="Index">Facturas</a>
+                        <ul class="nav-item submenu">
+                            <li><a asp-controller="FacturasEmpleados" asp-action="Index">Facturas Empleado Seleccionado</a></li>
+                            <li><a asp-controller="FacturasTaller" asp-action="Index">Facturas Taller Seleccionado</a></li>
+                            <li><a asp-controller="ClientesFacturas" asp-action="Index" >Facturas Cliente Seleccionado</a></li>
+                        </ul>
                     </li>
                     <form class="form-inline">
 
