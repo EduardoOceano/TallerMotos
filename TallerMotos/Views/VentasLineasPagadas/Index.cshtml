@@ -1,0 +1,49 @@
+﻿@model IEnumerable<TallerMotos.Models.ViewData.VentasLineasPagadas>
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h1>Listado Ventas Lineas Pagadas</h1>
+<form asp-action="Index" method="get">
+    <div class="row">
+        <div class="col-2">
+            Id Factura:
+        </div>
+        <div class="col-4">
+            <select name="factura" class="form-control" asp-items="@ViewBag.VLPagada">
+                <option value="">Seleccionar</option>
+            </select>
+        </div>
+        <input type="submit" value="Consultar" class="btn btn-primary" />
+    </div>
+</form>
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th>Cantidad:</th>
+            <th>Precio:</th>
+            <th>Id Factura:</th>
+            <th>Pagado:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idFactura)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isPagado)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
