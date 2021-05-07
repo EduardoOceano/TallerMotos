@@ -9,7 +9,7 @@ namespace TallerMotos.Models.ViewData
     {
         public string modelo { get; set; }
         public string marca { get; set; }
-        public string idCliente { get; set; }
+        public int idCliente { get; set; }
         public string nombreCliente { get; set; }
     }
 }
