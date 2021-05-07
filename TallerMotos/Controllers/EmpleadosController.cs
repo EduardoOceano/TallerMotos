@@ -31,7 +31,7 @@ namespace TallerMotos.Controllers
             List<Empleados> lista = new List<Empleados>();
             using(DbCommand cn = _context.Database.GetDbConnection().CreateCommand())
             {
-                cn.CommandText = "SELECT nombreEmpleado, apellidoEmpleado, telefono, direccion, ciudad FROM empleados ORDER BY apellidoEmpleado, nombreEmpleado";
+                cn.CommandText = "SELECT nombreEmpleado, apellidoEmpleado, telefono, direccion, ciudad, isActive FROM empleados ORDER BY apellidoEmpleado, nombreEmpleado";
                 cn.CommandType = CommandType.Text;
                 _context.Database.OpenConnection();
                 using (DbDataReader dr = cn.ExecuteReader())
@@ -44,6 +44,7 @@ namespace TallerMotos.Controllers
                         empleado.telefono = dr["telefono"].ToString();
                         empleado.direccion = dr["direccion"].ToString();
                         empleado.ciudad = dr["ciudad"].ToString();
+                        empleado.isActive = Int32.Parse(dr["isActive"].ToString());
                         lista.Add(empleado);
                     }
                 }
@@ -52,6 +53,32 @@ namespace TallerMotos.Controllers
             return View(lista);
         }
 
+        public async Task<IActionResult> ListadoEmpleadosDespedidos(string sql)
+        {
+            List<Empleados> lista = new List<Empleados>();
+            using (DbCommand cn = _context.Database.GetDbConnection().CreateCommand())
+            {
+                cn.CommandText = "SELECT nombreEmpleado, apellidoEmpleado, telefono, direccion, ciudad, isActive FROM empleados WHERE isActive = 0 ORDER BY apellidoEmpleado, nombreEmpleado";
+                cn.CommandType = CommandType.Text;
+                _context.Database.OpenConnection();
+                using (DbDataReader dr = cn.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        Empleados empleado = new Empleados();
+                        empleado.nombreEmpleado = dr["nombreEmpleado"].ToString();
+                        empleado.apellidoEmpleado = dr["apellidoEmpleado"].ToString();
+                        empleado.telefono = dr["telefono"].ToString();
+                        empleado.direccion = dr["direccion"].ToString();
+                        empleado.ciudad = dr["ciudad"].ToString();
+                        empleado.isActive = Int32.Parse(dr["isActive"].ToString());
+                        lista.Add(empleado);
+                    }
+                }
+
+            }
+            return View(lista);
+        }
         // GET: Empleados/Details/5
         public async Task<IActionResult> Details(int? id)
         {

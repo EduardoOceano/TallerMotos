@@ -19,7 +19,7 @@ namespace Top10Empleados.Controllers
 
         public IActionResult Index()
         {
-            string sql = "SELECT nombreEmpleado, apellidoEmpleado, SUM(total) t FROM facturas f INNER JOIN empleados e ON(f.idEmpleado= e.idEmpleado) GROUP BY f.idEmpleado, e.nombreEmpleado ORDER BY t DESC LIMIT 10";
+            string sql = "SELECT nombreEmpleado, apellidoEmpleado, SUM(total) t FROM facturas f INNER JOIN empleados e ON(f.idEmpleado= e.idEmpleado) where e.isActive = 1 GROUP BY f.idEmpleado, e.nombreEmpleado ORDER BY t DESC LIMIT 10";
             List<TallerMotos.Models.ViewData.Top10Empleados> lista = _sql.EjecutarSQL<TallerMotos.Models.ViewData.Top10Empleados>(
                    _context,
                    sql,

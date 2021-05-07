@@ -5,38 +5,43 @@
 
 <h1>Factura</h1>
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Cliente.nombreCliente" class="control-label">Cliente</label>
-        <select asp-for="Cliente.nombreCliente" class="form-control" asp-items="ViewBag.Cliente">
-            <option value="0">Seleccionar</option>
-        </select><!--Hacer ViewBag para mostrar nombre-->
-        <span asp-validation-for="Cliente.nombreCliente" class="text-danger"></span>
-    </div>
-    <div class="form-group ">
-        <label asp-for="Empleado.nombreEmpleado" class="control-label">Empleado</label>
-        <select asp-for="Empleado.nombreEmpleado" class="form-control" asp-items="ViewBag.Empleado">
-            <option value="0">Seleccionar</option>
-        </select>
-        <span asp-validation-for="Empleado.nombreEmpleado" class="text-danger"></span>
-    </div>
-    <div class="form-group ">
-        <label asp-for="fecha" class="control-label">Fecha</label>
-        <input asp-for="fecha" class="form-control" />
-        <span asp-validation-for="fecha" class="text-danger"></span>
-    </div>
-    <div class="form-group ">
-        <label asp-for="idTaller" class="control-label">Taller</label>
-        <input asp-for="idTaller" class="form-control" />
-        <span asp-validation-for="idTaller" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="total" class="control-label">Importe total</label>
-        <input asp-for="total" class="form-control" />
-        <span asp-validation-for="total" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-primary" />
-    </div>
+<div class="form-group">
+    <label asp-for="Cliente.nombreCliente" class="control-label">Cliente</label>
+    <select asp-for="Cliente.nombreCliente" class="form-control" asp-items="ViewBag.Cliente">
+        <option value="0">Seleccionar</option>
+    </select><!--Hacer ViewBag para mostrar nombre-->
+    <span asp-validation-for="Cliente.nombreCliente" class="text-danger"></span>
+</div>
+<div class="form-group ">
+    <label asp-for="Empleado.nombreEmpleado" class="control-label">Empleado</label>
+    <select asp-for="Empleado.nombreEmpleado" class="form-control" asp-items="ViewBag.Empleado">
+        <option value="0">Seleccionar</option>
+    </select>
+    <span asp-validation-for="Empleado.nombreEmpleado" class="text-danger"></span>
+</div>
+<div class="form-group ">
+    <label asp-for="fecha" class="control-label">Fecha</label>
+    <input asp-for="fecha" class="form-control" />
+    <span asp-validation-for="fecha" class="text-danger"></span>
+</div>
+<div class="form-group ">
+    <label asp-for="idTaller" class="control-label">Taller</label>
+    <input asp-for="idTaller" class="form-control" />
+    <span asp-validation-for="idTaller" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="total" class="control-label">Importe total</label>
+    <input asp-for="total" class="form-control" />
+    <span asp-validation-for="total" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="pagado" class="control-label">Pagado</label>
+    <input asp-for="pagado" class="form-control" />
+    <span asp-validation-for="pagado" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <input type="submit" value="Save" class="btn btn-primary" />
+</div>
 
 <hr />
 <h4>Productos y servicios</h4>
@@ -53,7 +58,7 @@
         <tr>
             <th scope="row">
                 @tab02.id
-                
+
             </th>
             <td>
                 @tab02.precio€

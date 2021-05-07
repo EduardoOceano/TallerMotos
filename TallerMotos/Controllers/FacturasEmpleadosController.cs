@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -13,32 +15,39 @@ namespace TallerMotos.Controllers
     public class FacturasEmpleadosController : Controller
     {
         private readonly Contexto _context;
-        public FacturasEmpleadosController(Contexto context)
+        private readonly ServicioSQL _sql;
+        public FacturasEmpleadosController(Contexto context, ServicioSQL sql)
         {
             _context = context;
+            _sql = sql;
         }
-        public IActionResult Index(string? nombreEmpleado)
+        public IActionResult Index(string nombreEmpleado)
         {
-            List<FacturasEmpleados> lista = new List<FacturasEmpleados>();
-            using (DbCommand cn = _context.Database.GetDbConnection().CreateCommand())
+            string sql = " SELECT f.idFactura, f.total, e.idEmpleado, e.NombreEmpleado" +
+                " FROM facturas f" +
+                " INNER JOIN empleados e ON (e.idEmpleado=f.idEmpleado) " +
+                " WHERE 1=1" + (nombreEmpleado != null && nombreEmpleado != "" ? " AND e.nombreEmpleado LIKE @empleado " : "");
+
+            MySqlParameter[] parametros =
             {
-                cn.CommandText = "SELECT f.idFactura, f.total, e.idEmpleado, e.NombreEmpleado FROM facturas f, empleados e WHERE e.nombreEmpleado LIKE '"+nombreEmpleado+"';";
-                _context.Database.OpenConnection();
-                using (DbDataReader dr = cn.ExecuteReader())
+
+                new MySqlParameter("@empleado", nombreEmpleado)
+            };
+
+            List<FacturasEmpleados> lista = _sql.EjecutarSQL<FacturasEmpleados>(
+                _context, sql,
+                x => new FacturasEmpleados()
                 {
-                    while (dr.Read())
-                    {
-                        FacturasEmpleados facturaDeEmpleado = new FacturasEmpleados();
-                        facturaDeEmpleado.idFactura = int.Parse(dr["idFactura"].ToString());
-                        facturaDeEmpleado.total = Decimal.Parse(dr["total"].ToString());
-                        facturaDeEmpleado.idEmpleado = int.Parse(dr["idEmpleado"].ToString());
-                        facturaDeEmpleado.nombreEmpleado= dr["NombreEmpleado"].ToString();
+                    idFactura = x.GetInt32(0),
+                    total = x.GetDecimal(1),
+                    idEmpleado = x.GetInt32(2),
+                    nombreEmpleado = x.GetString(3)
+                },
+                parametros
+                );
 
-                        lista.Add(facturaDeEmpleado);
-                    }
-                }
+            ViewBag.Empleado = new SelectList(_context.Empleados, "nombreEmpleado", "nombreEmpleado", nombreEmpleado);
 
-            }
             return View(lista);
         }
     }

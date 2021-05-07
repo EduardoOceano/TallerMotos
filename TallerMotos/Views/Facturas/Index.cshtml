@@ -7,6 +7,27 @@
 
 <h1>Facturas</h1>
 
+<form asp-action="Index" method="get">
+    <!--<input type="text" placeholder="Introduzca el nombre del empleado" />
+    <input type="submit" value="buscar" />-->
+
+
+    <div class="row">
+        <div class="col-2">
+            Estado:
+        </div>
+        <div class="col-4">
+            <select name="FacturaPagada" class="form-control">
+                <option value="">Todos</option>
+                <option value="True">Pagado</option>
+                <option value="False">Sin pagar</option>
+            </select>
+        </div>
+        <input type="submit" value="Consultar" class="btn btn-primary" />
+    </div>
+
+</form>
+
 <p>
     <a asp-action="Create">Nueva factura</a> | 
     <a asp-action="Index" asp-controller="VentasTaller">Listado Ventas Talleres</a> |
@@ -31,6 +52,9 @@
             <th scope="col">
                 Importe
             </th>
+            <th scope="col">
+                Pagado
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -54,6 +78,9 @@
             <th>
                 @Html.DisplayFor(modelItem => item.total)€
             </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.pagado)
+            </td>
             <td>
 
                 <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |

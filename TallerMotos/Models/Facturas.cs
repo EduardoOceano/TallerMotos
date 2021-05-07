@@ -27,6 +27,7 @@ namespace TallerMotos.Models
         public Clientes Cliente { get; set; }
 
         public Empleados Empleado { get; set; }
+        public Boolean pagado { get; set; }
 
     }
 }
