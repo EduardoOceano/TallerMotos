@@ -5,54 +5,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MySql.Data.MySqlClient;
 using TallerMotos.Models;
-using TallerMotos.Models.ViewData;
 
 namespace TallerMotos.Controllers
 {
-    public class FabricantesController : Controller
+    public class ProveedoresController : Controller
     {
         private readonly Contexto _context;
-        private readonly ServicioSQL _sql;
 
-        public FabricantesController(Contexto context, ServicioSQL sql)
+        public ProveedoresController(Contexto context)
         {
             _context = context;
-            _sql = sql;
         }
 
-
-
-        // GET: Fabricantes
-        public IActionResult Index(string nombre)
+        // GET: Proveedores
+        public async Task<IActionResult> Index()
         {
-            string sql = " SELECT id, nombreFabricante, pais FROM Fabricantes  " +
-                " WHERE 1 = 1 "
-                + (nombre != null && nombre != "" ? " AND pais= @pais" : "");
-
-            MySqlParameter[] par =
-            {
-                new MySqlParameter("@pais", nombre)
-            };
-
-            List<Fabricantes> lista = _sql.EjecutarSQL<Fabricantes>(
-                _context, sql,
-                x => new Fabricantes()
-                {
-                    id = x.GetInt32(0),
-                    nombreFabricante = x.GetString(1),
-                    pais = x.GetString(2)
-                    
-                },
-                par
-                );
-            ViewBag.Pais = new SelectList(_context.Fabricantes.Select(x=>new Fabricantes() { pais=x.pais }).Distinct(), "pais", "pais", nombre);
-            return View(lista);
+            return View(await _context.Proveedores.ToListAsync());
         }
-       
 
-        // GET: Fabricantes/Details/5
+        // GET: Proveedores/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -60,39 +32,39 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var fabricantes = await _context.Fabricantes
+            var proveedores = await _context.Proveedores
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (fabricantes == null)
+            if (proveedores == null)
             {
                 return NotFound();
             }
 
-            return View(fabricantes);
+            return View(proveedores);
         }
 
-        // GET: Fabricantes/Create
+        // GET: Proveedores/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Fabricantes/Create
+        // POST: Proveedores/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,nombreFabricante,pais")] Fabricantes fabricantes)
+        public async Task<IActionResult> Create([Bind("id,nombreProveedor,direccion,pais,comentario,telefono,idFabricante")] Proveedores proveedores)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(fabricantes);
+                _context.Add(proveedores);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(fabricantes);
+            return View(proveedores);
         }
 
-        // GET: Fabricantes/Edit/5
+        // GET: Proveedores/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -100,22 +72,22 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var fabricantes = await _context.Fabricantes.FindAsync(id);
-            if (fabricantes == null)
+            var proveedores = await _context.Proveedores.FindAsync(id);
+            if (proveedores == null)
             {
                 return NotFound();
             }
-            return View(fabricantes);
+            return View(proveedores);
         }
 
-        // POST: Fabricantes/Edit/5
+        // POST: Proveedores/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,nombreFabricante,pais")] Fabricantes fabricantes)
+        public async Task<IActionResult> Edit(int id, [Bind("id,nombreProveedor,direccion,pais,comentario,telefono,idFabricante")] Proveedores proveedores)
         {
-            if (id != fabricantes.id)
+            if (id != proveedores.id)
             {
                 return NotFound();
             }
@@ -124,12 +96,12 @@ namespace TallerMotos.Controllers
             {
                 try
                 {
-                    _context.Update(fabricantes);
+                    _context.Update(proveedores);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FabricantesExists(fabricantes.id))
+                    if (!ProveedoresExists(proveedores.id))
                     {
                         return NotFound();
                     }
@@ -140,10 +112,10 @@ namespace TallerMotos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(fabricantes);
+            return View(proveedores);
         }
 
-        // GET: Fabricantes/Delete/5
+        // GET: Proveedores/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -151,30 +123,30 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var fabricantes = await _context.Fabricantes
+            var proveedores = await _context.Proveedores
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (fabricantes == null)
+            if (proveedores == null)
             {
                 return NotFound();
             }
 
-            return View(fabricantes);
+            return View(proveedores);
         }
 
-        // POST: Fabricantes/Delete/5
+        // POST: Proveedores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var fabricantes = await _context.Fabricantes.FindAsync(id);
-            _context.Fabricantes.Remove(fabricantes);
+            var proveedores = await _context.Proveedores.FindAsync(id);
+            _context.Proveedores.Remove(proveedores);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FabricantesExists(int id)
+        private bool ProveedoresExists(int id)
         {
-            return _context.Fabricantes.Any(e => e.id == id);
+            return _context.Proveedores.Any(e => e.id == id);
         }
     }
 }
