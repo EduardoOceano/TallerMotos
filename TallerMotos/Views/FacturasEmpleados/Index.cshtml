@@ -1,4 +1,5 @@
-﻿@model IEnumerable<TallerMotos.Models.ViewData.FacturasEmpleados>
+﻿@using TallerMotos.Models.ViewData
+@model List<FacturasEmpleados>
 @{
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
@@ -6,11 +7,11 @@
 
 <h1>Listado de Facturas por Empleado</h1>
 
-<table class="table table-dark table-striped">
+<!--<table class="table table-dark table-striped">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.idFactura)
+                @*Html.DisplayNameFor(model => model.idFactura)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.total)
@@ -46,9 +47,48 @@
         </tr>
         }
     </tbody>
-</table>
+</table>*@-->
 
-<form asp-action="Index">
-    <input type="text" placeholder="Introduzca el nombre del empleado"/> 
-    <input type="submit" />
+<form asp-action="Index" method="get">
+    <!--<input type="text" placeholder="Introduzca el nombre del empleado" />
+    <input type="submit" value="buscar" />-->
+
+
+    <div class="row">
+        <div class="col-2">
+            Empleado:
+        </div>
+        <div class="col-4">
+            <select name="nombreEmpleado" class="form-control" asp-items="@ViewBag.Empleado">
+                <option value="">Todos</option>
+            </select>
+        </div>
+        <input type="submit" value="Consultar" class="btn btn-primary" />
+    </div>
+
 </form>
+
+@if (Model != null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id Factura</th>
+                <th>Importe Total</th>
+                <th>Id Empleado</th>
+                <th>Nombre Empleado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (FacturasEmpleados item in Model)
+            {
+                <tr>
+                    <td>@item.idFactura</td>
+                    <td>@item.total</td>
+                    <td>@item.idEmpleado</td>
+                    <td>@item.nombreEmpleado</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
