@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 using TallerMotos.Models;
+using TallerMotos.Models.ViewData;
 
 
 namespace TallerMotos.Models
@@ -34,5 +35,7 @@ namespace TallerMotos.Models
         public DbSet<TallerMotos.Models.VentasLineas> VentasLineas { get; set; }
         
         public DbSet<TallerMotos.Models.Usuarios> Usuarios { get; set; }
+        
+        public DbSet<TallerMotos.Models.ViewData.Fabricantes> Fabricantes { get; set; }
     }
 }
