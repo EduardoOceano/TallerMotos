@@ -10,12 +10,12 @@ using TallerMotos.Models.ViewData;
 
 namespace TallerMotos.Controllers
 {
-    public class VentasLineasPagadasController : Controller
+    public class FacturasPagadasController : Controller
     {
         private readonly Contexto _context;
         private readonly ServicioSQL _sql;
 
-        public VentasLineasPagadasController(Contexto context, ServicioSQL sql)
+        public FacturasPagadasController(Contexto context, ServicioSQL sql)
         {
             _context = context;
             _sql = sql;
@@ -23,7 +23,7 @@ namespace TallerMotos.Controllers
 
         public IActionResult Index(string factura)
         {
-            string sql = " SELECT cantidad, precio, idFactura, isPagado FROM ventasLineas " +
+            string sql = " SELECT idFactura, idCliente, total, isPagado FROM facturas " +
                 " WHERE isPagado= 1 " + 
                 ( factura != null && factura!= "" ? " AND idFactura = @idFactura" : "");
 
@@ -33,20 +33,20 @@ namespace TallerMotos.Controllers
             };
 
 
-            List<VentasLineasPagadas> lista = _sql.EjecutarSQL<VentasLineasPagadas>(
+            List<FacturasPagadas> lista = _sql.EjecutarSQL<FacturasPagadas>(
                    _context,
                    sql,
-                   x => new VentasLineasPagadas()
-                   {
-                       cantidad = x.GetInt32(0),
-                       precio = x.GetDecimal(1),
-                       idFactura = x.GetInt32(2),
+                   x => new FacturasPagadas()
+                   {                       
+                       idFactura = x.GetInt32(0),
+                       idCliente = x.GetInt32(1),
+                       total = x.GetInt32(2),
                        isPagado = x.GetBoolean(3)
                    },
                    par
                );
 
-            ViewBag.VLPagada = new SelectList(_context.VentasLineas, "FacturasId", "FacturasId", factura);
+            ViewBag.VLPagada = new SelectList(_context.Facturas, "id", "id", factura);
 
             return View(lista);
         }

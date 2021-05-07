@@ -21,7 +21,7 @@ namespace TallerMotos.Controllers
         // GET: Facturas
         public async Task<IActionResult> Index(bool? FacturaPagada)
         {
-            return View(await _context.Facturas.Where(x=> FacturaPagada==null || x.pagado==FacturaPagada).Include("Cliente").Include("Empleado").ToListAsync());
+            return View(await _context.Facturas.Where(x=> FacturaPagada==null || x.isPagado==FacturaPagada).Include("Cliente").Include("Empleado").ToListAsync());
         }
 
 
