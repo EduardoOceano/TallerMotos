@@ -1,0 +1,48 @@
+﻿@model IEnumerable<TallerMotos.Models.ViewData.Top10Empleados>
+@{ Layout = "~/Views/Shared/_Layout2.cshtml";
+
+    Dictionary<string, int> dictStock01 = ViewData["assocArray01"] as Dictionary<string, int>;
+    Dictionary<string, int> dictStock02 = ViewData["assocArray02"] as Dictionary<string, int>;
+}
+
+
+<h1>A estos tios les vamos a subir el sueldo</h1>
+<br />
+
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th>
+                Empleado
+            </th>
+            <th>
+                Ventas
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreEmpleado)
+                @Html.DisplayFor(modelItem => item.apellidoEmpleado)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.t)€
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<div class="row">
+
+    <div id="container" class="col-6"></div>
+
+    <div id="container2" class="col-6"></div>
+</div>

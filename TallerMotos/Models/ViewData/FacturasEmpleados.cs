@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 
 namespace TallerMotos.Models.ViewData
 {
-    public class Top10Empleados
+    public class FacturasEmpleados
     {
+        public int idFactura { get; set; }
+        public decimal total { get; set; }
+        public int idEmpleado { get; set; }
         public string nombreEmpleado { get; set; }
-        public string apellidoEmpleado { get; set; }
-        public decimal t { get; set; }
-
-
     }
 }
