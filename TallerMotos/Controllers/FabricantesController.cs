@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 using TallerMotos.Models;
 using TallerMotos.Models.ViewData;
 
@@ -13,21 +14,43 @@ namespace TallerMotos.Controllers
     public class FabricantesController : Controller
     {
         private readonly Contexto _context;
+        private readonly ServicioSQL _sql;
 
-        public FabricantesController(Contexto context)
+        public FabricantesController(Contexto context, ServicioSQL sql)
         {
             _context = context;
+            _sql = sql;
         }
 
+
+
         // GET: Fabricantes
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string nombre)
         {
-            return View(await _context.Fabricantes.ToListAsync());
+            string sql = " SELECT id, nombreFabricante, pais FROM Fabricantes  " +
+                " WHERE 1 = 1 "
+                + (nombre != null && nombre != "" ? " AND pais= @pais" : "");
+
+            MySqlParameter[] par =
+            {
+                new MySqlParameter("@pais", nombre)
+            };
+
+            List<Fabricantes> lista = _sql.EjecutarSQL<Fabricantes>(
+                _context, sql,
+                x => new Fabricantes()
+                {
+                    id = x.GetInt32(0),
+                    nombreFabricante = x.GetString(1),
+                    pais = x.GetString(2)
+                    
+                },
+                par
+                );
+            ViewBag.Pais = new SelectList(_context.Fabricantes.Select(x=>new Fabricantes() { pais=x.pais }).Distinct(), "pais", "pais", nombre);
+            return View(lista);
         }
-        public async Task<IActionResult> ListadoFabricantes()
-        {
-            return View(await _context.Fabricantes.ToListAsync());
-        }
+       
 
         // GET: Fabricantes/Details/5
         public async Task<IActionResult> Details(int? id)
