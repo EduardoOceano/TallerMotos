@@ -6,26 +6,30 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TallerMotos.Models;
+using TallerMotos.Models.ViewData;
 
 namespace TallerMotos.Controllers
 {
-    public class FacturasController : Controller
+    public class FabricantesController : Controller
     {
         private readonly Contexto _context;
 
-        public FacturasController(Contexto context)
+        public FabricantesController(Contexto context)
         {
             _context = context;
         }
 
-        // GET: Facturas
-        public async Task<IActionResult> Index(bool? FacturaPagada)
+        // GET: Fabricantes
+        public async Task<IActionResult> Index()
         {
-            return View(await _context.Facturas.Where(x=> FacturaPagada==null || x.pagado==FacturaPagada).Include("Cliente").Include("Empleado").ToListAsync());
+            return View(await _context.Fabricantes.ToListAsync());
+        }
+        public async Task<IActionResult> ListadoFabricantes()
+        {
+            return View(await _context.Fabricantes.ToListAsync());
         }
 
-
-        // GET: Facturas/Details/5
+        // GET: Fabricantes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +37,39 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var facturas = await _context.Facturas.Include("VentasLineas").Include("Cliente").Include("Empleado")
+            var fabricantes = await _context.Fabricantes
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (facturas == null)
+            if (fabricantes == null)
             {
                 return NotFound();
             }
 
-            return View(facturas);
+            return View(fabricantes);
         }
 
-        // GET: Facturas/Create
+        // GET: Fabricantes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Facturas/Create
+        // POST: Fabricantes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Facturas facturas)
+        public async Task<IActionResult> Create([Bind("id,nombreFabricante,pais")] Fabricantes fabricantes)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(facturas);
+                _context.Add(fabricantes);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(facturas);
+            return View(fabricantes);
         }
 
-        // GET: Facturas/Edit/5
+        // GET: Fabricantes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,28 +77,22 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            //var facturas = await _context.Facturas.FindAsync(id);
-            var facturas = _context.Facturas.Include("VentasLineas").Include("VentasLineas.Producto").Where(x => x.id == id).FirstOrDefault();
-            if (facturas == null)
+            var fabricantes = await _context.Fabricantes.FindAsync(id);
+            if (fabricantes == null)
             {
                 return NotFound();
             }
-
-            ViewBag.Empleado = new SelectList(_context.Empleados, "id", "nombreEmpleado");
-
-            ViewBag.Cliente = new SelectList(_context.Clientes, "id", "nombreCliente");
-
-            return View(facturas);
+            return View(fabricantes);
         }
 
-        // POST: Facturas/Edit/5
+        // POST: Fabricantes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Facturas facturas)
+        public async Task<IActionResult> Edit(int id, [Bind("id,nombreFabricante,pais")] Fabricantes fabricantes)
         {
-            if (id != facturas.id)
+            if (id != fabricantes.id)
             {
                 return NotFound();
             }
@@ -103,12 +101,12 @@ namespace TallerMotos.Controllers
             {
                 try
                 {
-                    _context.Update(facturas);
+                    _context.Update(fabricantes);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FacturasExists(facturas.id))
+                    if (!FabricantesExists(fabricantes.id))
                     {
                         return NotFound();
                     }
@@ -119,15 +117,10 @@ namespace TallerMotos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-
-            ViewBag.Empleado = new SelectList(_context.Empleados, "id", "nombreEmpleado", id);
-
-            ViewBag.Cliente = new SelectList(_context.Clientes, "id", "nombreCliente", id);
-
-            return View(facturas);
+            return View(fabricantes);
         }
 
-        // GET: Facturas/Delete/5
+        // GET: Fabricantes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,39 +128,30 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var facturas = await _context.Facturas.Include("VentasLineas")
+            var fabricantes = await _context.Fabricantes
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (facturas == null)
+            if (fabricantes == null)
             {
                 return NotFound();
             }
 
-            ViewBag.Empleado = new SelectList(_context.Empleados, "id", "nombreEmpleado", id);
-
-            ViewBag.Cliente = new SelectList(_context.Clientes, "id", "nombreCliente", id);
-
-            return View(facturas);
+            return View(fabricantes);
         }
 
-        // POST: Facturas/Delete/5
+        // POST: Fabricantes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var facturas = await _context.Facturas.FindAsync(id);
-            _context.Facturas.Remove(facturas);
+            var fabricantes = await _context.Fabricantes.FindAsync(id);
+            _context.Fabricantes.Remove(fabricantes);
             await _context.SaveChangesAsync();
-
-            ViewBag.Empleado = new SelectList(_context.Empleados, "id", "nombreEmpleado", id);
-
-            ViewBag.Cliente = new SelectList(_context.Clientes, "id", "nombreCliente", id);
-
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FacturasExists(int id)
+        private bool FabricantesExists(int id)
         {
-            return _context.Facturas.Any(e => e.id == id);
+            return _context.Fabricantes.Any(e => e.id == id);
         }
     }
 }

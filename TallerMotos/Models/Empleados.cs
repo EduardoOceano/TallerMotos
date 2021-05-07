@@ -17,6 +17,7 @@ namespace TallerMotos.Models
         public string telefono { get; set; }
         public string direccion { get; set; }
         public string ciudad { get; set; }
+        public int isActive { get; set; }
 
         [Column("idTaller")]
         public int? TalleresId { get; set; }

@@ -28,7 +28,7 @@ namespace TallerMotos.Controllers
                 " FROM facturas f" +
                 " INNER JOIN talleres t ON (t.idTaller=f.idTaller) " + 
                 " INNER JOIN clientes c on (f.idCliente=c.idCliente) " + 
-                " WHERE 1=1"+ (taller !=null && taller!="" ? " AND t.ciudad=@ciudad " : "") ;
+                " WHERE 1=1"+ (taller !=null && taller!="" ? " AND t.ciudad LIKE @ciudad " : "") ;
 
             MySqlParameter[] parametros =
             {

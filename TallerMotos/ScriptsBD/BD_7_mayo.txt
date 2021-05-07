@@ -1,0 +1,9 @@
+﻿CREATE TABLE Fabricantes (id INT PRIMARY KEY AUTO_INCREMENT, nombreFabricante VARCHAR(200), pais VARCHAR(100))
+
+ALTER TABLE Proovedores ADD idFabricante INT
+
+ALTER TABLE proveedores ADD FOREIGN KEY (idFabricante) REFERENCES fabricantes(id)
+
+INSERT INTO Fabricantes (id, nombreFabricante, pais) SELECT idProveedor, nombreProveedor, pais FROM proveedores
+
+UPDATE Proveedores SET idFabricante=idProveedor 
