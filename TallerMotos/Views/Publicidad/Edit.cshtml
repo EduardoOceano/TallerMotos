@@ -1,0 +1,46 @@
+﻿@model TallerMotos.Models.Publicidad
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Publicidad</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="fechaInicio" class="control-label"></label>
+                <input asp-for="fechaInicio" class="form-control" />
+                <span asp-validation-for="fechaInicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaFinal" class="control-label"></label>
+                <input asp-for="fechaFinal" class="form-control" />
+                <span asp-validation-for="fechaFinal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="descuento" class="control-label"></label>
+                <input asp-for="descuento" class="form-control" />
+                <span asp-validation-for="descuento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idProducto" class="control-label"></label>
+                <input asp-for="idProducto" class="form-control" />
+                <span asp-validation-for="idProducto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

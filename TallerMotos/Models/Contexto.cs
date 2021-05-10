@@ -37,5 +37,7 @@ namespace TallerMotos.Models
         public DbSet<TallerMotos.Models.Usuarios> Usuarios { get; set; }
         
         public DbSet<TallerMotos.Models.ViewData.Fabricantes> Fabricantes { get; set; }
+        
+        public DbSet<TallerMotos.Models.Publicidad> Publicidad { get; set; }
     }
 }
