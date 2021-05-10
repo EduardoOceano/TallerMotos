@@ -94,6 +94,7 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
+            ViewBag.Talleres = new SelectList(_context.Talleres, "id", "id");
             return View(empleados);
         }
 
@@ -132,6 +133,8 @@ namespace TallerMotos.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.Talleres = new SelectList(_context.Talleres, "id", "id");
             return View(empleados);
         }
 

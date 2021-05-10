@@ -20,7 +20,7 @@ namespace TallerMotos.Controllers
 
         public IActionResult Index()
         {
-            string sql = "SELECT c.nombreCliente, AVG(f.total) total FROM clientes c INNER JOIN facturas f ON(c.idCliente = f.idCliente) ORDER BY f.total ASC LIMIT 10; ";
+            string sql = "SELECT c.nombreCliente, SUM(f.total) total FROM clientes c INNER JOIN facturas f ON(c.idCliente = f.idCliente) ORDER BY f.total ASC LIMIT 10; ";
             List<Models.ViewData.ClientesFacturas> lista = _sql.EjecutarSQL<Models.ViewData.ClientesFacturas>(
                    _context,
                    sql,
