@@ -1,1 +1,11 @@
-﻿
+
+﻿USE motosoceano;
+CREATE TABLE Publicidad(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    fechaInicio DATE,
+    fechaFinal DATE,
+    descuento INT,
+    idProducto INT,
+CONSTRAINT fk_Publicidad FOREIGN KEY(idProducto) REFERENCES Productos(idProducto)
+);
+
