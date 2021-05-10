@@ -1,0 +1,7 @@
+CREATE TABLE Pagos(
+	id_factura INT,
+	importe DECIMAL(20,2),
+	fechaPago DATETIME,
+	FOREIGN KEY (id_factura) REFERENCES facturas (idFactura)
+);
+
