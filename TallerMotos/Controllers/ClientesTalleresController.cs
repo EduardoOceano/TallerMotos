@@ -4,6 +4,7 @@ using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using TallerMotos;
 using TallerMotos.Models;
+using TallerMotos.Models.ViewData;
 
 namespace Top10Empleados.Controllers
 {
@@ -21,10 +22,10 @@ namespace Top10Empleados.Controllers
 
         public IActionResult Index(string taller)
         {
-            string sql = "SELECT DISTINCT c.NombreCliente, c.apellidosCliente, t.idTaller, t.ciudad"+
+            string sql = "SELECT DISTINCT ifnull(c.NombreCliente,''), ifnull(c.apellidosCliente, ''),  ifnull(t.idTaller, 0), ifnull(t.ciudad, '') "+
             " FROM clientes c"+
             " INNER JOIN facturas f ON(c.idCliente = f.idCliente)" +
-            " INNER JOIN talleres t ON(f.idTaller = t.idTaller)"+
+            " INNER JOIN talleres t ON(t.idTaller = f.idTaller)"+
             " WHERE 1=1" + (taller != null && taller != "" ? " AND t.ciudad=@ciudad " : "");
 
 
@@ -35,10 +36,10 @@ namespace Top10Empleados.Controllers
             };
 
 
-            List<TallerMotos.Models.ViewData.ClientesTalleres> lista = _sql.EjecutarSQL<TallerMotos.Models.ViewData.ClientesTalleres>(
+            List<ClientesTalleres> lista = _sql.EjecutarSQL<ClientesTalleres>(
                    _context,
                    sql,
-                   x => new TallerMotos.Models.ViewData.ClientesTalleres()
+                   x => new ClientesTalleres()
                    {
                        nombreCliente = x.GetString(0),
                        apellidoCliente = x.GetString(1),
