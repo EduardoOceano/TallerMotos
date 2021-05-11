@@ -23,6 +23,20 @@ namespace TallerMotos.Controllers
             return View();
         }
 
+        public IActionResult HacerLoginInvitado()
+        {
+            HttpContext.Session.SetInt32("valor", 2);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult HacerLoginStaff()
+        {
+            HttpContext.Session.SetInt32("valor", 1);
+
+            return RedirectToAction("Index", "Home");
+        }
+
         public IActionResult Privacy()
         {
             return View();
