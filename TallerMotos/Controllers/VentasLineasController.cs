@@ -79,6 +79,10 @@ namespace TallerMotos.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.Productos = new SelectList(_context.Productos, "tipo", "tipo", id);
+            ViewBag.Servicios = new SelectList(_context.Servicios, "tipo", "tipo", id);
+
             return View(VentasLineas);
         }
 
@@ -114,6 +118,10 @@ namespace TallerMotos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.Productos = new SelectList(_context.Productos, "tipo", "tipo", id);
+            ViewBag.Servicios = new SelectList(_context.Servicios, "tipo", "tipo", id);
+
             return View(VentasLineas);
         }
 
