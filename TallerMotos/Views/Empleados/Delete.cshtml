@@ -4,18 +4,19 @@
     ViewData["Title"] = "Delete";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+<body class="bg-dark">
+    <h1 style="color: white">Borrar</h1>
 
-<h1>Borrar</h1>
+    <h3 style="color: white">¿Estas seguro de que quieres borrar?</h3>
+    <div>
+        <h4 style="color: white">Empleados</h4>
+        <hr />
+        @Html.DisplayForModel()
 
-<h3>¿Estas seguro de que quieres borrar?</h3>
-<div>
-    <h4>Empleados</h4>
-    <hr />
-    @Html.DisplayForModel()
-
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Volver</a>
-    </form>
-</div>
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="id" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index" style="color: white">Volver</a>
+        </form>
+    </div>
+</body>

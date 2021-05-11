@@ -4,20 +4,24 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-
-<h1>Facturas</h1>
-
+<body class="bg-dark">
+<h1 style="color: white">Facturas</h1>
+<a asp-action="Create" style="color: white">Nueva factura</a> |
+<a asp-action="Index" asp-controller="VentasTaller" style="color: white">Listado Ventas Talleres</a> |
+<a asp-action="Index" asp-controller="VentasClientesTalleres" style="color: white">Listado Ventas Clientes Talleres</a>
+    <br />
+    <br />
 <form asp-action="Index" method="get">
     <!--<input type="text" placeholder="Introduzca el nombre del empleado" />
     <input type="submit" value="buscar" />-->
 
 
     <div class="row">
-        <div class="col-2">
+        <div class="col-2" style="color: white">
             Estado:
         </div>
         <div class="col-4">
-            <select name="FacturaPagada" class="form-control">
+            <select name="FacturaPagada" class="form-control bg-dark" style="color: white">
                 <option value="">Todos</option>
                 <option value="True">Pagado</option>
                 <option value="False">Sin pagar</option>
@@ -29,17 +33,16 @@
 </form>
 
 <p>
-    <a asp-action="Create">Nueva factura</a> | 
-    <a asp-action="Index" asp-controller="VentasTaller">Listado Ventas Talleres</a> |
-    <a asp-action="Index" asp-controller="VentasClientesTalleres">Listado Ventas Clientes Talleres</a>
+
+
 </p>
 <table class="table table-dark">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">
+            <th scope="col" >
                 Cliente
             </th>
-            
+
             <th scope="col">
                 Empleado
             </th>
@@ -59,36 +62,38 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <th scope="row">
-                @Html.DisplayFor(modelItem => item.Cliente.nombreCliente)
-                @Html.DisplayFor(modelItem => item.Cliente.apellidosCliente)
-            </th>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.EmpleadoId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.idTaller)
-            </td>
-            <th>
-                @Html.DisplayFor(modelItem => item.total)€
-            </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.isPagado)
-            </td>
-            <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">
+                    @Html.DisplayFor(modelItem => item.Cliente.nombreCliente)
+                    @Html.DisplayFor(modelItem => item.Cliente.apellidosCliente)
+                </th>
 
-                <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Eliminar</a> |
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmpleadoId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idTaller)
+                </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.total)€
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isPagado)
+                </td>
+                <td>
 
-            </td>
-        </tr>
-}
+                    <a asp-action="Edit" asp-route-id="@item.id" style="color: white">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.id" style="color: white">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id" style="color: white">Eliminar</a> |
+
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+</body>
