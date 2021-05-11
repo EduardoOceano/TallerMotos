@@ -4,6 +4,8 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+<body class="bg-dark">
+    <h1 style="color:white">Empleados</h1>
 
 <h1>Empleados</h1>
 
@@ -67,9 +69,71 @@
                 <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
                 <a asp-action="Details" asp-route-id="@item.id">Detalles</a> |
                 <a asp-action="Delete" asp-route-id="@item.id">Eliminar</a>
+    <p>
+        <a asp-action="Create" style="color:white">Añadir nuevo</a> |
+        <a asp-action="ListadoEmpleados" style="color:white">Listado Empleados</a> |
+        <a asp-action="ListadoEmpleadosDespedidos" style="color:white">Listado Empleados Despedidos</a>
+    </p>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.nombreEmpleado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.apellidoEmpleado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.direccion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ciudad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.isActive)
+                </th>
+                <th>
+                    Taller ID
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombreEmpleado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.apellidoEmpleado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.direccion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ciudad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.isActive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TalleresId)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.id" style="color:white">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.id" style="color:white">Detalles</a> |
+                        <a asp-action="Delete" asp-route-id="@item.id" style="color:white">Eliminar</a>
 
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
