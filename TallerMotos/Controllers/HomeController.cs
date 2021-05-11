@@ -21,6 +21,14 @@ namespace TallerMotos.Controllers
 
         public IActionResult Index()
         {
+
+            int? valor = HttpContext.Session.GetInt32("valor");
+
+            if (valor == null || valor == 0)
+            {
+                return RedirectToAction("Index", "Usuarios");
+            }
+
             return View();
         }
 
