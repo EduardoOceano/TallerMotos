@@ -132,6 +132,9 @@ namespace TallerMotos.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.Taller = new SelectList(_context.Talleres, "ciudad", "ciudad", id);
+
             return View(empleados);
         }
 
@@ -167,6 +170,8 @@ namespace TallerMotos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Taller = new SelectList(_context.Talleres, "ciudad", "ciudad", id);
+
             return View(empleados);
         }
 
