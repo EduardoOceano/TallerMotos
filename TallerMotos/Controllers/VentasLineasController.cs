@@ -43,10 +43,12 @@ namespace TallerMotos.Controllers
         }
 
         // GET: VentasLineass/Create
-        public IActionResult Create()
+        public IActionResult Create(int? idFactura)
         {
             //ViewData["VentasLineal"] = _context.VentasLineal.Where(x => x.idFactura == ventaId).FirstOrDefault();
             ViewData["idProducto"] = new SelectList(_context.Productos, "id", "tipo");
+            ViewBag.Factura = idFactura;
+            ViewBag.Servicio = new SelectList(_context.Servicios, "tipo", "tipo");
             return View();
         }
 
@@ -79,6 +81,10 @@ namespace TallerMotos.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.Productos = new SelectList(_context.Productos, "tipo", "tipo", id);
+            ViewBag.Servicios = new SelectList(_context.Servicios, "tipo", "tipo", id);
+
             return View(VentasLineas);
         }
 
@@ -114,6 +120,10 @@ namespace TallerMotos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.Productos = new SelectList(_context.Productos, "tipo", "tipo", id);
+            ViewBag.Servicios = new SelectList(_context.Servicios, "tipo", "tipo", id);
+
             return View(VentasLineas);
         }
 

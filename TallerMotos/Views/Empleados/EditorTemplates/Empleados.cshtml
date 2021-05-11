@@ -1,4 +1,18 @@
 ﻿@model TallerMotos.Models.Empleados
+
+<form asp-action="Index" method="get">
+    <div class="row">
+        <div class="col-2">
+            Taller:
+        </div>
+        <div class="col-4">
+            <select name="taller" class="form-control" asp-items="@ViewBag.Taller">
+                <option value="">Seleccionar</option>
+            </select>
+        </div>
+        <input type="submit" value="Seleccionar" class="btn btn-primary" />
+    </div>
+</form>
 <style>
     label{
         color: white;
@@ -34,7 +48,7 @@
     <input asp-for="isActive" class="form-control bg-dark" style="color:white"/>
     <span asp-validation-for="isActive" class="text-danger"></span>
 </div>
-<!--div-- class="form-group">
+<div class="form-group">
     <label asp-for="TalleresId" class="control-label"></label>
     <input asp-for="TalleresId" class="form-control" />
     <span asp-validation-for="TalleresId" class="text-danger"></span>
@@ -47,7 +61,6 @@
     </select>
     <span asp-validation-for="Talleres.id" class="text-danger"></span>
 </div>
-
 <div class="form-group">
     <input type="submit" value="Guardar" class="btn btn-primary" />
 </div>

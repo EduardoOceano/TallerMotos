@@ -28,6 +28,7 @@ namespace TallerMotos.Controllers
             {
                 return RedirectToAction("Index", "Usuarios");
             }
+
             return View();
         }
 
@@ -38,7 +39,7 @@ namespace TallerMotos.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult HacerLogiStaff()
+        public IActionResult HacerLoginStaff()
         {
             HttpContext.Session.SetInt32("valor", 1);
 

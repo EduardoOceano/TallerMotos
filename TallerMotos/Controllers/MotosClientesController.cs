@@ -20,7 +20,9 @@ namespace TallerMotos.Controllers
 
         public IActionResult Index()
         {
-            string sql = "SELECT m.modelo, m.marca, c.idCliente, c.NombreCliente FROM motos m, clientes c WHERE m.idCliente = c.idCliente";
+            string sql = "SELECT m.modelo, m.marca, c.idCliente, c.NombreCliente FROM motos m" +
+                "INNER JOIN clientes c ON (c.idCliente=m.idCliente)" +
+                "WHERE m.idCliente = c.idCliente";
             List<Models.ViewData.MotosClientes> lista = _sql.EjecutarSQL<Models.ViewData.MotosClientes>(
                    _context,
                    sql,
