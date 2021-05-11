@@ -10395,7 +10395,3 @@ body {
       display: block;
       text-decoration: underline;
   }
-
-.dropdown-toggle::after {
-    display: none !important;
-}
