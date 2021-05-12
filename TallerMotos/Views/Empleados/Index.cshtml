@@ -4,7 +4,6 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-<body class="bg-dark">
     <h1 style="color:white">Empleados</h1>
 <p>
     <a asp-action="Create">Añadir nuevo</a> |
@@ -35,14 +34,11 @@
             <th>
                 Taller ID
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TalleresId)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.nombreEmpleado)
@@ -69,5 +65,9 @@
                 <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
                 <a asp-action="Details" asp-route-id="@item.id">Detalles</a> |
                 <a asp-action="Delete" asp-route-id="@item.id">Eliminar</a>
+            </td>
+            </tr>
+}
+        </tbody>
+
   </table>
-</body>
