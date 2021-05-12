@@ -4,8 +4,8 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-
-<h1>Nueva factura</h1>
+<body class="bg-dark">
+<h1 style="color: white">Nueva factura</h1>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -14,7 +14,7 @@
 
             @Html.EditorForModel()
             <div>
-                <a asp-action="Index">Volver</a>
+                <a asp-action="Index" style="color: white">Volver</a>
             </div>
 
         </form>
@@ -23,3 +23,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+</body>

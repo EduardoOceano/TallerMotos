@@ -3,34 +3,34 @@
 @{
     ViewData["Title"] = "Edit";
 }
+<body class="bg-dark">
+    <h1 style="color: white">Edit</h1>
 
-<h1>@Model.nombreFabricante</h1>
-
-<h4>Editar</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4 bg-dark">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="id" />
-            <div style="color:white" class="form-group">
-                Nombre
-                <input asp-for="nombreFabricante" class="form-control" />
-                <span asp-validation-for="nombreFabricante" class="text-danger"></span>
-            </div>
-            <div style="color:white" class="form-group">
-                País
-                <input asp-for="pais" class="form-control" />
-                <span asp-validation-for="pais" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Editar" class="btn btn-sm btn-primary" />
-            </div>
-        </form>
+    <h4 style="color: white">Fabricantes</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4 bg-dark">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="id" />
+                <div class="form-group">
+                    <label asp-for="nombreFabricante" class="control-label" style="color: white"></label>
+                    <input asp-for="nombreFabricante" class="form-control bg-dark" style="color: white" />
+                    <span asp-validation-for="nombreFabricante" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="pais" class="control-label" style="color: white"></label>
+                    <input asp-for="pais" class="form-control bg-dark" style="color: white" />
+                    <span asp-validation-for="pais" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Volver</a>
-</div>
-
+    <div>
+        <a asp-action="Index" style="color: white">Back to List</a>
+    </div>
+</body>

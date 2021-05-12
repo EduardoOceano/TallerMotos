@@ -3,35 +3,38 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
+<body class="bg-dark">
+    <h1 style="color: white">Listado de TOP10 Clientes</h1>
 
-<h1>Listado de TOP10 Clientes</h1>
-
-<table class="table table-dark table-striped">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.total)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nombreCliente)
-            </th>
-
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table table-dark table-striped">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.total)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nombreCliente)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.total)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nombreCliente)
+                </th>
 
-
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombreCliente)
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-action="Index" asp-controller="Clientes" style="color: white">Volver a Clientes</a> | 
+    <a asp-action="Index" asp-controller="Facturas" style="color: white">Volver a Facturas</a>
+</body>

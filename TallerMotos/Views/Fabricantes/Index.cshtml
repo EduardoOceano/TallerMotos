@@ -4,57 +4,58 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+<body class="bg-dark">
+    <h1 style="color: white">Index</h1>
 
-<h1>Fabricantes</h1>
-
-<form asp-action="Index" method="get">
-    <div class="row">
-
-        <div class="col-4">
-            <select name="nombre" class="form-control" asp-items="@ViewBag.Pais">
-                <option value="">Selecciona el pais</option>
-            </select>
+    <p>
+        <a asp-action="Create" style="color: white">Añadir nuevo</a>
+    </p>
+    <form asp-action="Index" method="get">
+        <div class="row">
+            <div class="col-2" style="color: white">
+                Pais:
+            </div>
+            <div class="col-4">
+                <select name="nombre" class="form-control bg-dark" style="color: white" asp-items="@ViewBag.Pais">
+                    <option value="">Seleccionar</option>
+                </select>
+            </div>
+            <input type="submit" value="Consultar" class="btn btn-primary" />
         </div>
-        <input type="submit" value="Filtrar" class="btn btn-sm btn-primary" />
-    </div>
-    
-</form>
-<p>
-    <a asp-action="Create">Añadir fabricante</a>
-</p>
-<hr />
-@if (Model != null)
-{
-    <table class="table table-dark">
-        <thead>
-            <tr>
-                <th>
-                    Fabricante
-                </th>
-                <th>
-                    País
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    </form>
+    @if (Model != null)
+    {
+        <table class="table table-dark">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.nombreFabricante)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.pais)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
-                        <a asp-action="Details" asp-route-id="@item.id">Detalles</a> |
-                        <a asp-action="Delete" asp-route-id="@item.id">Eliminar</a>
-
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nombreFabricante)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.pais)
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nombreFabricante)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.pais)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.id" style="color: white">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.id" style="color: white">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.id" style="color: white">Delete</a> |
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</body>
