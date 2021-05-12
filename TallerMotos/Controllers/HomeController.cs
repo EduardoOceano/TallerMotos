@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,29 @@ namespace TallerMotos.Controllers
 
         public IActionResult Index()
         {
+
+            int? valor = HttpContext.Session.GetInt32("valor");
+
+            if (valor == null || valor == 0)
+            {
+                return RedirectToAction("Index", "Usuarios");
+            }
+
             return View();
+        }
+
+        public IActionResult HacerLoginInvitado()
+        {
+            HttpContext.Session.SetInt32("valor", 2);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult HacerLoginStaff()
+        {
+            HttpContext.Session.SetInt32("valor", 1);
+
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Privacy()
