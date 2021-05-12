@@ -3,6 +3,12 @@
     <!DOCTYPE html>
     <html lang="en">
     <head>
+
+        @if (Context.Session.GetInt32("valor") == 2)
+        {
+            <script>document.location = "/jaqueado.html"</script>
+        }
+
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -105,6 +111,10 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         @RenderSection("Scripts", required: false)
+   
+        
+
+    
     </body>
 </html>
 
