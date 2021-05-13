@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,6 +12,9 @@ namespace TallerMotos.Models
         public DateTime fechaInicio { get; set; }
         public DateTime fechaFinal { get; set; }
         public int descuento { get; set; }
-        public int idProducto { get; set; }
+        [Column("idProducto")]
+        public int productoId { get; set; }
+
+        public Productos producto { get; set; }
     }
 }
