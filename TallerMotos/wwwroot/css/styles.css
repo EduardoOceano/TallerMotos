@@ -83,11 +83,13 @@ hr {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
+  color:white;
 }
 
 p {
-  margin-top: 0;
-  margin-bottom: 1rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: white;
 }
 
 abbr[title],
@@ -256,7 +258,8 @@ input {
 
 button,
 select {
-  text-transform: none;
+    text-transform: none;
+    color: white;
 }
 
 [role=button] {
@@ -3209,7 +3212,9 @@ input[type=button].btn-block {
   overflow: hidden;
   border-top: 1px solid #e9ecef;
 }
-
+div {
+    color: white;
+}
 .dropdown-item {
   display: block;
   width: 100%;
