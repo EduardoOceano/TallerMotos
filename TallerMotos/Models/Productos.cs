@@ -17,7 +17,6 @@ namespace TallerMotos.Models
         public int stock { get; set; }
         [Column("idProveedor")]
         public int ProveedorId { get; set; }
-
         public Proveedores Proveedor { get; set; }
         public string fabricante { get; set; }
         public string descripcion { get; set; }
