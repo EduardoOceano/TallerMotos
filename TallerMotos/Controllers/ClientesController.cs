@@ -46,6 +46,7 @@ namespace TallerMotos.Controllers
         // GET: Clientes/Create
         public IActionResult Create()
         {
+            ViewBag.Taller = new SelectList(_context.Talleres, "ciudad", "ciudad");
             return View();
         }
 

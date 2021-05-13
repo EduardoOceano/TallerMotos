@@ -2,34 +2,11 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 <body class="bg-dark">
-    <h1 style="color: white">Create</h1>
-
-<h1>Fabricante</h1>
-
-<h4>Añadir nuevo</h4>
+    <h1 style="color: white">Añadir Nuevo</h1>
 <hr />
-<div class="row">
-    <div class="col-md-4 bg-dark">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div style="color:white" class="form-group">
-                Nombre
-                <input asp-for="nombreFabricante" class="form-control" />
-                <span asp-validation-for="nombreFabricante" class="text-danger"></span>
-            </div>
-            <div style="color:white" class="form-group">
-                País
-                <input asp-for="pais" class="form-control" />
-                <span asp-validation-for="pais" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Añadir" class="btn btn-sm btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
     <h4 style="color: white">Fabricantes</h4>
     <hr />
     <div class="row">
