@@ -39,46 +39,33 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto" id="menu">
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Motos" asp-action="Index">Motos</a>
-                            <ul class="nav-item submenu js-scroll-trigger">
-                                <li><a asp-controller="MotosClientesParam" asp-action="Index">Listado Motos Clientes</a></li>
-                                <li><a asp-controller="MotosClientes" asp-action="Index">Listado Motos Clientes</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown" asp-controller="Productos" asp-action="Index">  Productos  </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-controller="Motos" asp-action="Index">Motos</a></li>
+                                <li><a class="dropdown-item" asp-controller="Servicios" asp-action="Index">Servicios</a></li>
+                                <li><a class="dropdown-item" asp-controller="Fabricantes" asp-action="Index">Fabricantes</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Productos" asp-action="Index">Productos</a>
-                            <ul class="nav-item submenu js-scroll-trigger">
-                                <li><a asp-controller="Productos" asp-action="ListadoProductos">Listado Productos Proveedores</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown" asp-controller="Talleres" asp-action="Index">  Talleres  </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-controller="Talleres" asp-action="Index">Talleres</a></li>
+                                <li><a class="dropdown-item" asp-controller="Empleados" asp-action="Index">Empleados</a></li>
+                                <li><a class="dropdown-item" asp-controller="Proveedores" asp-action="Index">Proveedores</a></li>
+
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Talleres" asp-action="Index">Talleres</a>
-                            <ul class="nav-item submenu">
-                                <li><a asp-controller="VentasTaller" asp-action="Index">Listado Ventas Taller</a></li>
-                                <li><a asp-controller="VentasClientesTalleres" asp-action="Index">Listado Ventas Clientes Taller</a></li>
-                                <li><a asp-controller="Empleados" asp-action="ListadoEmpleados"></a>Listado Empleados</li>
-                                <li><a asp-controller="Top10Empleados" asp-action="Index">Listado Top 10 Empleados</a></li>
-                                <li><a asp-controller="TalleresVentasTOP10" asp-action="Index">Listado Top 10 Ventas Talleres</a></li>
-                                <li><a asp-controller="ClientesTalleres" asp-action="Index">Listado Clientes por Taller</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown" asp-controller="Facturas" asp-action="Index">  Facturas  </a>
+                            <ul class="dropdown-menu">
+
+                                <li><a class="dropdown-item" asp-controller="Facturas" asp-action="Index">Facturas</a></li>
+                                <li><a class="dropdown-item" asp-controller="Clientes" asp-action="Index">Clientes</a></li>
+                                <li><a class="dropdown-item" asp-controller="Publicidad" asp-action="Index">Descuentos</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Servicios" asp-action="Index">Servicios</a>
-                            <ul class="nav-item submenu">
-                                <li><a asp-controller="Servicios" asp-action="ListadoServicios">Listado de Servicios</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" asp-area="" asp-controller="Facturas" asp-action="Index">Facturas</a>
-                            <ul class="nav-item submenu">
-                                <li><a asp-controller="FacturasEmpleados" asp-action="Index">Facturas Empleado Seleccionado</a></li>
-                                <li><a asp-controller="FacturasTaller" asp-action="Index">Facturas Taller Seleccionado</a></li>
-                            </ul>
-                        </li>
-                        <form class="form-inline">
-                            <a class=" form-inline btn btn-secondary btn-sm" asp-area="" asp-controller="Usuarios" asp-action="Index">Logueate bro</a>
-                        </form>
+
                     </ul>
                 </div>
             </div>
