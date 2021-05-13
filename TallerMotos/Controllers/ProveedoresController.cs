@@ -32,7 +32,7 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var proveedores = await _context.Proveedores
+            var proveedores = await _context.Proveedores.Include("Fabricante")
                 .FirstOrDefaultAsync(m => m.id == id);
             if (proveedores == null)
             {
@@ -74,10 +74,12 @@ namespace TallerMotos.Controllers
             }
 
             var proveedores = await _context.Proveedores.FindAsync(id);
+
             if (proveedores == null)
             {
                 return NotFound();
             }
+            ViewBag.Fabricantes = new SelectList(_context.Fabricantes, "id", "nombreFabricante");
             return View(proveedores);
         }
 

@@ -25,13 +25,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="descuento" class="control-label" style="color:white"></label>
-                <input asp-for="descuento" class="form-control bg-dark" style="color:white"/>
+                <select name="descuento" class="form-control bg-dark" style="color:white;" asp-items="ViewBag.Descuento">
+                    <option value="0">Seleccionar</option>
+                </select>
                 <span asp-validation-for="descuento" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="idProducto" class="control-label" style="color:white"></label>
-                <input asp-for="idProducto" class="form-control bg-dark" style="color:white" />
-                <span asp-validation-for="idProducto" class="text-danger"></span>
+                <label asp-for="productoId" class="control-label" style="color:white"></label>
+                <select name="producto" class="form-control bg-dark" style="color:white;" asp-items="ViewBag.Producto">
+                    <option value="0">Seleccionar</option>
+                </select>
+                <span asp-validation-for="productoId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

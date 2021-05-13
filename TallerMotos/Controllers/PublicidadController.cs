@@ -52,7 +52,8 @@ namespace TallerMotos.Controllers
         // GET: Publicidads/Create
         public IActionResult Create()
         {
-            ViewBag.Productos = new SelectList(_context.Clientes, "id", "nombreProducto");
+            ViewBag.Producto = new SelectList(_context.Productos, "id", "id");
+            ViewBag.Descuento = new SelectList(_context.Publicidad, "descuento", "descuento");
             return View();
         }
 
@@ -69,6 +70,9 @@ namespace TallerMotos.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.Producto = new SelectList(_context.Productos, "id", "id");
+            ViewBag.Descuento = new SelectList(_context.Publicidad, "descuento", "descuento");
             return View(publicidad);
         }
 
@@ -85,6 +89,10 @@ namespace TallerMotos.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.Producto = new SelectList(_context.Productos, "id", "id");
+            ViewBag.Descuento = new SelectList(_context.Publicidad, "descuento", "descuento");
+
             return View(publicidad);
         }
 
@@ -120,6 +128,10 @@ namespace TallerMotos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.Producto = new SelectList(_context.Productos, "id", "id", id);
+            ViewBag.Descuento = new SelectList(_context.Publicidad, "descuento", "descuento", id);
+
             return View(publicidad);
         }
 

@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<h1 style="color: black">Details</h1>
-<h4 style="color: black">Servicios</h4>
+<h1 style="color: white">Details</h1>
+<h4 style="color: white">Servicios</h4>
 <div>
     
     <hr />
     @Html.DisplayForModel()
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.id" style="color:white">Edit</a> |
+    <a asp-action="Index" style="color:white">Back to List</a>
 </div>

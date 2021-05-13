@@ -6,19 +6,19 @@
 }
 
 
-<h2>Talleres</h2>
+<h2 style="color:white">Talleres</h2>
 <p>
-    <a asp-action="Create">Create New</a> |
-    <a asp-action="Index" asp-controller="Top10Empleados">Top 10 Empleados</a> |
-    <a asp-action="Index" asp-controller="TalleresVentasTOP10">TOP 10 talleres</a> | 
-    <a asp-action="Index" asp-controller="ClientesTalleres">Nuestros clientes</a>
+    <a style="color:white" asp-action="Create">Create New</a> |
+    <a  style="color:white" asp-action="Index" asp-controller="Top10Empleados">Top 10 Empleados</a> |
+    <a style="color:white" asp-action="Index" asp-controller="TalleresVentasTOP10">TOP 10 talleres</a> | 
+    <a style="color:white" asp-action="Index" asp-controller="ClientesTalleres">Nuestros clientes</a>
 
 </p>
 <table class="table table-striped table-dark">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.numEmpleados)
+                @Html.DisplayNameFor(model => model.numEmpleados) 
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.telefono)

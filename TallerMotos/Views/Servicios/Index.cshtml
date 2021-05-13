@@ -5,10 +5,11 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<h1>Index</h1>
+<h1 style="color:white">Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" style="color:white">Añadir</a> |   <a asp-action="ListadoServicios" style="color:white">Listado Servicios</a> |
+    <a asp-action="Index" asp-controller="ProductosServicios" style="color:white">Listado Servicios</a>
 </p>
 <table class="table table-dark">
     <thead>
@@ -38,11 +39,10 @@
                 @Html.DisplayFor(modelItem => item.precio)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a> |
-                <a asp-action="ListadoServicios">Listado Servicios</a> |
-                <a asp-action="Index" asp-controller="ProductosServicios">Listado Servicios</a>
+                <a asp-action="Edit" asp-route-id="@item.id" style="color:white">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id" style="color:white">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id" style="color:white">Delete</a> |
+              
             </td>
         </tr>
 }
