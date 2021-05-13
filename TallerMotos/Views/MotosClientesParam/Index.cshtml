@@ -2,23 +2,17 @@
 @{
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
 
-<h1>Listado Motos Clientes Parametro</h1>
+<h1 style="color:white">Listado Motos Clientes Parametro</h1>
 
 <form asp-action="Index" method="get">
     <div class="row">
-        <div class="col-2">
+        <div class="col-2" style="color:white">
             Cliente:
         </div>
         <div class="col-4">
-            <select name="nombre" class="form-control" asp-items="@ViewBag.Cliente">
-                <option value="">Seleccionar</option>
+            <select name="nombre" class="form-control bg-dark" asp-items="@ViewBag.Cliente" style="color:white">
+                <option value="" >Seleccionar</option>
             </select>
         </div>
         <input type="submit" value="Consultar" class="btn btn-primary" />
@@ -63,3 +57,6 @@
         </tbody>
     </table>
 }
+<div>
+    <a asp-action="Index" asp-controller="Motos" style="color:white">Back to List</a>
+</div>

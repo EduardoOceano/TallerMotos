@@ -3,14 +3,14 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<h1>Listado de Pagos</h1>
+<h1 style="color:white">Listado de Pagos</h1>
 <form asp-action="Index" method="get">
     <div class="row">
-        <div class="col-2">
+        <div class="col-2" style="color:white">
             Factura:
         </div>
         <div class="col-4">
-            <select name="factura" class="form-control" asp-items="@ViewBag.Factura">
+            <select name="factura" class="form-control bg-dark" asp-items="@ViewBag.Factura" style="color:white">
                 <option value="">Seleccionar</option>
             </select>
         </div>
@@ -37,3 +37,6 @@
         </tbody>
     </table>
 }
+<div>
+    <a asp-action="Index" asp-controller="Facturas" style="color:white">Back to List</a>
+</div>

@@ -21,7 +21,7 @@ namespace TallerMotos.Controllers
         // GET: Proveedores
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Proveedores.ToListAsync());
+            return View(await _context.Proveedores.Include("Fabricante").ToListAsync());
         }
 
         // GET: Proveedores/Details/5
@@ -45,6 +45,7 @@ namespace TallerMotos.Controllers
         // GET: Proveedores/Create
         public IActionResult Create()
         {
+            ViewBag.Fabricantes = new SelectList(_context.Fabricantes, "id", "nombreFabricante");
             return View();
         }
 
