@@ -1,24 +1,25 @@
 ﻿@model TallerMotos.Models.Servicios
 <style>
     div{
-        color: blanchedalmond;
+        color: white;
+    }
+    label{
+        color:white;
     }
 </style>
 <div class="form-group">
     <label asp-for="tipo" class="control-label"></label>
-    <input asp-for="tipo" class="form-control" />
+    <input asp-for="tipo" class="form-control bg-dark" style="color:white"/>
     <span asp-validation-for="tipo" class="text-danger"></span>
 </div>
 <div class="form-group">
     <label asp-for="descripcion" class="control-label"></label>
-    <select asp-for="descripcion" class="form-control" asp-items="ViewBag.Servicio">
-        <option value="0">Seleccionar</option>
-    </select>
+    <input asp-for="descripcion" class="form-control bg-dark" style="color:white" />
     <span asp-validation-for="descripcion" class="text-danger"></span>
 </div>
 <div class="form-group">
     <label asp-for="precio" class="control-label"></label>
-    <input asp-for="precio" class="form-control" />
+    <input asp-for="precio" class="form-control bg-dark" style="color:white"/>
     <span asp-validation-for="precio" class="text-danger"></span>
 </div>
 <div class="form-group">
