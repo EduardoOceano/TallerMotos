@@ -100,6 +100,7 @@ namespace TallerMotos.Controllers
         // GET: Empleados/Create
         public IActionResult Create()
         {
+            ViewBag.Taller = new SelectList(_context.Talleres, "id", "id");
             return View();
         }
 
@@ -133,7 +134,7 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            ViewBag.Taller = new SelectList(_context.Talleres, "ciudad", "ciudad", id);
+            ViewBag.Taller = new SelectList(_context.Talleres, "id", "id", id);
 
             return View(empleados);
         }
@@ -170,7 +171,8 @@ namespace TallerMotos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.Taller = new SelectList(_context.Talleres, "ciudad", "ciudad", id);
+            ViewBag.Taller = new SelectList(_context.Talleres, "id", "id", id);
+
 
             return View(empleados);
         }
