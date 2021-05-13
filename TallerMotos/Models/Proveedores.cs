@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using TallerMotos.Models.ViewData;
 
 namespace TallerMotos.Models
 {
@@ -18,5 +19,8 @@ namespace TallerMotos.Models
         public string comentario { get; set; }
         public string telefono { get; set; }
         public int idFabricante { get; set; }
+        [Column("idFabricante")]
+        public int? FabricanteId { get; set; }
+        public Fabricantes Fabricante { get; set; }
     }
 }

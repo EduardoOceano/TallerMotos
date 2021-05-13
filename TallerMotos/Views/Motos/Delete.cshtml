@@ -5,13 +5,13 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<h1>Eliminar</h1>
+<h1 style="color:white">Eliminar</h1>
 
-<h3>¿Estas seguro de que quieres borrar?</h3>
+<h3 style="color:white">¿Estas seguro de que quieres borrar?</h3>
 <div>
-    <h4>Motos</h4>
+    <h4 style="color:white">Motos</h4>
     <hr />
-    <dl class="row">
+    <dl class="row table-dark">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.matricula)
         </dt>
@@ -47,6 +47,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Volver</a>
+        <a asp-action="Index" style="color:white">Volver</a>
     </form>
 </div>

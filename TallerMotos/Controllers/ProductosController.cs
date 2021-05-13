@@ -69,6 +69,7 @@ namespace TallerMotos.Controllers
         // GET: Productos/Create
         public IActionResult Create()
         {
+            ViewBag.Proveedores = new SelectList(_context.Proveedores, "id", "nombreProveedor");
             return View();
         }
 

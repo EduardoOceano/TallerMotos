@@ -2,11 +2,12 @@
 
 @{
     ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<h1>Edit</h1>
+<h1 style="color:white">Edit</h1>
 
-<h4>Publicidad</h4>
+<h4 style="color:white">Publicidad</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,23 +15,23 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="id" />
             <div class="form-group">
-                <label asp-for="fechaInicio" class="control-label"></label>
-                <input asp-for="fechaInicio" class="form-control" />
+                <label asp-for="fechaInicio" class="control-label" style="color:white"></label>
+                <input asp-for="fechaInicio" class="form-control bg-dark" style="color:white"/>
                 <span asp-validation-for="fechaInicio" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="fechaFinal" class="control-label"></label>
-                <input asp-for="fechaFinal" class="form-control" />
+                <label asp-for="fechaFinal" class="control-label" style="color:white"></label>
+                <input asp-for="fechaFinal" class="form-control bg-dark" style="color:white"/>
                 <span asp-validation-for="fechaFinal" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="descuento" class="control-label"></label>
-                <input asp-for="descuento" class="form-control" />
+                <label asp-for="descuento" class="control-label" style="color:white"></label>
+                <input asp-for="descuento" class="form-control bg-dark" style="color:white"/>
                 <span asp-validation-for="descuento" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="idProducto" class="control-label"></label>
-                <input asp-for="idProducto" class="form-control" />
+                <label asp-for="idProducto" class="control-label" style="color:white"></label>
+                <input asp-for="idProducto" class="form-control bg-dark" style="color:white"/>
                 <span asp-validation-for="idProducto" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -41,6 +42,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" style="color:white">Back to List</a>
 </div>
 
