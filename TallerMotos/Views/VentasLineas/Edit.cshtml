@@ -15,7 +15,7 @@
             Productos:
         </div>
         <div class="col-4">
-            <select name="productos" class="form-control" asp-items="@ViewBag.Productos">
+            <select name="productos" class="form-control" asp-items="@ViewBag.Producto">
                 <option value="">Seleccionar</option>
             </select>
         </div>
@@ -28,7 +28,7 @@
             Servicios:
         </div>
         <div class="col-4">
-            <select name="servicios" class="form-control" asp-items="@ViewBag.Servicios">
+            <select name="servicios" class="form-control" asp-items="@ViewBag.Servicio">
                 <option value="">Seleccionar</option>
             </select>
         </div>
@@ -46,9 +46,9 @@
                 <span asp-validation-for="ProductoId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="idServicio" class="control-label"></label>
-                <input asp-for="idServicio" class="form-control" />
-                <span asp-validation-for="idServicio" class="text-danger"></span>
+                <label asp-for="Servicio.id" class="control-label"></label>
+                <input asp-for="Servicio.id" class="form-control" />
+                <span asp-validation-for="Servicio.id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="cantidad" class="control-label"></label>
@@ -66,13 +66,13 @@
                 <span asp-validation-for="FacturasId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Atras</a>
+    <a asp-action="Index" style="color:white">Atras</a>
 </div>
 
