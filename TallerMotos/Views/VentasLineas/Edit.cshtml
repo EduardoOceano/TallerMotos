@@ -5,64 +5,42 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<h1 style="color: black">Editar</h1>
+<h1 style="color: white">Editar</h1>
 
-<h4 style="color: black">Venta linea</h4>
+<h4 style="color: white">Venta linea</h4>
 <hr />
-<form>
-    <div class="row">
-        <div class="col-2">
-            Productos:
-        </div>
-        <div class="col-4">
-            <select name="productos" class="form-control" asp-items="@ViewBag.Producto">
-                <option value="">(Todos)</option>
-            </select>
-        </div>
-        <input type="submit" value="Seleccionar" class="btn btn-primary " />
-    </div>
-</form>
-<form>
-    <div class="row">
-        <div class="col-2">
-            Servicios:
-        </div>
-        <div class="col-4">
-            <select name="servicios" class="form-control" asp-items="@ViewBag.Servicio">
-                <option value="">(Todos)</option>
-            </select>
-        </div>
-        <input type="submit" value="Seleccionar" class="btn btn-primary" />
-    </div>
-</form>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-10">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="id" />
             <div class="form-group">
                 <label asp-for="ProductoId" class="control-label"></label>
-                <input asp-for="ProductoId" class="form-control" />
+                <select asp-for="ProductoId" class="form-control bg-dark" style="color:white" asp-items="@ViewBag.Producto">
+                    <option >Sin producto</option>
+                </select>
                 <span asp-validation-for="ProductoId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Servicio.id" class="control-label"></label>
-                <input asp-for="Servicio.id" class="form-control" />
-                <span asp-validation-for="Servicio.id" class="text-danger"></span>
+                <label asp-for="ServicioId" class="control-label"></label>
+                <select name="ServicioId" class="form-control bg-dark" style="color:white" asp-items="@ViewBag.Servicio">
+                    <option value="">Sin servicio</option>
+                </select>
+                <span asp-validation-for="ServicioId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="cantidad" class="control-label"></label>
-                <input asp-for="cantidad" class="form-control" />
+                <input asp-for="cantidad" class="form-control bg-dark" style="color:white" />
                 <span asp-validation-for="cantidad" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="precio" class="control-label"></label>
-                <input asp-for="precio" class="form-control" />
+                <input asp-for="precio" class="form-control bg-dark" style="color:white" />
                 <span asp-validation-for="precio" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FacturasId" class="control-label"></label>
-                <input asp-for="FacturasId" readonly class="form-control" />
+                <input asp-for="FacturasId" readonly class="form-control bg-dark" style="color:white" />
                 <span asp-validation-for="FacturasId" class="text-danger"></span>
             </div>
             <div class="form-group">

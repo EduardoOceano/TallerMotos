@@ -21,7 +21,7 @@ namespace TallerMotos.Controllers
         // GET: VentasLineass
         public async Task<IActionResult> Index()
         {
-            return View(await _context.VentasLineas.Include("Producto").ToListAsync());
+            return View(await _context.VentasLineas.Include("Producto").Include("Servicio").ToListAsync());
         }
 
         // GET: VentasLineass/Details/5
@@ -32,7 +32,7 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var VentasLineas = _context.VentasLineas.Include("Producto").Where(x => x.id == id)
+            var VentasLineas = _context.VentasLineas.Include("Producto").Include("Servicio").Where(x => x.id == id)
                 .FirstOrDefault();
             if (VentasLineas == null)
             {
@@ -82,8 +82,8 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            ViewBag.Productos = new SelectList(_context.Productos, "tipo", "tipo", id);
-            ViewBag.Servicios = new SelectList(_context.Servicios, "tipo", "tipo", id);
+            ViewBag.Producto = new SelectList(_context.Productos.Select(x => new Productos() { id = x.id, tipo = x.tipo + "-" + x.id }).Distinct(), "id", "tipo");
+            ViewBag.Servicio = new SelectList(_context.Servicios.Select(x => new Servicios() { id = x.id, tipo = x.tipo + "-" + x.id }).Distinct(), "id", "tipo");
 
             return View(VentasLineas);
         }
@@ -100,7 +100,7 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid || 1==1)
             {
                 try
                 {
@@ -121,8 +121,8 @@ namespace TallerMotos.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewBag.Productos = new SelectList(_context.Productos, "tipo", "tipo", id);
-            ViewBag.Servicios = new SelectList(_context.Servicios, "tipo", "tipo", id);
+            ViewBag.Producto = new SelectList(_context.Productos.Select(x => new Productos() { id = x.id, tipo = x.tipo + "-" + x.id }).Distinct(), "id", "tipo");
+            ViewBag.Servicio = new SelectList(_context.Servicios.Select(x => new Servicios() { id = x.id, tipo = x.tipo + "-" + x.id }).Distinct(), "id", "tipo");
 
             return View(VentasLineas);
         }
