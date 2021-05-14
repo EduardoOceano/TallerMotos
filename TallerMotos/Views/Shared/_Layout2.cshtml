@@ -3,7 +3,7 @@
     <!DOCTYPE html>
     <html lang="en">
     <head>
-
+        <link rel="icon" type="image/x-icon" href="https://img.icons8.com/android/24/000000/motorcycle.png" />
         @if (Context.Session.GetInt32("valor") == 2)
         {
             <script>document.location = "/jaqueado.html"</script>
@@ -13,8 +13,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Grayscale - Start Bootstrap Theme</title>
-        <link rel="icon" type="image/x-icon" href="~/assets/img/favicon.ico" />
+        <title>Taller de motos</title>
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -42,6 +42,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown" asp-controller="Productos" asp-action="Index">  Productos  </a>
                             <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-controller="Productos" asp-action="Index">Productos</a></li>
                                 <li><a class="dropdown-item" asp-controller="Motos" asp-action="Index">Motos</a></li>
                                 <li><a class="dropdown-item" asp-controller="Servicios" asp-action="Index">Servicios</a></li>
                                 <li><a class="dropdown-item" asp-controller="Fabricantes" asp-action="Index">Fabricantes</a></li>

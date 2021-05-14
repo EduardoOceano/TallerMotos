@@ -8,7 +8,7 @@
 
 <h2 style="color:white">Talleres</h2>
 <p>
-    <a style="color:white" asp-action="Create">Create New</a> |
+    <a style="color:white" asp-action="Create">Añadir taller</a> |
     <a  style="color:white" asp-action="Index" asp-controller="Top10Empleados">Top 10 Empleados</a> |
     <a style="color:white" asp-action="Index" asp-controller="TalleresVentasTOP10">TOP 10 talleres</a> | 
     <a style="color:white" asp-action="Index" asp-controller="ClientesTalleres">Nuestros clientes</a>
@@ -48,9 +48,9 @@
                 @Html.DisplayFor(modelItem => item.ciudad)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a> | 
+                <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Eliminar</a> | 
             </td>
         </tr>
 }
