@@ -52,7 +52,7 @@ namespace TallerMotos.Controllers
         // GET: Publicidads/Create
         public IActionResult Create()
         {
-            ViewBag.Producto = new SelectList(_context.Productos.Select(x=>new Productos() {  tipo = x.tipo }).Distinct(), "tipo", "tipo");
+            ViewBag.Producto = new SelectList(_context.Productos.Select(x => new Productos() { id = x.id, tipo = x.tipo + "-" + x.id }).Distinct(), "id", "tipo");
             ViewBag.Descuento = new SelectList(_context.Publicidad, "descuento", "descuento");
             return View();
         }

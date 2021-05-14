@@ -14,13 +14,13 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Producto.tipo " class="control-label" style="color:white"> Producto</label>
-                <select asp-for="Producto.tipo" class="form-control bg-dark" style="color:white"  asp-items="ViewBag.Producto"></select>
+                <label asp-for="ProductoId " class="control-label" style="color:white"> Producto</label>
+                <select asp-for="ProductoId" class="form-control bg-dark" style="color:white"  asp-items="ViewBag.Producto"></select>
                 <span asp-validation-for="ProductoId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Servicio.tipo" class="control-label" style="color:white"> Servicio</label>
-                <select asp-for="Servicio.tipo" class="form-control bg-dark" style="color:white" asp-items="ViewBag.Servicio"></select>
+                <label asp-for="ServicioId" class="control-label" style="color:white"> Servicio</label>
+                <select asp-for="ServicioId" class="form-control bg-dark" style="color:white" asp-items="ViewBag.Servicio"></select>
                 <span asp-validation-for="ServicioId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,8 +34,8 @@
                 <span asp-validation-for="precio" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Factura.id" class="control-label" style="color:white"></label>
-                <input asp-for="Factura.id" class="form-control bg-dark" style="color:white" value="@ViewBag.Factura"  readonly/>
+                <label asp-for="FacturasId" class="control-label" style="color:white"></label>
+                <input asp-for="FacturasId" class="form-control bg-dark" style="color:white" value="@ViewBag.Factura"  readonly/>
                 <span asp-validation-for="FacturasId" class="text-danger"></span>
             </div>
             <div class="form-group">

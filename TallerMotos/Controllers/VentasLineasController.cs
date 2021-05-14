@@ -46,9 +46,9 @@ namespace TallerMotos.Controllers
         public IActionResult Create(int? idFactura)
         {
             //ViewData["VentasLineal"] = _context.VentasLineal.Where(x => x.idFactura == ventaId).FirstOrDefault();
-            ViewBag.Producto = new SelectList(_context.Productos.Select(x => new Productos() { tipo = x.tipo }).Distinct(), "id", "tipo");
+            ViewBag.Producto = new SelectList(_context.Productos.Select(x => new Productos() {id=x.id, tipo = x.tipo + "-" +x.id }).Distinct(), "id", "tipo");
             ViewBag.Factura = idFactura;
-            ViewBag.Servicio = new SelectList(_context.Servicios, "id", "tipo");
+            ViewBag.Servicio = new SelectList(_context.Servicios.Select(x => new Servicios() {id=x.id, tipo = x.tipo + "-" +x.id }).Distinct(), "id", "tipo");
             return View();
         }
 
