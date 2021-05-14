@@ -27,7 +27,7 @@ namespace TallerMotos.Controllers
        
             public async Task<IActionResult> Index()
             {
-                return View(await _context.Publicidad.ToListAsync());
+                return View(await _context.Publicidad.Include("producto").ToListAsync());
             }
         
 
@@ -39,7 +39,7 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var publicidad = await _context.Publicidad
+            var publicidad = await _context.Publicidad.Include("producto")
                 .FirstOrDefaultAsync(m => m.id == id);
             if (publicidad == null)
             {
@@ -52,7 +52,7 @@ namespace TallerMotos.Controllers
         // GET: Publicidads/Create
         public IActionResult Create()
         {
-            ViewBag.Producto = new SelectList(_context.Productos, "id", "id");
+            ViewBag.Producto = new SelectList(_context.Productos.Select(x=>new Productos() {  tipo = x.tipo }).Distinct(), "tipo", "tipo");
             ViewBag.Descuento = new SelectList(_context.Publicidad, "descuento", "descuento");
             return View();
         }
@@ -71,7 +71,6 @@ namespace TallerMotos.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewBag.Producto = new SelectList(_context.Productos, "id", "id");
             ViewBag.Descuento = new SelectList(_context.Publicidad, "descuento", "descuento");
             return View(publicidad);
         }
@@ -90,7 +89,7 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            ViewBag.Producto = new SelectList(_context.Productos, "id", "id");
+            ViewBag.Producto = new SelectList(_context.Productos.Select(x => new Productos() { tipo = x.tipo }).Distinct(), "tipo", "tipo");
             ViewBag.Descuento = new SelectList(_context.Publicidad, "descuento", "descuento");
 
             return View(publicidad);
@@ -143,7 +142,7 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var publicidad = await _context.Publicidad
+            var publicidad = await _context.Publicidad.Include("producto")
                 .FirstOrDefaultAsync(m => m.id == id);
             if (publicidad == null)
             {
