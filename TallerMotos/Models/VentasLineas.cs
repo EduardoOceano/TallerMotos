@@ -21,14 +21,18 @@ namespace TallerMotos.Models
         public string ProductoDescripcion{ get; set; }
         */
         public Productos Producto { get; set; }
-        public int? idServicio { get; set; }
         public int? cantidad { get; set; }
         public decimal? precio { get; set; }
 
         [Column("idFactura")]
         public int? FacturasId { get; set; }
 
-        public Facturas facturas { get; set; }
+        public Facturas Factura { get; set; }
+
+        [Column("idServicio")]
+        public int? ServicioId { get; set; }
+
+        public Servicios Servicio { get; set; }
 
     }
 }
