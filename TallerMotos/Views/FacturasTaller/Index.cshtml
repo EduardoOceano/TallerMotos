@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 <body class="bg-dark">
-<h1 style="color:white">FacturasTallerIndex</h1>
+<h1 style="color:white">Facturas de cada taller</h1>
 <form asp-action="Index" method="get">
     <div class="row">
         <div class="col-2" style="color:white">
@@ -13,7 +13,7 @@
         </div>
         <div class="col-4">
             <select name="taller" class="form-control bg-dark" asp-items="@ViewBag.Taller" style="color:white">
-                <option value="">Todos</option>
+                <option value="">(Todos)</option>
             </select>
         </div>
         <input type="submit" value="Consultar" class="btn btn-primary" />

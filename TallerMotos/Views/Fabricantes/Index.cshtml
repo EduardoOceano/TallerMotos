@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 <body class="bg-dark">
-    <h1 style="color: white">Index</h1>
+    <h1 style="color: white">Fabricantes</h1>
 
     <p>
         <a asp-action="Create" style="color: white">Añadir nuevo</a>
@@ -48,9 +48,9 @@
                             @Html.DisplayFor(modelItem => item.pais)
                         </td>
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.id" style="color: white">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.id" style="color: white">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.id" style="color: white">Delete</a> |
+                            <a asp-action="Edit" asp-route-id="@item.id" style="color: white">Editar</a> |
+                            <a asp-action="Details" asp-route-id="@item.id" style="color: white">Detalles</a> |
+                            <a asp-action="Delete" asp-route-id="@item.id" style="color: white">Eliminar</a>
 
                         </td>
                     </tr>

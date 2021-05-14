@@ -8,7 +8,7 @@
 <div class="form-group">
     <label asp-for="Cliente.nombreCliente" class="control-label" style="color: white">Cliente</label>
     <select asp-for="Cliente.nombreCliente" class="form-control bg-dark" style="color: white" asp-items="ViewBag.Cliente">
-        <option value="0">Seleccionar</option>
+        <option value="0">(Todos)</option>
     </select><!--Hacer ViewBag para mostrar nombre-->
     <span asp-validation-for="Cliente.nombreCliente" class="text-danger"></span>
 </div>
