@@ -3,8 +3,6 @@
     ViewData["Title"] = "Clientes";
 }
 
-<h1>Clientes</h1>
-<form asp-action="Index" method="get">
     <div class="row">
         <div class="col-2">
             Taller:
@@ -14,10 +12,7 @@
                 <option value="">(Todos)</option>
             </select>
         </div>
-        <input type="submit" value="Seleccionar" class="btn btn-primary" />
     </div>
-</form>
-<h1 style="color: white">Clientes</h1>
 <div class="form-group">
     <label asp-for="nombreCliente" class="control-label" style="color: white"></label>
     <input asp-for="nombreCliente" class="form-control bg-dark" style="color:white"/>

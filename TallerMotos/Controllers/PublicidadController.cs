@@ -62,7 +62,7 @@ namespace TallerMotos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,fechaInicio,fechaFinal,descuento,idProducto")] Publicidad publicidad)
+        public async Task<IActionResult> Create(Publicidad publicidad)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +100,7 @@ namespace TallerMotos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,fechaInicio,fechaFinal,descuento,idProducto")] Publicidad publicidad)
+        public async Task<IActionResult> Edit(int id, Publicidad publicidad)
         {
             if (id != publicidad.id)
             {
