@@ -3,7 +3,7 @@
 
     Dictionary<string, int> dictStock01 = ViewData["assocArray01"] as Dictionary<string, int>;
     Dictionary<string, int> dictStock02 = ViewData["assocArray02"] as Dictionary<string, int>;
-    }
+}
 
 
 <h1 style="color:white">Listado de productos y proveedores</h1>
@@ -45,43 +45,43 @@
     <tbody>
         @foreach (var item in Model)
         {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.tipo)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.precio)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.fabricante)
-    </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fabricante)
+                </td>
 
-    <td>
-        @Html.DisplayFor(modelItem => item.descripcion)
-    </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
 
-    <td>
-        @Html.DisplayFor(modelItem => item.stock)
-    </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.stock)
+                </td>
 
-    <td>
-        @Html.DisplayFor(modelItem => item.nombreProveedor)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.direccion)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.pais)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.telefono)
-    </td>
-</tr>
-            }
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombreProveedor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pais)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
-
+<a asp-action="Index" asp-controller="Proveedores" style="color:white">Volver a Proveedores</a>
 
 <div class="row">
 
