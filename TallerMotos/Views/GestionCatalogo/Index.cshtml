@@ -1,26 +1,31 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 <h1>Index</h1>
 
-<input type="text" value="1" id="idPorducto" />
-<div class="row">
-    <div class="col-12" id="PanelProducto">
-
-    </div>
-</div>
-
-<input type="text" value="1" id="idServicio" />
+<input type="text" value="primeraLlamada" id="idServicio" />
+<button onclick="seleccionarServicio($('#idServicio'))">
+    Seleccionar
+</button>
 <div class="row">
     <div class="col-12" id="PanelServicio">
 
     </div>
 </div>
 
-<input type="text" value="1" id="idDescuento" />
+<input type="text" value="primeraLlamada" id="idProducto" />
+<button onclick="seleccionarProducto($('#idProducto'))">
+    Seleccionar
+</button>
+<div class="row">
+    <div class="col-12" id="PanelProducto">
+
+    </div>
+</div>
+
+<input type="text" value="primeraLlamada" id="idDescuento" />
 <div class="row">
     <div class="col-12" id="PanelDescuento">
 
@@ -32,10 +37,27 @@
         function refrescar(url, destino) {
             $.ajax({
                 url: url,
+                success: function (res) {
+                    $('#' + destino).html(res);
+                }
+            });
+        };
+        function refrescarServicio(url, destino) {
+            $.ajax({
+                url: url,
                 data: {
-                    idProducto: $('#idProducto').val(),
-                    idServicio: $('#idServicio').val(),
-                    idDescuento: $('#idDescuento').val()
+                    idServicio: $('#idServicio').val()
+                },
+                success: function (res) {
+                    $('#' + destino).html(res);
+                }
+            });
+        };
+        function refrescarProducto(url, destino) {
+            $.ajax({
+                url: url,
+                data: {
+                    idProducto: $('#idProducto').val()
                 },
                 success: function (res) {
                     $('#' + destino).html(res);
@@ -46,6 +68,12 @@
             refrescar('/Productos/Index', 'PanelProducto');
             refrescar('/Servicios/Index', 'PanelServicio');
             refrescar('/Publicidad/Index', 'PanelDescuento');
+        };
+        function seleccionarServicio(idSelect) {
+            refrescarServicio('/Servicios/Index/' + idSelect, 'PanelServicio');
+        };
+        function seleccionarProducto(idSelect) {
+            refrescarProducto('/Productos/Index/' + idSelect, 'PanelProducto');
         };
         $(document).ready(function () {
             refrescarTodo();
