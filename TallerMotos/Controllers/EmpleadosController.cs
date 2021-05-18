@@ -22,9 +22,10 @@ namespace TallerMotos.Controllers
         }
 
         // GET: Empleados
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int idTaller)
         {
-            return View(await _context.Empleados.ToListAsync());
+            var contexto = _context.Empleados;
+            return PartialView(await contexto.ToListAsync());
         }
         public async Task<IActionResult> ListadoEmpleados(string sql)
         {
@@ -87,21 +88,23 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var empleados = await _context.Empleados
+            var empleados = await _context.Empleados.Include(e => e.Talleres)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (empleados == null)
             {
                 return NotFound();
             }
 
-            return View(empleados);
+            return PartialView(empleados);
         }
 
         // GET: Empleados/Create
-        public IActionResult Create()
+        public IActionResult Create(int idTaller)
         {
             ViewBag.Taller = new SelectList(_context.Talleres, "ciudad", "ciudad");
-            return View();
+            Empleados e = new Empleados();
+            e.TalleresId = idTaller;
+            return PartialView(e);
         }
 
         // POST: Empleados/Create
@@ -136,7 +139,7 @@ namespace TallerMotos.Controllers
 
             ViewBag.Taller = new SelectList(_context.Talleres, "ciudad", "ciudad", id);
 
-            return View(empleados);
+            return PartialView(empleados);
         }
 
         // POST: Empleados/Edit/5
@@ -174,7 +177,7 @@ namespace TallerMotos.Controllers
             ViewBag.Taller = new SelectList(_context.Talleres, "id", "id", id);
 
 
-            return View(empleados);
+            return PartialView(empleados);
         }
 
         // GET: Empleados/Delete/5
@@ -185,14 +188,14 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            var empleados = await _context.Empleados
+            var empleados = await _context.Empleados.Include(e => e.Talleres)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (empleados == null)
             {
                 return NotFound();
             }
 
-            return View(empleados);
+            return PartialView(empleados);
         }
 
         // POST: Empleados/Delete/5
