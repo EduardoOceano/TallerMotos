@@ -84,7 +84,7 @@ namespace TallerMotos.Controllers
 
             ViewBag.Cliente = new SelectList(_context.Clientes, "id", "nombreCliente");
 
-            return View(facturas);
+            return PartialView(facturas);
         }
 
         // POST: Facturas/Edit/5
@@ -109,7 +109,7 @@ namespace TallerMotos.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!FacturasExists(facturas.id))
-                    {
+                    { 
                         return NotFound();
                     }
                     else
