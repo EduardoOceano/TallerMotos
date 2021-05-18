@@ -24,7 +24,7 @@ namespace TallerMotos.Controllers
         // GET: Empleados
         public async Task<IActionResult> Index(int idTaller)
         {
-            var contexto = _context.Empleados.Where(x=>x.TalleresId==idTaller).Include(e => e.Talleres);
+            var contexto = _context.Empleados;
             return PartialView(await contexto.ToListAsync());
         }
         public async Task<IActionResult> ListadoEmpleados(string sql)
