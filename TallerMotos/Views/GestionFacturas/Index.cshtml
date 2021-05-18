@@ -12,7 +12,10 @@
         <option value="0">Seleccionar</option>
     </select>
     <input type="button" onclick="abrirDialog('/Facturas/Index')" value="Buscar" class="btn btn-primary" />
-    <input type="hidden" id="idFactura" value="1" />
+    <input type="button" onclick="abrirDialog('/Facturas/Create')" value="+" class="btn btn-primary" />
+    <input type="button" onclick="abrirDialog('/Facturas/Edit')" value="E" class="btn btn-primary" />
+    <input type="button" onclick="abrirDialog('/Facturas/Delete')" value="B" class="btn btn-danger" />
+    <input type="hidden2" id="idFactura" value="1" />
 </div>
 
 <div class="row">
@@ -49,7 +52,7 @@
                 },
                 success: function (res) {
                     bootbox.dialog({
-                        message: res,
+                        message: "<div class='bg-dark'>" + res + "</div>",
                         size: "large"
                     });
                     $('#' + destino).html(res);
