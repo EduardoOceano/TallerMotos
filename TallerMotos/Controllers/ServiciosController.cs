@@ -46,7 +46,7 @@ namespace TallerMotos.Controllers
                 }
 
             }
-            return View(lista);
+            return PartialView(lista);
         }
         // GET: Servicios/Details/5
         public async Task<IActionResult> Details(int? id)
