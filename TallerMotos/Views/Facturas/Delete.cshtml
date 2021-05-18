@@ -1,18 +1,13 @@
 ﻿@model TallerMotos.Models.Facturas
 
-@{
-    ViewData["Title"] = "Delete";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
-}
-<body class="bg-dark">
-<h1 style="color: white">Eliminar</h1>
 
-<h3 style="color: white">¿Estas seguro de que quieres borrar?</h3>
+<h1 style="color: white">Eliminar factura</h1>
+
+<h4 style="color: white">¿Estas seguro de que quieres borrar?</h4>
 <div>
-    <h4 style="color: white">Facturas</h4>
     <hr />
     <form asp-action="Details">
-        @Html.EditorForModel()
+        @Html.DisplayForModel()
     </form>
 </div>
     
@@ -20,7 +15,5 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="id" />
         <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-        <a asp-action="Index" style="color: white">Volver</a>
     </form>
 </div>
-</body>

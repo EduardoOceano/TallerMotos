@@ -24,7 +24,7 @@ namespace TallerMotos.Controllers
         // GET: Empleados
         public async Task<IActionResult> Index(int idTaller)
         {
-            var contexto = _context.Empleados;
+            var contexto = _context.Empleados.Where(x => x.TalleresId==idTaller).Include(e => e.Talleres);
             return PartialView(await contexto.ToListAsync());
         }
         public async Task<IActionResult> ListadoEmpleados(string sql)
@@ -81,15 +81,15 @@ namespace TallerMotos.Controllers
             return View(lista);
         }
         // GET: Empleados/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? idTaller)
         {
-            if (id == null)
+            if (idTaller == null)
             {
                 return NotFound();
             }
 
             var empleados = await _context.Empleados.Include(e => e.Talleres)
-                .FirstOrDefaultAsync(m => m.id == id);
+                .FirstOrDefaultAsync(m => m.TalleresId == idTaller);
             if (empleados == null)
             {
                 return NotFound();
