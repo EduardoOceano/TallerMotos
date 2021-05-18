@@ -39,7 +39,7 @@ namespace TallerMotos.Controllers
                 return NotFound();
             }
 
-            return View(talleres);
+            return PartialView(talleres);
         }
 
         // GET: Talleres/Create

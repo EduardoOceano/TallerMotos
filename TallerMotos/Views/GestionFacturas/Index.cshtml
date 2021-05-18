@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TallerMotos.Models.Talleres>
+@{
+    ViewData["Title"] = "Gestion de Facturas";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h1>Gestion de Facturas</h1>
+
+<div class="form-group ">
+    <label class="control-label" style="color: white">Taller Seleccion</label>
+    <select id="idTaller" class="form-control bg-dark" style="color: white" asp-items="ViewBag.Talleres" onchange="refrescarTodo()">
+        <option value="0">Seleccionar</option>
+    </select>
+</div>
+
+<div class="row">
+    <div class="col-12" id="PanelTaller">
+
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        function refrescar(url, destino) {
+            $.ajax({
+                url: url,
+                data: {
+                    id: $('#idTaller').val()
+                },
+                success: function (res) {
+                    $('#' + destino).html(res);
+                }
+            });
+        };
+        function refrescarTodo() {
+            refrescar('/Talleres/Details', 'PanelTaller');
+        };
+        $(document).ready(function () {
+            refrescarTodo();
+        })
+    </script>
+}
