@@ -61,6 +61,11 @@
             refrescar('/Facturas/Details', 'PanelFactura');
             refrescar('/Empleados/Details', 'PanelEmpleado');
         };
+        function SeleccionaRegistro(id) {
+            $('#idFactura').val(id);
+            refrescarTodo();
+            bootbox.hideAll();
+        }
         $(document).ready(function () {
             refrescarTodo();
         })

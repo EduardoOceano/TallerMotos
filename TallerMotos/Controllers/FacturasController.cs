@@ -22,7 +22,7 @@ namespace TallerMotos.Controllers
         public async Task<IActionResult> Index(int idFactura, bool? FacturaPagada)
         {
             ViewBag.Factura = new SelectList(_context.Facturas, "id", "id");
-            return PartialView(await _context.Facturas.Where(x=>x.id==idFactura).Include("Cliente")
+            return PartialView(await _context.Facturas.Include("Cliente")
                 .Include("Empleado").ToListAsync());
         }
 
