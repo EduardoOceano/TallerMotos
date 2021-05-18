@@ -19,9 +19,10 @@ namespace TallerMotos.Controllers
         }
 
         // GET: Facturas
-        public async Task<IActionResult> Index(int idFactura, bool? FacturaPagada)
+        public async Task<IActionResult> Index(int idTaller, bool? FacturaPagada)
         {
-            return PartialView(await _context.Facturas.Where(x=> FacturaPagada==null || x.isPagado==FacturaPagada).Where(x=>x.id==idFactura).Include("Cliente").Include("Empleado").ToListAsync());
+            return PartialView(await _context.Facturas.Where(x=> FacturaPagada==null || x.isPagado==FacturaPagada).Where(x=>x.idTaller==idTaller).Include("Cliente")
+                .Include("Empleado").ToListAsync());
         }
 
 
@@ -34,6 +35,7 @@ namespace TallerMotos.Controllers
             }
 
             var facturas = await _context.Facturas.Include("VentasLineas").Include("Cliente").Include("Empleado")
+                
                 .FirstOrDefaultAsync(m => m.id == id);
             if (facturas == null)
             {
@@ -44,10 +46,10 @@ namespace TallerMotos.Controllers
         }
 
         // GET: Facturas/Create
-        public IActionResult Create(int idFactura)
+        public IActionResult Create(int idTaller)
         {
             Facturas f = new Facturas();
-            f.id = idFactura;
+            f.idTaller = idTaller;
             return PartialView(f);
         }
 
