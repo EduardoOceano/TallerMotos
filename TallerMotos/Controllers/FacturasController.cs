@@ -19,9 +19,9 @@ namespace TallerMotos.Controllers
         }
 
         // GET: Facturas
-        public async Task<IActionResult> Index(bool? FacturaPagada)
+        public async Task<IActionResult> Index(int idFactura, bool? FacturaPagada)
         {
-            return View(await _context.Facturas.Where(x=> FacturaPagada==null || x.isPagado==FacturaPagada).Include("Cliente").Include("Empleado").ToListAsync());
+            return PartialView(await _context.Facturas.Where(x=> FacturaPagada==null || x.isPagado==FacturaPagada).Where(x=>x.id==idFactura).Include("Cliente").Include("Empleado").ToListAsync());
         }
 
 
@@ -44,9 +44,11 @@ namespace TallerMotos.Controllers
         }
 
         // GET: Facturas/Create
-        public IActionResult Create()
+        public IActionResult Create(int idFactura)
         {
-            return View();
+            Facturas f = new Facturas();
+            f.id = idFactura;
+            return PartialView(f);
         }
 
         // POST: Facturas/Create
@@ -84,7 +86,7 @@ namespace TallerMotos.Controllers
 
             ViewBag.Cliente = new SelectList(_context.Clientes, "id", "nombreCliente");
 
-            return View(facturas);
+            return PartialView(facturas);
         }
 
         // POST: Facturas/Edit/5
@@ -124,7 +126,7 @@ namespace TallerMotos.Controllers
 
             ViewBag.Cliente = new SelectList(_context.Clientes, "id", "nombreCliente", id);
 
-            return View(facturas);
+            return PartialView(facturas);
         }
 
         // GET: Facturas/Delete/5
@@ -146,7 +148,7 @@ namespace TallerMotos.Controllers
 
             ViewBag.Cliente = new SelectList(_context.Clientes, "id", "nombreCliente", id);
 
-            return View(facturas);
+            return PartialView(facturas);
         }
 
         // POST: Facturas/Delete/5
