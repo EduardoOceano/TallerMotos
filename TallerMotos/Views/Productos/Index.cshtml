@@ -10,7 +10,7 @@
 <h1 style="color:white">Productos</h1>
 
 <p>
-    <a asp-action="Create" style="color:white">Crear Producto</a> |
+    <a  onclick="abrirDialog('/Productos/Create/')" style="color:white">Crear Producto</a> |
     <a asp-action="ListadoProductos" style="color:white">Listado Productos</a> |
     <a asp-action="Index" asp-controller="ProductosProveedores" style="color:white">Productos Proveedores</a> |
     <a asp-action="Index" asp-controller="ProductosServicios" style="color:white">Listado Servicios</a>
@@ -56,11 +56,26 @@
             </td>
             <td>
 
-                <a asp-action="Edit" asp-route-id="@item.id" style="color:white"><i class="far fa-edit"></i></a>
-                <a asp-action="Delete" asp-route-id="@item.id" style="color:white"><i class="far fa-trash-alt"></i></a> |
-                <a asp-action="Details" asp-route-id="@item.id" style="color:white"><i class="fas fa-info"></i></a>
+                <a style="color:white" onclick="abrirDialog('/Productos/Edit/@item.id')"><i class="far fa-edit"></i></a>
+                <a style="color:white" onclick="abrirDialog('/Productos/Delete/@item.id')"><i class="far fa-trash-alt"></i></a> |
+                <a style="color:white" onclick="abrirDialog('/Productos/Details/@item.id')"><i class="fas fa-info"></i></a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+@section scripts{
+    <script>
+        function abrirDialog(url) {
+            $.ajax({
+                url: url,
+                success: function (res) {
+                    bootbox.dialog({
+                        message: "<div class='bg-dark'>" + res + "</div>",
+                        size: "large"
+                    });
+                }
+            })
+        }
+    </script>
+}
