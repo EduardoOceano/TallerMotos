@@ -71,15 +71,15 @@ namespace TallerMotos.Controllers
         }
 
         // GET: Facturas/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? idFactura)
         {
-            if (id == null)
+            if (idFactura == null)
             {
                 return NotFound();
             }
 
             //var facturas = await _context.Facturas.FindAsync(id);
-            var facturas = _context.Facturas.Include("VentasLineas").Include("VentasLineas.Producto").Where(x => x.id == id).FirstOrDefault();
+            var facturas = _context.Facturas.Include("VentasLineas").Include("VentasLineas.Producto").Where(x => x.id == idFactura).FirstOrDefault();
             if (facturas == null)
             {
                 return NotFound();
@@ -133,23 +133,23 @@ namespace TallerMotos.Controllers
         }
 
         // GET: Facturas/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? idFactura)
         {
-            if (id == null)
+            if (idFactura == null)
             {
                 return NotFound();
             }
 
             var facturas = await _context.Facturas.Include("VentasLineas")
-                .FirstOrDefaultAsync(m => m.id == id);
+                .FirstOrDefaultAsync(m => m.id == idFactura);
             if (facturas == null)
             {
                 return NotFound();
             }
 
-            ViewBag.Empleado = new SelectList(_context.Empleados, "id", "nombreEmpleado", id);
+            ViewBag.Empleado = new SelectList(_context.Empleados, "id", "nombreEmpleado", idFactura);
 
-            ViewBag.Cliente = new SelectList(_context.Clientes, "id", "nombreCliente", id);
+            ViewBag.Cliente = new SelectList(_context.Clientes, "id", "nombreCliente", idFactura);
 
             return PartialView(facturas);
         }

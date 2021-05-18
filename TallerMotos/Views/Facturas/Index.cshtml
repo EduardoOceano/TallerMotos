@@ -8,49 +8,49 @@
                 Cliente
             </th>
 
-            <th scope="col">
-                Empleado
-            </th>
-            <th scope="col">
-                Fecha
-            </th>
-            <th scope="col">
-                Taller
-            </th>
-            <th scope="col">
-                Importe
-            </th>
-            <th scope="col">
-                Pagado
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <th scope="row">
-                    @Html.DisplayFor(modelItem => item.Cliente.nombreCliente)
-                    @Html.DisplayFor(modelItem => item.Cliente.apellidosCliente)
+                <th scope="col">
+                    Empleado
                 </th>
+                <th scope="col">
+                    Fecha
+                </th>
+                <th scope="col">
+                    Taller
+                </th>
+                <th scope="col">
+                    Importe
+                </th>
+                <th scope="col">
+                    Pagado
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">
+                        @Html.DisplayFor(modelItem => item.Cliente.nombreCliente)
+                        @Html.DisplayFor(modelItem => item.Cliente.apellidosCliente)
+                    </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.EmpleadoId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fecha)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.idTaller)
-                </td>
-                <th>
-                    @Html.DisplayFor(modelItem => item.total)€
-                </th>
-                <td>
-                    @Html.DisplayFor(modelItem => item.isPagado)
-                </td>
-                <td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmpleadoId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idTaller)
+                    </td>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.total)€
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.isPagado)
+                    </td>
+                    <td>
 
                     <a onclick="SeleccionaRegistro(@item.id)" style="color: white">Seleccionar</a> 
 
