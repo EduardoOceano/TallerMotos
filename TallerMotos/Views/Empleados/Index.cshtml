@@ -1,15 +1,5 @@
 ﻿@model IEnumerable<TallerMotos.Models.Empleados>
 
-@{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
-}
-    <h1 style="color:white">Empleados</h1>
-<p>
-    <a style="color:white" asp-action="Create">Añadir nuevo</a> |
-    <a style="color:white" asp-action="ListadoEmpleados">Listado Empleados</a> |
-    <a style="color:white" asp-action="ListadoEmpleadosDespedidos">Listado Empleados Despedidos</a>
-</p>
 <table class="table table-dark">
     <thead>
         <tr>
@@ -62,9 +52,7 @@
                 @Html.DisplayFor(modelItem => item.TalleresId)
             </td>
             <td>
-                <a style="color:white" asp-action="Edit" asp-route-id="@item.id">Editar</a> |
-                <a style="color:white" asp-action="Details" asp-route-id="@item.id">Detalles</a> |
-                <a style="color:white" asp-action="Delete" asp-route-id="@item.id">Eliminar</a>
+                <a style="color:white" asp-action="Edit" asp-route-id="@item.id">Editar</a>
             </td>
             </tr>
 }

@@ -21,9 +21,14 @@ namespace TallerMotos.Controllers
         }
 
         // GET: Servicios
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? idServicio)
         {
-            return View(await _context.Servicios.ToListAsync());
+            if (idServicio!=null)
+            {
+                return PartialView(await _context.Servicios.Where(x => x.id == idServicio).ToListAsync());
+            }
+            return PartialView(await _context.Servicios.ToListAsync());
+
         }
         public async Task<IActionResult> ListadoServicios(string sql)
         {

@@ -1,14 +1,8 @@
 ﻿@model TallerMotos.Models.Facturas
 
-@{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
-}
-<body class="bg-dark">
-<h1 style="color: white">Detalles</h1>
 
 <div>
-    <h4 style="color: white">Facturas</h4>
+    <h4 style="color: white">Factura</h4>
     <hr />
     <form asp-action="Details">
         @Html.DisplayForModel()
@@ -16,6 +10,4 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.id" style="color: white">Editar</a> |
-    <a asp-action="Index" style="color: white">Volver</a>
 </div>
-</body>

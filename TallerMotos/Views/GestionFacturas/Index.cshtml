@@ -11,6 +11,8 @@
     <select id="idTaller" class="form-control bg-dark" style="color: white" asp-items="ViewBag.Talleres" onchange="refrescarTodo()">
         <option value="0">Seleccionar</option>
     </select>
+    <input type="button" onclick="abrirDialog('/Facturas/Index')" value="Buscar" class="btn btn-primary" />
+    <input type="hidden" id="idFactura" value="1" />
 </div>
 
 <div class="row">
@@ -31,18 +33,39 @@
             $.ajax({
                 url: url,
                 data: {
-                    id: $('#idTaller').val()
+                    idTaller: $('#idTaller').val(),
+                    idFactura: $('#idFactura').val()
                 },
                 success: function (res) {
                     $('#' + destino).html(res);
                 }
             });
         };
+        function abrirDialog(url) {
+            $.ajax({
+                url: url,
+                data: {                    
+                    idFactura: $('#idFactura').val()
+                },
+                success: function (res) {
+                    bootbox.dialog({
+                        message: res,
+                        size: "large"
+                    });
+                    $('#' + destino).html(res);
+                }
+            })
+        }
         function refrescarTodo() {
             refrescar('/Talleres/Details', 'PanelTaller');
             refrescar('/Facturas/Details', 'PanelFactura');
             refrescar('/Empleados/Details', 'PanelEmpleado');
         };
+        function SeleccionaRegistro(id) {
+            $('#idFactura').val(id);
+            refrescarTodo();
+            bootbox.hideAll();
+        }
         $(document).ready(function () {
             refrescarTodo();
         })
