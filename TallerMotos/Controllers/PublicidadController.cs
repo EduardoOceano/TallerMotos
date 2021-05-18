@@ -27,7 +27,7 @@ namespace TallerMotos.Controllers
        
             public async Task<IActionResult> Index()
             {
-                return View(await _context.Publicidad.Include("producto").ToListAsync());
+                return PartialView(await _context.Publicidad.Include("producto").ToListAsync());
             }
         
 

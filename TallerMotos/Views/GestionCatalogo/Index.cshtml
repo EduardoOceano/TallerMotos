@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h1>Index</h1>
+
+<input type="text" value="1" id="idPorducto" />
+<div class="row">
+    <div class="col-12" id="PanelProducto">
+
+    </div>
+</div>
+
+<input type="text" value="1" id="idServicio" />
+<div class="row">
+    <div class="col-12" id="PanelServicio">
+
+    </div>
+</div>
+
+<input type="text" value="1" id="idDescuento" />
+<div class="row">
+    <div class="col-12" id="PanelDescuento">
+
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        function refrescar(url, destino) {
+            $.ajax({
+                url: url,
+                data: {
+                    idProducto: $('#idProducto').val(),
+                    idServicio: $('#idServicio').val(),
+                    idDescuento: $('#idDescuento').val()
+                },
+                success: function (res) {
+                    $('#' + destino).html(res);
+                }
+            });
+        };
+        function refrescarTodo() {
+            refrescar('/Productos/Index', 'PanelProducto');
+            refrescar('/Servicios/Index', 'PanelServicio');
+            refrescar('/Publicidad/Index', 'PanelDescuento');
+        };
+        $(document).ready(function () {
+            refrescarTodo();
+        })
+    </script>
+}
