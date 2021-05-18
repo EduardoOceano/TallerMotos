@@ -19,30 +19,31 @@ namespace TallerMotos.Controllers
         }
 
         // GET: Facturas
-        public async Task<IActionResult> Index(int idTaller, bool? FacturaPagada)
+        public async Task<IActionResult> Index(int idFactura, bool? FacturaPagada)
         {
-            return PartialView(await _context.Facturas.Where(x=> FacturaPagada==null || x.isPagado==FacturaPagada).Where(x=>x.idTaller==idTaller).Include("Cliente")
+            ViewBag.Factura = new SelectList(_context.Facturas, "id", "id");
+            return PartialView(await _context.Facturas.Where(x=>x.id==idFactura).Include("Cliente")
                 .Include("Empleado").ToListAsync());
         }
 
 
         // GET: Facturas/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? idFactura)
         {
-            if (id == null)
+            if (idFactura == null)
             {
                 return NotFound();
             }
 
             var facturas = await _context.Facturas.Include("VentasLineas").Include("Cliente").Include("Empleado")
                 
-                .FirstOrDefaultAsync(m => m.id == id);
+                .FirstOrDefaultAsync(m => m.id == idFactura);
             if (facturas == null)
             {
                 return NotFound();
             }
 
-            return View(facturas);
+            return PartialView(facturas);
         }
 
         // GET: Facturas/Create
