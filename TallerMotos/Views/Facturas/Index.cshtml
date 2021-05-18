@@ -6,50 +6,39 @@
 }
 <body class="bg-dark">
     <h1 style="color: white">Facturas</h1>
-    <a asp-action="Create" style="color: white">Nueva factura</a> |
-    <a asp-action="Index" asp-controller="VentasTaller" style="color: white">Listado Ventas Talleres</a> |
-    <a asp-action="Index" asp-controller="VentasClientesTalleres" style="color: white">Listado Ventas Clientes Talleres</a>
-    <br />
-    <br />
-    <form asp-action="Index" method="get">
-        <!--<input type="text" placeholder="Introduzca el nombre del empleado" />
-        <input type="submit" value="buscar" />-->
-
-
-        <div class="row">
-            <div class="col-2" style="color: white">
-                Estado:
-            </div>
-            <div class="col-4">
-                <select name="FacturaPagada" class="form-control bg-dark" style="color: white">
-                    <option value="">(Todos)</option>
-                    <option value="True">Pagado</option>
-                    <option value="False">Sin pagar</option>
-                </select>
-            </div>
-            <input type="submit" value="Consultar" class="btn btn-primary" />
-        </div>
-
-    </form>
-
 
     <form asp-action="Index" method="get">
         <!--<input type="text" placeholder="Introduzca el nombre del empleado" />
     <input type="submit" value="buscar" />-->
 
+        <div class="row">
 
-        <a  style="padding:10px" class="btn btn-sm btn-primary">
-            <i class="fas fa-search"></i>
-        </a>
-        <a onclick="abrirDialog('/Facturas/Create')" style="padding:10px" class="btn btn-sm btn-primary">
-            <i class="fas fa-plus"></i>
-        </a>
-        <a onclick="abrirDialog('/Facturas/Edit/@item.Id')" style="padding:10px" class="btn btn-sm btn-primary">
-            <i class="far fa-edit"></i>
-        </a>
-        <a onclick="abrirDialog('/Facturas/Delete/@item.Id')" style="padding:10px" class="btn btn-sm btn-danger">
-            <i class="far fa-trash-alt"></i>
-        </a>
+            <div class="col-2">
+                <a title="Buscar" style="padding:10px" class="btn btn-sm btn-primary">
+                    <i class="fas fa-search"></i>
+                </a>
+                <a title="Añadir" onclick="abrirDialog('/Facturas/Create')" style="padding:10px" class="btn btn-sm btn-primary">
+                    <i class="fas fa-plus"></i>
+                </a>
+                <a title="Editar" onclick="abrirDialog('/Facturas/Edit')" style="padding:10px" class="btn btn-sm btn-primary">
+                    <i class="far fa-edit"></i>
+                </a>
+                <a title="Eliminar" onclick="abrirDialog('/Facturas/Delete')" style="padding:10px" class="btn btn-sm btn-danger">
+                    <i class="far fa-trash-alt"></i>
+                </a>
+
+            </div>
+
+            <div class="col-4">
+                Seleccione un taller:
+                <select name="FacturaPagada" class="form-control-sm bg-dark" style="color: white" asp-items="@ViewBag.idTaller">
+                    <option value="">(Todos)</option>
+
+                </select>
+            </div>
+
+        </div>
+
 
     </form>
 
