@@ -6,20 +6,28 @@
 
 <h1>Gestion de Facturas</h1>
 
-<div class="form-group ">
-    <label class="control-label" style="color: white">Taller Seleccion</label>
-    <select id="idTaller" class="form-control bg-dark" style="color: white" asp-items="ViewBag.Talleres" onchange="refrescarTodo()">
-        <option value="0">Seleccionar</option>
-    </select>
-    <input type="button" onclick="abrirDialog('/Facturas/Index')" value="Buscar" class="btn btn-primary" />
-    <input type="button" onclick="abrirDialog('/Facturas/Create')" value="+" class="btn btn-primary" />
-    <input type="button" onclick="abrirDialog('/Facturas/Edit')" value="E" class="btn btn-primary" />
-    <input type="button" onclick="abrirDialog('/Facturas/Delete')" value="B" class="btn btn-danger" />
-    <input type="hidden2" id="idFactura" value="1" />
+<div class="row">
+    <div class="col-2">
+        <a title="Buscar" onclick="abrirDialog('/Facturas/Index')" style="padding:10px" class="btn btn-sm btn-primary"><i class="fas fa-search"></i></a>
+        <a title="Añadir" onclick="abrirDialog('/Facturas/Create')" style="padding:10px" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i></a>
+        <a title="Editar" onclick="abrirDialog('/Facturas/Edit')" style="padding:10px" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+        <a title="Eliminar" onclick="abrirDialog('/Facturas/Delete')" style="padding:10px" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
+        <input type="hidden" id="idFactura" value="1" />
+    </div>
+
+    <div class="col-2">
+        <label class="control-label" style="color: white">Selecciona el taller:</label>
+    </div>
+
+    <div class="col-4">
+            <select id="idTaller" class="form-control-sm bg-dark" style="color: white" asp-items="ViewBag.Talleres" onchange="refrescarTodo()">
+                <option value="0">(Todos)</option>
+            </select>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-12" id="PanelTaller">
+    <div class="row">
+        <div class="col-12" id="PanelTaller">
 
     </div>
 </div>
@@ -28,47 +36,47 @@
     <div class="col-6" id="PanelEmpleado"></div>
 </div>
 
-@section Scripts{
-    <script>
-        function refrescar(url, destino) {
-            $.ajax({
-                url: url,
-                data: {
-                    idTaller: $('#idTaller').val(),
-                    idFactura: $('#idFactura').val()
-                },
-                success: function (res) {
-                    $('#' + destino).html(res);
-                }
-            });
-        };
-        function abrirDialog(url) {
-            $.ajax({
-                url: url,
-                data: {                    
-                    idFactura: $('#idFactura').val()
-                },
-                success: function (res) {
-                    bootbox.dialog({
-                        message: "<div class='bg-dark'>" + res + "</div>",
-                        size: "large"
-                    });
-                    $('#' + destino).html(res);
-                }
+    @section Scripts{
+        <script>
+            function refrescar(url, destino) {
+                $.ajax({
+                    url: url,
+                    data: {
+                        idTaller: $('#idTaller').val(),
+                        idFactura: $('#idFactura').val()
+                    },
+                    success: function (res) {
+                        $('#' + destino).html(res);
+                    }
+                });
+            };
+            function abrirDialog(url) {
+                $.ajax({
+                    url: url,
+                    data: {
+                        idFactura: $('#idFactura').val()
+                    },
+                    success: function (res) {
+                        bootbox.dialog({
+                            message: "<div class='bg-dark'>" + res + "</div>",
+                            size: "large"
+                        });
+                        $('#' + destino).html(res);
+                    }
+                })
+            }
+            function refrescarTodo() {
+                refrescar('/Talleres/Details', 'PanelTaller');
+                refrescar('/Facturas/Details', 'PanelFactura');
+                refrescar('/Empleados/Details', 'PanelEmpleado');
+            };
+            function SeleccionaRegistro(id) {
+                $('#idFactura').val(id);
+                refrescarTodo();
+                bootbox.hideAll();
+            }
+            $(document).ready(function () {
+                refrescarTodo();
             })
-        }
-        function refrescarTodo() {
-            refrescar('/Talleres/Details', 'PanelTaller');
-            refrescar('/Facturas/Details', 'PanelFactura');
-            refrescar('/Empleados/Details', 'PanelEmpleado');
-        };
-        function SeleccionaRegistro(id) {
-            $('#idFactura').val(id);
-            refrescarTodo();
-            bootbox.hideAll();
-        }
-        $(document).ready(function () {
-            refrescarTodo();
-        })
-    </script>
-}
+        </script>
+    }
