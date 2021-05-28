@@ -25,10 +25,14 @@ namespace TallerMotos.Controllers
 
         // GET: Publicidads
        
-            public async Task<IActionResult> Index()
+            public async Task<IActionResult> Index( int? idDescuento)
+        {
+            if (idDescuento != null)
             {
-                return PartialView(await _context.Publicidad.Include("producto").ToListAsync());
+                return PartialView(await _context.Publicidad.Where(x => x.id == idDescuento).ToListAsync());
             }
+            return PartialView(await _context.Publicidad.ToListAsync());
+        }
         
 
         // GET: Publicidads/Details/5

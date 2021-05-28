@@ -5,7 +5,7 @@
 
 <h1>Gestion de Catalogo</h1>
 
-<input type="text" value="primeraLlamada" id="idServicio" />
+<input type="text" value="" id="idServicio" />
 <button onclick="seleccionarServicio($('#idServicio'))">
     Seleccionar
 </button>
@@ -15,7 +15,7 @@
     </div>
 </div>
 
-<input type="text" value="primeraLlamada" id="idProducto" />
+<input type="text" value="" id="idProducto" />
 <button onclick="seleccionarProducto($('#idProducto'))">
     Seleccionar
 </button>
@@ -25,7 +25,10 @@
     </div>
 </div>
 
-<input type="text" value="primeraLlamada" id="idDescuento" />
+<input type="text" value="" id="idDescuento" />
+<button onclick="seleccionarPublicidad($('#idDescuento'))">
+    Seleccionar
+</button>
 <div class="row">
     <div class="col-12" id="PanelDescuento">
 
@@ -64,6 +67,17 @@
                 }
             });
         };
+        function refrescarPublicidad(url, destino) {
+            $.ajax({
+                url: url,
+                data: {
+                    idDescuento: $('#idDescuento').val()
+                },
+                success: function (res) {
+                    $('#' + destino).html(res);
+                }
+            });
+        };
         function refrescarTodo() {
             refrescar('/Productos/Index', 'PanelProducto');
             refrescar('/Servicios/Index', 'PanelServicio');
@@ -74,6 +88,9 @@
         };
         function seleccionarProducto(idSelect) {
             refrescarProducto('/Productos/Index/' + idSelect, 'PanelProducto');
+        };
+        function seleccionarPublicidad(idSelect) {
+            refrescarPublicidad('/Publicidad/Index/' + idSelect, 'PanelDescuento');
         };
         $(document).ready(function () {
             refrescarTodo();

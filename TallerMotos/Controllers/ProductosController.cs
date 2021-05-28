@@ -27,7 +27,7 @@ namespace TallerMotos.Controllers
             {
                 return PartialView(await _context.Productos.Where(x => x.id == idProducto).ToListAsync());
             }
-            return View(await _context.Productos.Include("Proveedor").ToListAsync());
+            return PartialView(await _context.Productos.Include("Proveedor").ToListAsync());
         }
         public async Task<IActionResult> ListadoProductos(string sql)
         {
