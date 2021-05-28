@@ -8,7 +8,7 @@
 <h1 style="color:white">Servicio</h1>
 
 <p>
-    <a asp-action="Create" style="color:white">Añadir</a> |   <a asp-action="ListadoServicios" style="color:white">Listado Servicios</a> |
+    <a onclick="abrirDialog('/Servicios/Create')" style="color:white">Añadir</a> |   <a asp-action="ListadoServicios" style="color:white">Listado Servicios</a> |
     <a asp-action="Index" asp-controller="ProductosServicios" style="color:white">Productos y servicios</a>
 </p>
 <table class="table table-dark">
@@ -39,8 +39,8 @@
                 @Html.DisplayFor(modelItem => item.precio)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.id" style="color:white"><i class="far fa-edit"></i></a>
-                <a asp-action="Delete" asp-route-id="@item.id" style="color:white"><i class="far fa-trash-alt"></i></a> |
+                <a style="color:white" onclick="abrirDialog('/Servicios/Edit/@item.id')"><i class="far fa-edit" ></i></a>
+                <a onclick="abrirDialog('/Servicios/Delete/@item.id')" style="color:white"><i class="far fa-trash-alt"></i></a> |
                 <a style="color:white"><i class="fas fa-chart-line"></i></a>
 
             </td>
@@ -48,3 +48,19 @@
 }
     </tbody>
 </table>
+@section Scripts{ 
+    <script>
+        function abrirDialog(url) {
+            $.ajax({
+                url: url,
+                success: function (res) {
+                    bootbox.dialog({
+                        message: "<div class='bg-dark'>" + res + "</div>",
+                        size: "large"
+                    });
+
+                }
+            })
+        }
+    </script>
+}
